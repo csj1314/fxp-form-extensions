@@ -5,7 +5,7 @@ Sonatra Form Extensions
 [![Build Status](https://img.shields.io/travis/sonatra/sonatra-form-extensions/master.svg)](https://travis-ci.org/sonatra/sonatra-form-extensions)
 [![Coverage Status](https://img.shields.io/coveralls/sonatra/sonatra-form-extensions/master.svg)](https://coveralls.io/r/sonatra/sonatra-form-extensions?branch=master)
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/sonatra/sonatra-form-extensions/master.svg)](https://scrutinizer-ci.com/g/sonatra/sonatra-form-extensions?branch=master)
-[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/f353d527-edf0-42a5-aa13-8b045668d853.svg)](https://insight.sensiolabs.com/projects/f353d527-edf0-42a5-aa13-8b045668d853)
+[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/d49b1a61-bbed-4064-8021-5c27d89e5697.svg)](https://insight.sensiolabs.com/projects/d49b1a61-bbed-4064-8021-5c27d89e5697)
 
 The Sonatra Form Extensions add Symfony form types.
 
