@@ -23,8 +23,7 @@
     },
     "require-dev" : {
         "symfony/doctrine-bridge" : "~3.0",
-        "doctrine/orm" : "~2.5",
-        "twig/twig": "~1.27"
+        "doctrine/orm" : "~2.5"
     },
     "suggest": {
         "fxp/composer-asset-plugin": "For manage NPM/Bower dependencies with Composer",
