@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\FormExtensionsBundle\Tests\Doctrine\Form\Fixtures;
+namespace Sonatra\Component\FormExtensions\Tests\Doctrine\Form\Fixtures;
 
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Column;

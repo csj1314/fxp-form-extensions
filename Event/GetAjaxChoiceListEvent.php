@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\FormExtensionsBundle\Event;
+namespace Sonatra\Component\FormExtensions\Event;
 
-use Sonatra\Bundle\AjaxBundle\Event\GetAjaxEvent;
-use Sonatra\Bundle\FormExtensionsBundle\Form\ChoiceList\Formatter\AjaxChoiceListFormatterInterface;
-use Sonatra\Bundle\FormExtensionsBundle\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface;
-use Sonatra\Bundle\FormExtensionsBundle\Form\Helper\AjaxChoiceListHelper;
+use Sonatra\Component\Ajax\Event\GetAjaxEvent;
+use Sonatra\Component\FormExtensions\Form\ChoiceList\Formatter\AjaxChoiceListFormatterInterface;
+use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface;
+use Sonatra\Component\FormExtensions\Form\Helper\AjaxChoiceListHelper;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 

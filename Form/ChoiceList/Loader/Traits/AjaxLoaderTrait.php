@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\FormExtensionsBundle\Form\ChoiceList\Loader\Traits;
+namespace Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\Traits;
 
 /**
  * @author François Pluchino <francois.pluchino@sonatra.com>

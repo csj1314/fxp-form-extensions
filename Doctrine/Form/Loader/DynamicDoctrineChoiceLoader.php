@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\FormExtensionsBundle\Doctrine\Form\Loader;
+namespace Sonatra\Component\FormExtensions\Doctrine\Form\Loader;
 
-use Sonatra\Bundle\FormExtensionsBundle\Form\ChoiceList\Loader\AbstractDynamicChoiceLoader;
+use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AbstractDynamicChoiceLoader;
 use Symfony\Bridge\Doctrine\Form\ChoiceList\EntityLoaderInterface;
 use Symfony\Bridge\Doctrine\Form\ChoiceList\IdReader;
 use Symfony\Component\Form\ChoiceList\Factory\ChoiceListFactoryInterface;

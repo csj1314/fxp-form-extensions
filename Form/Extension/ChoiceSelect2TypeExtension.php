@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\FormExtensionsBundle\Form\Extension;
+namespace Sonatra\Component\FormExtensions\Form\Extension;
 
 /**
  * @author François Pluchino <francois.pluchino@sonatra.com>

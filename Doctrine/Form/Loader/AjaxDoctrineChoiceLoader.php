@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\FormExtensionsBundle\Doctrine\Form\Loader;
+namespace Sonatra\Component\FormExtensions\Doctrine\Form\Loader;
 
-use Sonatra\Bundle\FormExtensionsBundle\Doctrine\Form\ChoiceList\AjaxEntityLoaderInterface;
-use Sonatra\Bundle\FormExtensionsBundle\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface;
-use Sonatra\Bundle\FormExtensionsBundle\Form\ChoiceList\Loader\Traits\AjaxLoaderTrait;
+use Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList\AjaxEntityLoaderInterface;
+use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface;
+use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\Traits\AjaxLoaderTrait;
 use Symfony\Bridge\Doctrine\Form\ChoiceList\IdReader;
 use Symfony\Component\Form\ChoiceList\Factory\ChoiceListFactoryInterface;
 use Symfony\Component\PropertyAccess\PropertyPath;

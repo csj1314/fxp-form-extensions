@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\FormExtensionsBundle\Tests\Doctrine\Form\ChoiceList\Loader;
+namespace Sonatra\Component\FormExtensions\Tests\Doctrine\Form\ChoiceList\Loader;
 
-use Sonatra\Bundle\FormExtensionsBundle\Doctrine\Form\ChoiceList\AjaxEntityLoaderInterface;
-use Sonatra\Bundle\FormExtensionsBundle\Doctrine\Form\Loader\AjaxDoctrineChoiceLoader;
-use Sonatra\Bundle\FormExtensionsBundle\Tests\Doctrine\Form\Fixtures\MockEntity;
-use Sonatra\Bundle\FormExtensionsBundle\Tests\Form\ChoiceList\Loader\AbstractAjaxChoiceLoaderTest;
+use Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList\AjaxEntityLoaderInterface;
+use Sonatra\Component\FormExtensions\Doctrine\Form\Loader\AjaxDoctrineChoiceLoader;
+use Sonatra\Component\FormExtensions\Tests\Doctrine\Form\Fixtures\MockEntity;
+use Sonatra\Component\FormExtensions\Tests\Form\ChoiceList\Loader\AbstractAjaxChoiceLoaderTest;
 use Symfony\Bridge\Doctrine\Form\ChoiceList\IdReader;
 use Symfony\Component\Form\Exception\RuntimeException;
 
@@ -48,7 +48,7 @@ class AjaxDoctrineChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
             new MockEntity('baz', 'Baz'),
         );
 
-        $this->objectLoader = $this->getMockBuilder('Sonatra\Bundle\FormExtensionsBundle\Doctrine\Form\ChoiceList\AjaxEntityLoaderInterface')->getMock();
+        $this->objectLoader = $this->getMockBuilder('Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList\AjaxEntityLoaderInterface')->getMock();
         $this->idReader = $this->getMockBuilder('Symfony\Bridge\Doctrine\Form\ChoiceList\IdReader')
             ->disableOriginalConstructor()
             ->getMock();

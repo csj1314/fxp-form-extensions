@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\FormExtensionsBundle\Tests\Form\Util;
+namespace Sonatra\Component\FormExtensions\Tests\Form\Util;
 
-use Sonatra\Bundle\FormExtensionsBundle\Form\Util\FormUtil;
+use Sonatra\Component\FormExtensions\Form\Util\FormUtil;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormInterface;
 

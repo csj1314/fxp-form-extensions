@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\FormExtensionsBundle\Form\Extension;
+namespace Sonatra\Component\FormExtensions\Form\Extension;
 
-use Sonatra\Bundle\FormExtensionsBundle\Form\ChoiceList\Loader\AjaxChoiceLoader;
-use Sonatra\Bundle\FormExtensionsBundle\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface;
-use Sonatra\Bundle\FormExtensionsBundle\Form\ChoiceList\Loader\DynamicChoiceLoader;
-use Sonatra\Bundle\FormExtensionsBundle\Form\ChoiceList\Loader\DynamicChoiceLoaderInterface;
+use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoader;
+use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface;
+use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\DynamicChoiceLoader;
+use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\DynamicChoiceLoaderInterface;
 use Symfony\Component\Form\ChoiceList\Factory\ChoiceListFactoryInterface;
 use Symfony\Component\Form\Exception\InvalidConfigurationException;
 use Symfony\Component\OptionsResolver\Options;

@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\FormExtensionsBundle\Form\ChoiceList\Loader;
+namespace Sonatra\Component\FormExtensions\Form\ChoiceList\Loader;
 
-use Sonatra\Bundle\FormExtensionsBundle\Form\ChoiceList\Loader\Traits\AjaxLoaderTrait;
+use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\Traits\AjaxLoaderTrait;
 use Symfony\Component\Form\ChoiceList\Factory\ChoiceListFactoryInterface;
 
 /**

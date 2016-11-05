@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\FormExtensionsBundle\Tests\Form\ChoiceList\Loader;
+namespace Sonatra\Component\FormExtensions\Tests\Form\ChoiceList\Loader;
 
-use Sonatra\Bundle\FormExtensionsBundle\Form\ChoiceList\Loader\DynamicChoiceLoader;
+use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\DynamicChoiceLoader;
 
 /**
  * Tests case for dynamic choice loader.

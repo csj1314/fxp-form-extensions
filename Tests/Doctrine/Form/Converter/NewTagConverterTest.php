@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\FormExtensionsBundle\Tests\Doctrine\Form\Converter;
+namespace Sonatra\Component\FormExtensions\Tests\Doctrine\Form\Converter;
 
-use Sonatra\Bundle\FormExtensionsBundle\Doctrine\Form\Converter\NewTagConverter;
-use Sonatra\Bundle\FormExtensionsBundle\Tests\Doctrine\Form\Fixtures\MockEntity;
+use Sonatra\Component\FormExtensions\Doctrine\Form\Converter\NewTagConverter;
+use Sonatra\Component\FormExtensions\Tests\Doctrine\Form\Fixtures\MockEntity;
 
 /**
  * @author François Pluchino <francois.pluchino@sonatra.com>

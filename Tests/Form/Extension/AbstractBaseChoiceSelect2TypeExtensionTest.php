@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\FormExtensionsBundle\Tests\Form\Extension;
+namespace Sonatra\Component\FormExtensions\Tests\Form\Extension;
 
-use Sonatra\Bundle\FormExtensionsBundle\Form\Extension\BaseChoiceSelect2TypeExtension;
-use Sonatra\Bundle\FormExtensionsBundle\Form\Extension\ChoiceSelect2TypeExtension;
+use Sonatra\Component\FormExtensions\Form\Extension\BaseChoiceSelect2TypeExtension;
+use Sonatra\Component\FormExtensions\Form\Extension\ChoiceSelect2TypeExtension;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\Forms;

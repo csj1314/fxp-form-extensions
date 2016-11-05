@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\FormExtensionsBundle\Tests\Doctrine\Form\Converter;
+namespace Sonatra\Component\FormExtensions\Tests\Doctrine\Form\Converter;
 
-use Sonatra\Bundle\FormExtensionsBundle\Doctrine\Form\Converter\NewTagConverterInterface;
-use Sonatra\Bundle\FormExtensionsBundle\Doctrine\Form\EventListener\NewTagConverterListener;
+use Sonatra\Component\FormExtensions\Doctrine\Form\Converter\NewTagConverterInterface;
+use Sonatra\Component\FormExtensions\Doctrine\Form\EventListener\NewTagConverterListener;
 use Symfony\Component\Form\FormEvent;
 
 /**
@@ -23,7 +23,7 @@ class NewTagConverterListenerTest extends \PHPUnit_Framework_TestCase
     public function testOnSubmit()
     {
         /* @var NewTagConverterInterface|\PHPUnit_Framework_MockObject_MockObject $converter */
-        $converter = $this->getMockBuilder('Sonatra\Bundle\FormExtensionsBundle\Doctrine\Form\Converter\NewTagConverterInterface')->getMock();
+        $converter = $this->getMockBuilder('Sonatra\Component\FormExtensions\Doctrine\Form\Converter\NewTagConverterInterface')->getMock();
         $converter->expects($this->any())
             ->method('convert')
             ->will($this->returnCallback(function ($value) {

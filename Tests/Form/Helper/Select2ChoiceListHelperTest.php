@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\FormExtensionsBundle\Tests\Form\Extension;
+namespace Sonatra\Component\FormExtensions\Tests\Form\Extension;
 
 /**
  * Tests case for select2 choice list helper.
@@ -23,7 +23,7 @@ class Select2ChoiceListHelperTest extends AjaxChoiceListHelperTest
      */
     protected function getHelperClass()
     {
-        return 'Sonatra\Bundle\FormExtensionsBundle\Form\Helper\Select2ChoiceListHelper';
+        return 'Sonatra\Component\FormExtensions\Form\Helper\Select2ChoiceListHelper';
     }
 
     /**

@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\FormExtensionsBundle\Form\Extension;
+namespace Sonatra\Component\FormExtensions\Form\Extension;
 
-use Sonatra\Bundle\FormExtensionsBundle\Form\ChoiceList\Formatter\Select2AjaxChoiceListFormatter;
-use Sonatra\Bundle\FormExtensionsBundle\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface;
+use Sonatra\Component\FormExtensions\Form\ChoiceList\Formatter\Select2AjaxChoiceListFormatter;
+use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\ChoiceList\Factory\ChoiceListFactoryInterface;
 use Symfony\Component\Form\ChoiceList\Factory\DefaultChoiceListFactory;
@@ -131,7 +131,7 @@ abstract class AbstractSelect2ConfigTypeExtension extends AbstractTypeExtension
             $select2Resolver->setAllowedTypes('language', 'string');
             $select2Resolver->setAllowedTypes('tags', 'bool');
             $select2Resolver->setAllowedTypes('ajax', 'bool');
-            $select2Resolver->setAllowedTypes('ajax_formatter', 'Sonatra\Bundle\FormExtensionsBundle\Form\ChoiceList\Formatter\AjaxChoiceListFormatterInterface');
+            $select2Resolver->setAllowedTypes('ajax_formatter', 'Sonatra\Component\FormExtensions\Form\ChoiceList\Formatter\AjaxChoiceListFormatterInterface');
             $select2Resolver->setAllowedTypes('ajax_parameters', 'array');
             $select2Resolver->setAllowedTypes('ajax_reference_type', 'bool');
             $select2Resolver->setAllowedTypes('ajax_data_type', array('null', 'string'));

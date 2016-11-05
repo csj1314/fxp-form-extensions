@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\FormExtensionsBundle\Tests\Form\Util;
+namespace Sonatra\Component\FormExtensions\Tests\Form\Util;
 
-use Sonatra\Bundle\FormExtensionsBundle\Form\Util\DateTimeUtil;
+use Sonatra\Component\FormExtensions\Form\Util\DateTimeUtil;
 
 /**
  * Tests case for datetime util.

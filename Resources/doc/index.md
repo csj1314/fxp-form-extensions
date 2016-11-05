@@ -1,26 +1,16 @@
 Getting Started
 ===============
 
-## Prerequisites
-
-This version of the bundle requires Symfony 2.4+.
-
 ## Installation
 
-Installation is a quick, 2 step process:
+### Download the bundle using composer
 
-1. Download the bundle using composer
-2. Enable the bundle
-3. Configure the bundle (optional)
+Add Sonatra FormExtensions in your composer.json:
 
-### Step 1: Download the bundle using composer
-
-Add Sonatra FormExtensionsBundle in your composer.json:
-
-```js
+```json
 {
     "require": {
-        "sonatra/form-extensions-bundle": "~1.0"
+        "sonatra/form-extensions": "~1.0"
     }
 }
 ```
@@ -28,42 +18,7 @@ Add Sonatra FormExtensionsBundle in your composer.json:
 Or tell composer to download the bundle by running the command:
 
 ```bash
-$ php composer.phar require sonatra/form-extensions-bundle:1.0
+$ php composer.phar require sonatra/form-extensions:"~1.0"
 ```
 
 Composer will install the bundle to your project's `vendor/sonatra` directory. 
-
-### Step 2: Enable the bundle
-
-Enable the bundle in the kernel:
-
-```php
-// app/AppKernel.php
-
-public function registerBundles()
-{
-    $bundles = array(
-        // ...
-        new Fxp\Bundle\RequireAssetBundle\FxpRequireAssetBundle(),
-        new Sonatra\Bundle\FormExtensionsBundle\SonatraFormExtensionsBundle(),
-    );
-}
-```
-
-### Step 3: Configure the bundle (optional)
-
-You can override the default configuration adding `sonatra_form_extensions` tree in `app/config/config.yml`.
-For see the reference of Sonatra Form Extensions Configuration, execute command:
-
-```bash
-$ php app/console config:dump-reference SonatraFormExtensionsBundle 
-```
-
-### Next Steps
-
-Now that you have completed the basic installation and configuration of the
-Sonatra FormExtensionsBundle, you are ready to learn about usages of the bundle.
-
-The following documents are available:
-
-- [Enjoy!](usage.md)

@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\FormExtensionsBundle\Form\DataTransformer;
+namespace Sonatra\Component\FormExtensions\Form\DataTransformer;
 
-use Sonatra\Bundle\FormExtensionsBundle\Form\ChoiceList\Loader\DynamicChoiceLoaderInterface;
+use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\DynamicChoiceLoaderInterface;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 

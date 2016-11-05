@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\FormExtensionsBundle\Tests\Form\ChoiceList\Formatter;
+namespace Sonatra\Component\FormExtensions\Tests\Form\ChoiceList\Formatter;
 
-use Sonatra\Bundle\FormExtensionsBundle\Form\ChoiceList\Formatter\Select2AjaxChoiceListFormatter;
+use Sonatra\Component\FormExtensions\Form\ChoiceList\Formatter\Select2AjaxChoiceListFormatter;
 
 /**
  * Tests case for select2 choice list formatter.

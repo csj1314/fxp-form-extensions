@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\FormExtensionsBundle\Doctrine\Form\Converter;
+namespace Sonatra\Component\FormExtensions\Doctrine\Form\Converter;
 
 /**
  * @author François Pluchino <francois.pluchino@sonatra.com>

@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\FormExtensionsBundle\Doctrine\Form\Extension;
+namespace Sonatra\Component\FormExtensions\Doctrine\Form\Extension;
 
 use Doctrine\Common\Persistence\ObjectManager;
-use Sonatra\Bundle\FormExtensionsBundle\Doctrine\Form\ChoiceList\AjaxORMQueryBuilderLoader;
+use Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList\AjaxORMQueryBuilderLoader;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 /**

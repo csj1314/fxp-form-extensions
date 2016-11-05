@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\FormExtensionsBundle\Tests\Form\ChoiceList\Loader;
+namespace Sonatra\Component\FormExtensions\Tests\Form\ChoiceList\Loader;
 
-use Sonatra\Bundle\FormExtensionsBundle\Form\ChoiceList\Loader\AjaxChoiceLoader;
+use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoader;
 
 /**
  * Tests case for ajax choice loader.

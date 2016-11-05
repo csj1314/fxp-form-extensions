@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\FormExtensionsBundle\Tests\Event;
+namespace Sonatra\Component\FormExtensions\Tests\Event;
 
-use Sonatra\Bundle\FormExtensionsBundle\Event\GetAjaxChoiceListEvent;
-use Sonatra\Bundle\FormExtensionsBundle\Form\ChoiceList\Formatter\AjaxChoiceListFormatterInterface;
-use Sonatra\Bundle\FormExtensionsBundle\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface;
+use Sonatra\Component\FormExtensions\Event\GetAjaxChoiceListEvent;
+use Sonatra\Component\FormExtensions\Form\ChoiceList\Formatter\AjaxChoiceListFormatterInterface;
+use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
@@ -37,10 +37,10 @@ class GetAjaxChoiceListEventTest extends \PHPUnit_Framework_TestCase
         $requestStack->push($request);
 
         /* @var AjaxChoiceLoaderInterface $choiceLoader */
-        $choiceLoader = $this->getMockBuilder('Sonatra\Bundle\FormExtensionsBundle\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface')->getMock();
+        $choiceLoader = $this->getMockBuilder('Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface')->getMock();
 
         /* @var AjaxChoiceListFormatterInterface|\PHPUnit_Framework_MockObject_MockObject $formatter */
-        $formatter = $this->getMockBuilder('Sonatra\Bundle\FormExtensionsBundle\Form\ChoiceList\Formatter\AjaxChoiceListFormatterInterface')->getMock();
+        $formatter = $this->getMockBuilder('Sonatra\Component\FormExtensions\Form\ChoiceList\Formatter\AjaxChoiceListFormatterInterface')->getMock();
         $formatter->expects($this->any())
             ->method('formatResponseData')
             ->will($this->returnValue('AJAX_FORMATTER_MOCK'));

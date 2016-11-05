@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\FormExtensionsBundle\Tests\Form\Extension;
+namespace Sonatra\Component\FormExtensions\Tests\Form\Extension;
 
-use Sonatra\Bundle\FormExtensionsBundle\Form\Extension\BirthdayJqueryTypeExtension;
-use Sonatra\Bundle\FormExtensionsBundle\Form\Extension\DateJqueryTypeExtension;
-use Sonatra\Bundle\FormExtensionsBundle\Form\Extension\DateTimeJqueryTypeExtension;
+use Sonatra\Component\FormExtensions\Form\Extension\BirthdayJqueryTypeExtension;
+use Sonatra\Component\FormExtensions\Form\Extension\DateJqueryTypeExtension;
+use Sonatra\Component\FormExtensions\Form\Extension\DateTimeJqueryTypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\Forms;

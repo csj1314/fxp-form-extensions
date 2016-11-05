@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\FormExtensionsBundle\Form\Extension;
+namespace Sonatra\Component\FormExtensions\Form\Extension;
 
-use Sonatra\Bundle\AjaxBundle\AjaxEvents;
-use Sonatra\Bundle\FormExtensionsBundle\Event\GetAjaxChoiceListEvent;
-use Sonatra\Bundle\FormExtensionsBundle\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface;
-use Sonatra\Bundle\FormExtensionsBundle\Form\ChoiceList\Loader\DynamicChoiceLoaderInterface;
-use Sonatra\Bundle\FormExtensionsBundle\Form\DataTransformer\Select2ChoiceToValueTransformer;
+use Sonatra\Component\Ajax\AjaxEvents;
+use Sonatra\Component\FormExtensions\Event\GetAjaxChoiceListEvent;
+use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface;
+use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\DynamicChoiceLoaderInterface;
+use Sonatra\Component\FormExtensions\Form\DataTransformer\Select2ChoiceToValueTransformer;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\ChoiceList\ChoiceListInterface;
 use Symfony\Component\Form\ChoiceList\Factory\ChoiceListFactoryInterface;

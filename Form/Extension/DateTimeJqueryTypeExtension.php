@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\FormExtensionsBundle\Form\Extension;
+namespace Sonatra\Component\FormExtensions\Form\Extension;
 
-use Sonatra\Bundle\FormExtensionsBundle\Form\Util\DateTimeUtil;
+use Sonatra\Component\FormExtensions\Form\Util\DateTimeUtil;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormView;

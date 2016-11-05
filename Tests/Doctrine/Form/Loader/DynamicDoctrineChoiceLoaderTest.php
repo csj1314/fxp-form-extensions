@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\FormExtensionsBundle\Tests\Doctrine\Form\ChoiceList\Loader;
+namespace Sonatra\Component\FormExtensions\Tests\Doctrine\Form\ChoiceList\Loader;
 
-use Sonatra\Bundle\FormExtensionsBundle\Doctrine\Form\Loader\DynamicDoctrineChoiceLoader;
-use Sonatra\Bundle\FormExtensionsBundle\Tests\Doctrine\Form\Fixtures\MockEntity;
-use Sonatra\Bundle\FormExtensionsBundle\Tests\Form\ChoiceList\Loader\AbstractChoiceLoaderTest;
+use Sonatra\Component\FormExtensions\Doctrine\Form\Loader\DynamicDoctrineChoiceLoader;
+use Sonatra\Component\FormExtensions\Tests\Doctrine\Form\Fixtures\MockEntity;
+use Sonatra\Component\FormExtensions\Tests\Form\ChoiceList\Loader\AbstractChoiceLoaderTest;
 use Symfony\Bridge\Doctrine\Form\ChoiceList\EntityLoaderInterface;
 use Symfony\Bridge\Doctrine\Form\ChoiceList\IdReader;
 use Symfony\Component\Form\Exception\RuntimeException;

@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\FormExtensionsBundle\Doctrine\Form\EventListener;
+namespace Sonatra\Component\FormExtensions\Doctrine\Form\EventListener;
 
-use Sonatra\Bundle\FormExtensionsBundle\Doctrine\Form\Converter\NewTagConverterInterface;
+use Sonatra\Component\FormExtensions\Doctrine\Form\Converter\NewTagConverterInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;

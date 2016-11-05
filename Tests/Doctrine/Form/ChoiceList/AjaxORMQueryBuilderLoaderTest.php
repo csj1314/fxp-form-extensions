@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\FormExtensionsBundle\Tests\Doctrine\Form\ChoiceList;
+namespace Sonatra\Component\FormExtensions\Tests\Doctrine\Form\ChoiceList;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\SchemaTool;
-use Sonatra\Bundle\FormExtensionsBundle\Doctrine\Form\ChoiceList\AjaxORMQueryBuilderLoader;
+use Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList\AjaxORMQueryBuilderLoader;
 use Symfony\Bridge\Doctrine\Test\DoctrineTestHelper;
 use Doctrine\DBAL\Connection;
 
@@ -28,7 +28,7 @@ class AjaxORMQueryBuilderLoaderTest extends \PHPUnit_Framework_TestCase
         return array(
             array('Symfony\Bridge\Doctrine\Tests\Fixtures\SingleStringIdEntity', Connection::PARAM_STR_ARRAY),
             array('Symfony\Bridge\Doctrine\Tests\Fixtures\SingleIntIdEntity', Connection::PARAM_INT_ARRAY),
-            array('Sonatra\Bundle\FormExtensionsBundle\Tests\Doctrine\Form\Fixtures\SingleGuidIdEntity', Connection::PARAM_STR_ARRAY),
+            array('Sonatra\Component\FormExtensions\Tests\Doctrine\Form\Fixtures\SingleGuidIdEntity', Connection::PARAM_STR_ARRAY),
         );
     }
 

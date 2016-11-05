@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\FormExtensionsBundle\Tests\Form\Extension;
+namespace Sonatra\Component\FormExtensions\Tests\Form\Extension;
 
-use Sonatra\Bundle\FormExtensionsBundle\Form\Extension\ChoiceSelect2TypeExtension;
+use Sonatra\Component\FormExtensions\Form\Extension\ChoiceSelect2TypeExtension;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\FormConfigInterface;
@@ -99,12 +99,12 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
 
     protected function getDynamicLoaderInterface()
     {
-        return 'Sonatra\Bundle\FormExtensionsBundle\Form\ChoiceList\Loader\DynamicChoiceLoaderInterface';
+        return 'Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\DynamicChoiceLoaderInterface';
     }
 
     protected function getAjaxLoaderInterface()
     {
-        return 'Sonatra\Bundle\FormExtensionsBundle\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface';
+        return 'Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface';
     }
 
     /**

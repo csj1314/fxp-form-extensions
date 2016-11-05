@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\FormExtensionsBundle\Form\Helper;
+namespace Sonatra\Component\FormExtensions\Form\Helper;
 
-use Sonatra\Bundle\FormExtensionsBundle\Form\ChoiceList\Formatter\AjaxChoiceListFormatterInterface;
-use Sonatra\Bundle\FormExtensionsBundle\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface;
+use Sonatra\Component\FormExtensions\Form\ChoiceList\Formatter\AjaxChoiceListFormatterInterface;
+use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface;
 use Symfony\Component\Form\Exception\InvalidArgumentException;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -60,7 +60,7 @@ class AjaxChoiceListHelper
         }
 
         if (!$choiceLoader instanceof AjaxChoiceLoaderInterface) {
-            throw new UnexpectedTypeException($choiceLoader, 'Sonatra\Bundle\FormExtensionsBundle\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface');
+            throw new UnexpectedTypeException($choiceLoader, 'Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface');
         }
 
         $data = static::getData($request, $choiceLoader, $formatter, $prefix);
@@ -138,7 +138,7 @@ class AjaxChoiceListHelper
         $formatter = $formatter['ajax_formatter'];
 
         if (!$formatter instanceof AjaxChoiceListFormatterInterface) {
-            throw new UnexpectedTypeException($formatter, 'Sonatra\Bundle\FormExtensionsBundle\Form\ChoiceList\Formatter\AjaxChoiceListFormatterInterface');
+            throw new UnexpectedTypeException($formatter, 'Sonatra\Component\FormExtensions\Form\ChoiceList\Formatter\AjaxChoiceListFormatterInterface');
         }
 
         return $formatter;

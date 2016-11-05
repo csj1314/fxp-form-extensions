@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\FormExtensionsBundle\Doctrine\Form\Extension;
+namespace Sonatra\Component\FormExtensions\Doctrine\Form\Extension;
 
 use Doctrine\Common\Persistence\ObjectManager;
-use Sonatra\Bundle\FormExtensionsBundle\Doctrine\Form\ChoiceList\AjaxEntityLoaderInterface;
-use Sonatra\Bundle\FormExtensionsBundle\Doctrine\Form\Converter\NewTagConverter;
-use Sonatra\Bundle\FormExtensionsBundle\Doctrine\Form\EventListener\NewTagConverterListener;
-use Sonatra\Bundle\FormExtensionsBundle\Doctrine\Form\Loader\AjaxDoctrineChoiceLoader;
-use Sonatra\Bundle\FormExtensionsBundle\Doctrine\Form\Loader\DynamicDoctrineChoiceLoader;
+use Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList\AjaxEntityLoaderInterface;
+use Sonatra\Component\FormExtensions\Doctrine\Form\Converter\NewTagConverter;
+use Sonatra\Component\FormExtensions\Doctrine\Form\EventListener\NewTagConverterListener;
+use Sonatra\Component\FormExtensions\Doctrine\Form\Loader\AjaxDoctrineChoiceLoader;
+use Sonatra\Component\FormExtensions\Doctrine\Form\Loader\DynamicDoctrineChoiceLoader;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\ChoiceList\Factory\CachingFactoryDecorator;
 use Symfony\Component\Form\ChoiceList\Factory\ChoiceListFactoryInterface;

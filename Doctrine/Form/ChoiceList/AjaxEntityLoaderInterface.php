@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\FormExtensionsBundle\Doctrine\Form\ChoiceList;
+namespace Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList;
 
 use Symfony\Bridge\Doctrine\Form\ChoiceList\EntityLoaderInterface;
 

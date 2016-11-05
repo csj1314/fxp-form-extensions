@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\FormExtensionsBundle\Tests\Doctrine\Form\Extension;
+namespace Sonatra\Component\FormExtensions\Tests\Doctrine\Form\Extension;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\Tools\SchemaTool;
-use Sonatra\Bundle\FormExtensionsBundle\Doctrine\Form\Extension\EntitySelect2TypeExtension;
-use Sonatra\Bundle\FormExtensionsBundle\Form\ChoiceList\Formatter\Select2AjaxChoiceListFormatter;
-use Sonatra\Bundle\FormExtensionsBundle\Form\Extension\ChoiceSelect2TypeExtension;
-use Sonatra\Bundle\FormExtensionsBundle\Tests\Form\Extension\AbstractSelect2TypeExtensionTest;
+use Sonatra\Component\FormExtensions\Doctrine\Form\Extension\EntitySelect2TypeExtension;
+use Sonatra\Component\FormExtensions\Form\ChoiceList\Formatter\Select2AjaxChoiceListFormatter;
+use Sonatra\Component\FormExtensions\Form\Extension\ChoiceSelect2TypeExtension;
+use Sonatra\Component\FormExtensions\Tests\Form\Extension\AbstractSelect2TypeExtensionTest;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bridge\Doctrine\Test\DoctrineTestHelper;
 use Symfony\Bridge\Doctrine\Tests\Fixtures\SingleIntIdEntity;
@@ -225,7 +225,7 @@ class EntitySelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTest
         $this->assertTrue($select2Opts['enabled']);
         $this->assertFalse($select2Opts['ajax']);
         $this->assertFalse($select2Opts['tags']);
-        $this->assertInstanceOf('Sonatra\Bundle\FormExtensionsBundle\Form\ChoiceList\Loader\DynamicChoiceLoaderInterface', $config->getOption('choice_loader'));
+        $this->assertInstanceOf('Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\DynamicChoiceLoaderInterface', $config->getOption('choice_loader'));
 
         // test cache with hash
         $this->factory->create($this->getExtensionTypeName(), $this->getSingleData(), $this->mergeOptions($options));

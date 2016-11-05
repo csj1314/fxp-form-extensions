@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\FormExtensionsBundle\Tests\Form\DataTransformer;
+namespace Sonatra\Component\FormExtensions\Tests\Form\DataTransformer;
 
-use Sonatra\Bundle\FormExtensionsBundle\Form\ChoiceList\Loader\DynamicChoiceLoaderInterface;
-use Sonatra\Bundle\FormExtensionsBundle\Form\DataTransformer\Select2ChoiceToValueTransformer;
+use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\DynamicChoiceLoaderInterface;
+use Sonatra\Component\FormExtensions\Form\DataTransformer\Select2ChoiceToValueTransformer;
 use Symfony\Component\Form\DataTransformerInterface;
 
 /**
@@ -34,7 +34,7 @@ class Select2ChoiceToValueTransformerTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->choiceLoader = $this->getMockBuilder('Sonatra\Bundle\FormExtensionsBundle\Form\ChoiceList\Loader\DynamicChoiceLoaderInterface')->getMock();
+        $this->choiceLoader = $this->getMockBuilder('Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\DynamicChoiceLoaderInterface')->getMock();
         $this->choiceLoader
             ->expects($this->any())
             ->method('loadValuesForChoices')
