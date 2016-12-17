@@ -119,7 +119,7 @@ class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTes
 
         $view = $form->createView();
 
-        $this->assertTrue(array_key_exists('selector', $view->vars));
+        $this->assertArrayHasKey('selector', $view->vars);
         /* @var FormView $selectorView */
         $selectorView = $view->vars['selector'];
         $this->assertInstanceOf('Symfony\Component\Form\FormView', $selectorView);
@@ -148,7 +148,7 @@ class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTes
         $this->assertFalse($select2Opts['enabled']);
 
         $view = $form->createView();
-        $this->assertFalse(array_key_exists('selector', $view->vars));
+        $this->assertArrayNotHasKey('selector', $view->vars);
         $this->assertEquals($this->getSingleData(), $view->vars['data']);
         $this->assertEquals((array) $this->getValidSingleValue(), $view->vars['value']);
     }
@@ -177,14 +177,14 @@ class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTes
 
         $view = $form->createView();
 
-        $this->assertTrue(array_key_exists('selector', $view->vars));
+        $this->assertArrayHasKey('selector', $view->vars);
         /* @var FormView $selectorView */
         $selectorView = $view->vars['selector'];
         $this->assertInstanceOf('Symfony\Component\Form\FormView', $selectorView);
 
         $this->assertEquals($this->getSingleData(), $selectorView->vars['data']);
         $this->assertEquals((array) $this->getValidSingleValue(), $selectorView->vars['value']);
-        $this->assertTrue(array_key_exists('tags', $selectorView->vars['select2']));
+        $this->assertArrayHasKey('tags', $selectorView->vars['select2']);
     }
 
     public function testSingleAjax()
@@ -211,7 +211,7 @@ class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTes
 
         $view = $form->createView();
 
-        $this->assertTrue(array_key_exists('selector', $view->vars));
+        $this->assertArrayHasKey('selector', $view->vars);
         /* @var FormView $selectorView */
         $selectorView = $view->vars['selector'];
         $this->assertInstanceOf('Symfony\Component\Form\FormView', $selectorView);
@@ -245,7 +245,7 @@ class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTes
 
         $view = $form->createView();
 
-        $this->assertTrue(array_key_exists('selector', $view->vars));
+        $this->assertArrayHasKey('selector', $view->vars);
         /* @var FormView $selectorView */
         $selectorView = $view->vars['selector'];
         $this->assertInstanceOf('Symfony\Component\Form\FormView', $selectorView);
@@ -270,7 +270,7 @@ class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTes
         $form = $this->factory->create($this->getExtensionTypeName(), null, $this->mergeOptions($options));
         $view = $form->createView();
 
-        $this->assertTrue(array_key_exists('selector', $view->vars));
+        $this->assertArrayHasKey('selector', $view->vars);
         /* @var FormView $selectorView */
         $selectorView = $view->vars['selector'];
         $this->assertInstanceOf('Symfony\Component\Form\FormView', $selectorView);
@@ -289,7 +289,7 @@ class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTes
         $form = $this->factory->create($this->getExtensionTypeName(), null, $this->mergeOptions($options));
         $view = $form->createView();
 
-        $this->assertTrue(array_key_exists('selector', $view->vars));
+        $this->assertArrayHasKey('selector', $view->vars);
         /* @var FormView $selectorView */
         $selectorView = $view->vars['selector'];
         $this->assertInstanceOf('Symfony\Component\Form\FormView', $selectorView);
@@ -339,7 +339,7 @@ class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTes
         $form = $this->factory->create($this->getExtensionTypeName(), $data, $this->mergeOptions($options));
         $view = $form->createView();
 
-        $this->assertTrue(array_key_exists('selector', $view->vars));
+        $this->assertArrayHasKey('selector', $view->vars);
         /* @var FormView $selectorView */
         $selectorView = $view->vars['selector'];
         $this->assertInstanceOf('Symfony\Component\Form\FormView', $selectorView);
@@ -359,7 +359,7 @@ class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTes
         $form = $this->factory->create($this->getExtensionTypeName(), $data, $this->mergeOptions($options));
         $view = $form->createView();
 
-        $this->assertTrue(array_key_exists('selector', $view->vars));
+        $this->assertArrayHasKey('selector', $view->vars);
         /* @var FormView $selectorView */
         $selectorView = $view->vars['selector'];
         $this->assertInstanceOf('Symfony\Component\Form\FormView', $selectorView);
@@ -368,6 +368,6 @@ class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTes
             new ChoiceView('foo', 'foo', 'Bar'),
         );
         $this->assertEquals($valid, $selectorView->vars['choices']);
-        $this->assertFalse(array_key_exists('tags', $selectorView->vars['select2']));
+        $this->assertArrayNotHasKey('tags', $selectorView->vars['select2']);
     }
 }

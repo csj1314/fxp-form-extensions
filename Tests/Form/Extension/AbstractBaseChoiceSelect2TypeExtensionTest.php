@@ -84,7 +84,7 @@ abstract class AbstractBaseChoiceSelect2TypeExtensionTest extends TypeTestCase
 
         $this->assertTrue($config->hasOption('select2'));
         $select2Opts = $config->getOption('select2');
-        $this->assertTrue(array_key_exists('ajax_route', $select2Opts));
+        $this->assertArrayHasKey('ajax_route', $select2Opts);
         $this->assertNull($select2Opts['ajax_route']);
         $this->assertEquals('sonatra_form_extensions_ajax_'.StringUtil::fqcnToBlockPrefix($this->getExtensionTypeName()), $config->getAttribute('select2_ajax_route'));
     }

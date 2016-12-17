@@ -157,7 +157,7 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
 
         $view = $form->createView();
 
-        $this->assertFalse(array_key_exists('select2', $view->vars));
+        $this->assertArrayNotHasKey('select2', $view->vars);
         $this->assertEquals($this->getSingleData(), $view->vars['data']);
         $this->assertEquals($this->getValidSingleValue(), $view->vars['value']);
     }
@@ -187,7 +187,7 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
 
         $view = $form->createView();
 
-        $this->assertTrue(array_key_exists('select2', $view->vars));
+        $this->assertArrayHasKey('select2', $view->vars);
         $this->assertEquals($this->getSingleData(), $view->vars['data']);
         $this->assertEquals($this->getValidSingleValue(), $view->vars['value']);
     }
@@ -206,7 +206,7 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
         $this->assertFalse($select2Opts['tags']);
 
         $view = $form->createView();
-        $this->assertFalse(array_key_exists('select2', $view->vars));
+        $this->assertArrayNotHasKey('select2', $view->vars);
         $this->assertEquals($this->getSingleData(), $view->vars['data']);
         $this->assertEquals($this->getValidSingleValue(), $view->vars['value']);
     }
@@ -228,10 +228,10 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
 
         $view = $form->createView();
 
-        $this->assertTrue(array_key_exists('select2', $view->vars));
+        $this->assertArrayHasKey('select2', $view->vars);
         $this->assertEquals($this->getSingleData(), $view->vars['data']);
         $this->assertEquals($this->getValidSingleValue(), $view->vars['value']);
-        $this->assertTrue(array_key_exists('tags', $view->vars['select2']));
+        $this->assertArrayHasKey('tags', $view->vars['select2']);
     }
 
     public function testSingleAjax()
@@ -251,7 +251,7 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
 
         $view = $form->createView();
 
-        $this->assertTrue(array_key_exists('select2', $view->vars));
+        $this->assertArrayHasKey('select2', $view->vars);
         $this->assertEquals($this->getSingleData(), $view->vars['data']);
         $this->assertEquals($this->getValidAjaxSingleValue(), $view->vars['value']);
     }
@@ -273,7 +273,7 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
 
         $view = $form->createView();
 
-        $this->assertTrue(array_key_exists('select2', $view->vars));
+        $this->assertArrayHasKey('select2', $view->vars);
         $this->assertEquals($this->getSingleData(), $view->vars['data']);
         $this->assertEquals($this->getValidAjaxSingleValue(), $view->vars['value']);
     }
@@ -295,7 +295,7 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
 
         $view = $form->createView();
 
-        $this->assertTrue(array_key_exists('select2', $view->vars));
+        $this->assertArrayHasKey('select2', $view->vars);
         $this->assertEquals($this->getMultipleData(), $view->vars['data']);
         $this->assertEquals($this->getValidMultipleValue(), $view->vars['value']);
     }
@@ -317,7 +317,7 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
 
         $view = $form->createView();
 
-        $this->assertTrue(array_key_exists('select2', $view->vars));
+        $this->assertArrayHasKey('select2', $view->vars);
         $this->assertEquals($this->getMultipleData(), $view->vars['data']);
         $this->assertEquals($this->getValidAjaxMultipleValue(), $view->vars['value']);
     }
