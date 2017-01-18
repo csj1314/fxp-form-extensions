@@ -11,9 +11,9 @@
 
 namespace Sonatra\Component\FormExtensions\Form\Extension;
 
+use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToLocalizedStringTransformer;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToLocalizedStringTransformer;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**

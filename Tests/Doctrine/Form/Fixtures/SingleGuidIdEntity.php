@@ -11,9 +11,9 @@
 
 namespace Sonatra\Component\FormExtensions\Tests\Doctrine\Form\Fixtures;
 
-use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\Id;
 
 /**
  * @Entity

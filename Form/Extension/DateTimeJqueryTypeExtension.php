@@ -14,8 +14,8 @@ namespace Sonatra\Component\FormExtensions\Form\Extension;
 use Sonatra\Component\FormExtensions\Form\Util\DateTimeUtil;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
-use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 

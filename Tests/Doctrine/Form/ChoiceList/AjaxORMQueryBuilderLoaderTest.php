@@ -11,12 +11,12 @@
 
 namespace Sonatra\Component\FormExtensions\Tests\Doctrine\Form\ChoiceList;
 
+use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\SchemaTool;
 use Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList\AjaxORMQueryBuilderLoader;
 use Symfony\Bridge\Doctrine\Test\DoctrineTestHelper;
-use Doctrine\DBAL\Connection;
 
 /**
  * @author François Pluchino <francois.pluchino@sonatra.com>

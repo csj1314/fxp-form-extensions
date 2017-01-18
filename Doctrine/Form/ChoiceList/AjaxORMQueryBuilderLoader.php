@@ -12,9 +12,9 @@
 namespace Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList;
 
 use Doctrine\DBAL\Connection;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
-use Doctrine\ORM\QueryBuilder;
 
 /**
  * @author François Pluchino <francois.pluchino@sonatra.com>
