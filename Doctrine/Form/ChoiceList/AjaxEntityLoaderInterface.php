@@ -39,7 +39,7 @@ interface AjaxEntityLoaderInterface extends EntityLoaderInterface
      * @param int $pageSize   The page size
      * @param int $pageNumber The page number
      *
-     * @return object[]
+     * @return object[]|\Traversable
      */
     public function getPaginatedEntities($pageSize, $pageNumber = 1);
 

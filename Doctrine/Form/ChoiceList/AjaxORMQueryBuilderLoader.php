@@ -89,7 +89,7 @@ class AjaxORMQueryBuilderLoader implements AjaxEntityLoaderInterface
         $paginator->getQuery()->setFirstResult(($pageNumber - 1) * $pageSize)
             ->setMaxResults($pageSize);
 
-        return $paginator->getIterator()->getArrayCopy();
+        return $paginator->getIterator();
     }
 
     /**
