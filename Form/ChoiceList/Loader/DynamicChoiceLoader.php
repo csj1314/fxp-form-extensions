@@ -198,10 +198,8 @@ class DynamicChoiceLoader extends AbstractDynamicChoiceLoader
      */
     protected function forceStringValues(array $values)
     {
-        $size = count($values);
-
-        for ($i = 0; $i < $size; ++$i) {
-            $values[$i] = (string) $values[$i];
+        foreach ($values as $key => $value) {
+            $values[$key] = (string) $value;
         }
 
         return $values;

@@ -13,6 +13,7 @@ namespace Sonatra\Component\FormExtensions\Tests\Form\Extension;
 
 use Sonatra\Component\FormExtensions\Form\Extension\ChoiceSelect2TypeExtension;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\Form\ChoiceList\Loader\ChoiceLoaderInterface;
 use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\FormConfigInterface;
 use Symfony\Component\Form\Forms;
@@ -164,7 +165,7 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
 
     protected function validateChoiceLoaderForDefaultOptions(FormConfigInterface $config)
     {
-        $this->assertNull($config->getOption('choice_loader'));
+        $this->assertInstanceOf(ChoiceLoaderInterface::class, $config->getOption('choice_loader'));
     }
 
     public function testDefaultEnabledOptions()

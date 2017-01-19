@@ -12,6 +12,7 @@
 namespace Sonatra\Component\FormExtensions\Tests\Form\Extension;
 
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\FormConfigInterface;
 
 /**
  * Tests case for choice of select2 form extension type.
@@ -58,5 +59,10 @@ class ChoiceSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTest
     protected function getValidAjaxMultipleValue()
     {
         return $this->getValidMultipleValue();
+    }
+
+    protected function validateChoiceLoaderForDefaultOptions(FormConfigInterface $config)
+    {
+        $this->assertNull($config->getOption('choice_loader'));
     }
 }

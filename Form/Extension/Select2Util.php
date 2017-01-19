@@ -16,6 +16,7 @@ use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInte
 use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\DynamicChoiceLoader;
 use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\DynamicChoiceLoaderInterface;
 use Symfony\Component\Form\ChoiceList\Factory\ChoiceListFactoryInterface;
+use Symfony\Component\Form\ChoiceList\Loader\ChoiceLoaderInterface;
 use Symfony\Component\Form\Exception\InvalidConfigurationException;
 use Symfony\Component\OptionsResolver\Options;
 
@@ -44,11 +45,26 @@ class Select2Util
         }
 
         if ($options['select2']['ajax']) {
-            return new AjaxChoiceLoader($options['choices'],
+            return new AjaxChoiceLoader(static::getChoices($options, $value),
                 $choiceListFactory);
         }
 
-        return new DynamicChoiceLoader($options['choices'],
+        return new DynamicChoiceLoader(static::getChoices($options, $value),
             $choiceListFactory);
+    }
+
+    /**
+     * Get the choices.
+     *
+     * @param Options                                                     $options The options
+     * @param DynamicChoiceLoaderInterface|AjaxChoiceLoaderInterface|null $value   The value of choice loader normalizer
+     *
+     * @return array
+     */
+    private static function getChoices(Options $options, $value)
+    {
+        return $value instanceof ChoiceLoaderInterface && empty($options['choices'])
+            ? $value->loadChoiceList()->getStructuredValues()
+            : $options['choices'];
     }
 }
