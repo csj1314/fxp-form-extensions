@@ -45,11 +45,11 @@ class Select2Util
         }
 
         if ($options['select2']['ajax']) {
-            return new AjaxChoiceLoader(static::getChoices($options, $value),
+            return new AjaxChoiceLoader(self::getChoices($options, $value),
                 $choiceListFactory);
         }
 
-        return new DynamicChoiceLoader(static::getChoices($options, $value),
+        return new DynamicChoiceLoader(self::getChoices($options, $value),
             $choiceListFactory);
     }
 
