@@ -81,4 +81,15 @@ class TimeJqueryTypeExtensionTest extends TypeTestCase
 
         $this->assertEquals($validAttr, $view->vars['attr']);
     }
+
+    public function testWidgetIsNotSingleText()
+    {
+        $form = $this->factory->create(TimeType::class, null, array(
+            'locale' => 'en_EN',
+            'widget' => 'text',
+        ));
+        $view = $form->createView();
+
+        $this->assertEquals(array(), $view->vars['attr']);
+    }
 }

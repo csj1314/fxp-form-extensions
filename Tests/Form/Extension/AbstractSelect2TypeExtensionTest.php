@@ -91,8 +91,10 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
 
     protected function mergeOptions(array $options)
     {
-        if (is_array($this->getChoices())) {
-            $options['choices'] = $this->getChoices();
+        $choices = $this->getChoices();
+
+        if (is_array($choices)) {
+            $options['choices'] = $choices;
         }
 
         return $options;
@@ -349,6 +351,19 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
         $view = $form->createView();
 
         $this->assertEquals('/foobar', $view->vars['select2']['ajax']['url']);
+    }
+
+    public function testAjaxUrl()
+    {
+        $options = array('required' => false, 'select2' => array('enabled' => true, 'ajax' => true, 'ajax_url' => '/foo/bar'));
+        $form = $this->factory->create($this->getExtensionTypeName(), null, $this->mergeOptions($options));
+        $view = $form->createView();
+
+        $url = $this instanceof CollectionSelect2TypeExtensionTest
+            ? $view->vars['selector']->vars['select2']['ajax']['url']
+            : $view->vars['select2']['ajax']['url'];
+
+        $this->assertEquals('/foo/bar', $url);
     }
 
     public function testChoiceLoaderOption()

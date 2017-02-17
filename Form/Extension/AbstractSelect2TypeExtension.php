@@ -167,12 +167,17 @@ abstract class AbstractSelect2TypeExtension extends AbstractSelect2ConfigTypeExt
         $routeName = null;
 
         if ($options['select2']['ajax']) {
-            $routeName = $form->getConfig()->getAttribute('select2_ajax_route', $options['select2']['ajax_route']);
+            if (null !== $options['select2']['ajax_url']) {
+                $ajaxUrl = $options['select2']['ajax_url'];
+                $routeName = 'custom_url';
+            } else {
+                $routeName = $form->getConfig()->getAttribute('select2_ajax_route', $options['select2']['ajax_route']);
 
-            if (null !== $routeName) {
-                $routeParams = $options['select2']['ajax_parameters'];
-                $routeReferenceType = $options['select2']['ajax_reference_type'];
-                $ajaxUrl = $this->router->generate($routeName, $routeParams, $routeReferenceType);
+                if (null !== $routeName) {
+                    $routeParams = $options['select2']['ajax_parameters'];
+                    $routeReferenceType = $options['select2']['ajax_reference_type'];
+                    $ajaxUrl = $this->router->generate($routeName, $routeParams, $routeReferenceType);
+                }
             }
         }
 
@@ -210,12 +215,15 @@ abstract class AbstractSelect2TypeExtension extends AbstractSelect2ConfigTypeExt
      */
     protected function getReplaceViewVars(FormView $view, array $options, $ajaxUrl, $routeName)
     {
+        $allowClear = $options['required'] ? null : 'true';
+        $allowClear = isset($options['select2']['allow_clear']) ? 'true' : $allowClear;
+
         return array(
             'select2' => $this->skipNullValue(array(
                 'wrapper_attr' => $options['select2']['wrapper_attr'],
                 'placeholder' => isset($options['placeholder']) ? $options['placeholder'] : null,
                 'width' => $options['select2']['width'],
-                'allow_clear' => $options['required'] ? null : 'true',
+                'allow_clear' => $allowClear,
                 'template_result' => $options['select2']['template_result'],
                 'template_selection' => $options['select2']['template_selection'],
                 'dropdown_parent' => $options['select2']['dropdown_parent'],
@@ -229,6 +237,7 @@ abstract class AbstractSelect2TypeExtension extends AbstractSelect2ConfigTypeExt
                 'min_results_for_search' => $options['select2']['min_results_for_search'],
                 'min_input_length' => $options['select2']['min_input_length'],
                 'max_input_length' => $options['select2']['max_input_length'],
+                'max_selection_length' => $options['select2']['max_selection_length'],
                 'data' => $options['select2']['data'],
                 'tags' => $options['select2']['tags'] ? 'true' : null,
                 'token_separators' => $options['select2']['token_separators'],
@@ -241,6 +250,9 @@ abstract class AbstractSelect2TypeExtension extends AbstractSelect2ConfigTypeExt
                     'data_type' => $options['select2']['ajax_data_type'],
                     'delay' => $options['select2']['ajax_delay'],
                     'cache' => $options['select2']['ajax_cache'] ? 'true' : null,
+                    'data' => $options['select2']['ajax_data'],
+                    'process_results' => $options['select2']['ajax_process_results'],
+                    'transport' => $options['select2']['ajax_transport'],
                     'ajax_id' => null === $routeName ? $view->vars['id'] : null,
                     'page_size' => $options['select2']['ajax_page_size'],
                 ),

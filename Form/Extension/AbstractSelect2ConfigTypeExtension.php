@@ -88,6 +88,7 @@ abstract class AbstractSelect2ConfigTypeExtension extends AbstractTypeExtension
                 'min_input_length' => null,
                 'max_input_length' => null,
                 'min_results_for_search' => null,
+                'max_selection_length' => null,
                 'close_on_select' => null,
                 'token_separators' => array(','),
                 'create_tag' => null,
@@ -96,6 +97,7 @@ abstract class AbstractSelect2ConfigTypeExtension extends AbstractTypeExtension
                 'dir' => null,
                 'theme' => null,
                 'language' => \Locale::getDefault(),
+                'allow_clear' => null,
                 'tags' => false,
                 'ajax' => false,
                 'ajax_formatter' => new Select2AjaxChoiceListFormatter($choiceListFactory),
@@ -104,7 +106,11 @@ abstract class AbstractSelect2ConfigTypeExtension extends AbstractTypeExtension
                 'ajax_data_type' => 'json',
                 'ajax_delay' => 250,
                 'ajax_cache' => false,
+                'ajax_data' => null,
+                'ajax_process_results' => null,
+                'ajax_transport' => null,
                 'ajax_route' => null,
+                'ajax_url' => null,
                 'ajax_page_size' => $ajaxPageSize,
             ));
 
@@ -122,6 +128,7 @@ abstract class AbstractSelect2ConfigTypeExtension extends AbstractTypeExtension
             $select2Resolver->setAllowedTypes('min_input_length', array('null', 'int'));
             $select2Resolver->setAllowedTypes('max_input_length', array('null', 'int'));
             $select2Resolver->setAllowedTypes('min_results_for_search', array('null', 'int', 'string'));
+            $select2Resolver->setAllowedTypes('max_selection_length', array('null', 'int', 'string'));
             $select2Resolver->setAllowedTypes('close_on_select', array('null', 'bool'));
             $select2Resolver->setAllowedTypes('token_separators', array('null', 'array'));
             $select2Resolver->setAllowedTypes('data', array('null', 'array'));
@@ -129,6 +136,7 @@ abstract class AbstractSelect2ConfigTypeExtension extends AbstractTypeExtension
             $select2Resolver->setAllowedTypes('width', array('null', 'string'));
             $select2Resolver->setAllowedTypes('theme', array('null', 'string'));
             $select2Resolver->setAllowedTypes('language', 'string');
+            $select2Resolver->setAllowedTypes('allow_clear', array('null', 'bool'));
             $select2Resolver->setAllowedTypes('tags', 'bool');
             $select2Resolver->setAllowedTypes('ajax', 'bool');
             $select2Resolver->setAllowedTypes('ajax_formatter', 'Sonatra\Component\FormExtensions\Form\ChoiceList\Formatter\AjaxChoiceListFormatterInterface');
@@ -137,8 +145,18 @@ abstract class AbstractSelect2ConfigTypeExtension extends AbstractTypeExtension
             $select2Resolver->setAllowedTypes('ajax_data_type', array('null', 'string'));
             $select2Resolver->setAllowedTypes('ajax_delay', array('null', 'int'));
             $select2Resolver->setAllowedTypes('ajax_cache', 'bool');
+            $select2Resolver->setAllowedTypes('ajax_data', array('null', 'string'));
+            $select2Resolver->setAllowedTypes('ajax_process_results', array('null', 'string'));
+            $select2Resolver->setAllowedTypes('ajax_transport', array('null', 'string'));
             $select2Resolver->setAllowedTypes('ajax_route', array('null', 'string'));
+            $select2Resolver->setAllowedTypes('ajax_url', array('null', 'string', 'Closure'));
             $select2Resolver->setAllowedTypes('ajax_page_size', 'int');
+
+            $select2Resolver->setNormalizer('ajax_url', function (Options $options, $value) {
+                return $value instanceof \Closure
+                    ? $value($options, $value)
+                    : $value;
+            });
 
             return $select2Resolver->resolve($value);
         });

@@ -62,7 +62,11 @@ class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTes
     {
         $options = parent::mergeOptions($options);
         $options['entry_type'] = CurrencyType::class;
-        $options['select2'] = array_merge_recursive(isset($options['select2']) ? $options['select2'] : array(), array('enabled' => true));
+        $options['select2'] = isset($options['select2']) ? $options['select2'] : array();
+
+        if (!array_key_exists('enabled', $options['select2'])) {
+            $options['select2']['enabled'] = true;
+        }
 
         return $options;
     }
