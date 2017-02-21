@@ -11,35 +11,28 @@
 
 namespace Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList;
 
-use Doctrine\DBAL\Connection;
 use Doctrine\ORM\QueryBuilder;
-use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
 
 /**
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-class AjaxORMQueryBuilderLoader implements AjaxEntityLoaderInterface
+class AjaxORMQueryBuilderLoader extends BaseAjaxORMQueryBuilderLoader
 {
     /**
      * Contains the query builder that builds the query for fetching the
      * entities.
      *
-     * This property should only be accessed through queryBuilder.
+     * This property should only be accessed through query builder.
      *
      * @var QueryBuilder
      */
-    private $queryBuilder;
+    private $filterableQueryBuilder;
 
     /**
      * @var QueryBuilder
      */
-    private $backupQueryBuilder;
-
-    /**
-     * @var int|null
-     */
-    private $size;
+    private $queryBuilder;
 
     /**
      * Construct an ORM Query Builder Loader.
@@ -50,97 +43,9 @@ class AjaxORMQueryBuilderLoader implements AjaxEntityLoaderInterface
      */
     public function __construct(QueryBuilder $queryBuilder)
     {
-        $this->backupQueryBuilder = $queryBuilder;
-        $this->reset();
-    }
+        $this->queryBuilder = $queryBuilder;
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setSearch($identifier, $search)
-    {
-        $qb = $this->queryBuilder;
-        $alias = current($qb->getRootAliases());
-        $qb->andWhere("LOWER({$alias}.{$identifier}) LIKE LOWER(:{$identifier})");
-        $qb->setParameter($identifier, "%{$search}%");
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSize()
-    {
-        if (null === $this->size) {
-            $paginator = new Paginator($this->queryBuilder);
-            $this->size = (int) $paginator->count();
-        }
-
-        return $this->size;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getPaginatedEntities($pageSize, $pageNumber = 1)
-    {
-        $pageSize = $pageSize < 1 ? 1 : $pageSize;
-        $pageNumber = $pageNumber < 1 ? 1 : $pageNumber;
-        $paginator = new Paginator($this->queryBuilder);
-        $paginator->getQuery()->setFirstResult(($pageNumber - 1) * $pageSize)
-            ->setMaxResults($pageSize);
-
-        return $paginator->getIterator();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getEntities()
-    {
-        $qb = clone $this->queryBuilder;
-
-        return $qb->getQuery()->getResult();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getEntitiesByIds($identifier, array $values)
-    {
-        $qb = clone $this->backupQueryBuilder;
-        $alias = current($qb->getRootAliases());
-        $parameter = 'AjaxORMQueryBuilderLoader_getEntitiesByIds_'.$identifier;
-        $where = $qb->expr()->in($alias.'.'.$identifier, ':'.$parameter);
-
-        // Guess type
-        $entity = current($qb->getRootEntities());
-        $metadata = $qb->getEntityManager()->getClassMetadata($entity);
-
-        if (in_array($metadata->getTypeOfField($identifier), array('integer', 'bigint', 'smallint'))) {
-            $parameterType = Connection::PARAM_INT_ARRAY;
-
-            // Filter out non-integer values (e.g. ""). If we don't, some
-            // databases such as PostgreSQL fail.
-            $values = array_values(array_filter($values, function ($v) {
-                return (string) $v === (string) (int) $v;
-            }));
-        } elseif ('guid' === $metadata->getTypeOfField($identifier)) {
-            $parameterType = Connection::PARAM_STR_ARRAY;
-
-            // Like above, but we just filter out empty strings.
-            $values = array_values(array_filter($values, function ($v) {
-                return (string) $v !== '';
-            }));
-        } else {
-            $parameterType = Connection::PARAM_STR_ARRAY;
-        }
-
-        return !$values
-            ? array()
-            : $qb->andWhere($where)
-                ->getQuery()
-                ->setParameter($parameter, $values, $parameterType)
-                ->getResult();
+        parent::__construct();
     }
 
     /**
@@ -148,7 +53,24 @@ class AjaxORMQueryBuilderLoader implements AjaxEntityLoaderInterface
      */
     public function reset()
     {
-        $this->queryBuilder = clone $this->backupQueryBuilder;
-        $this->size = null;
+        $this->filterableQueryBuilder = clone $this->getQueryBuilder();
+
+        parent::reset();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getQueryBuilder()
+    {
+        return $this->queryBuilder;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getFilterableQueryBuilder()
+    {
+        return $this->filterableQueryBuilder;
     }
 }
