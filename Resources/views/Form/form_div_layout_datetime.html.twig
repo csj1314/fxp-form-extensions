@@ -1,0 +1,18 @@
+{% block datetime_widget -%}
+    {%- require_script '@bower/jquery/dist/jquery.js', '@bower/moment/moment.js', '@bower/hammerjs/hammer.js', '@bower/jquery-knob/js/jquery-knob.js', '@bower/sonatra-jquery-datetime-picker/js/datetime-picker.js' -%}
+    {%- require_style '@bower/sonatra-jquery-datetime-picker/less/datetime-picker.less' -%}
+    {{- block('base_datetime_widget') -}}
+{%- endblock datetime_widget %}
+
+{% block date_widget -%}
+    {%- if widget == 'single_text' -%}
+        {{- block('datetime_widget') -}}
+    {%- else -%}
+        {{- block('base_date_widget') -}}
+    {%- endif -%}
+{%- endblock date_widget %}
+
+{% block time_widget -%}
+    {%- set type= 'text' -%}
+    {{- block('datetime_widget') -}}
+{%- endblock time_widget %}

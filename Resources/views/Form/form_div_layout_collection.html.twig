@@ -1,0 +1,7 @@
+{% block collection_widget -%}
+    {%- if selector is defined -%}
+        {{- form_widget(selector) -}}
+    {%- else -%}
+        {{- block('base_collection_widget') -}}
+    {%- endif -%}
+{%- endblock collection_widget %}

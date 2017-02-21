@@ -1,0 +1,7 @@
+{% block choice_widget -%}
+    {%- if select2 is defined -%}
+        {{- block('select2_widget_content') -}}
+    {%- else -%}
+        {{- block('base_choice_widget') -}}
+    {%- endif -%}
+{%- endblock choice_widget %}
