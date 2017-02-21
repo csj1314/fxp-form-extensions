@@ -11,9 +11,11 @@
 
 namespace Sonatra\Component\FormExtensions\Doctrine\Form\Extension;
 
-use Doctrine\Common\Persistence\ObjectManager;
+use Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList\AjaxEntityLoaderInterface;
 use Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList\AjaxORMQueryBuilderLoader;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\OptionsResolver\Options;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * @author François Pluchino <francois.pluchino@sonatra.com>
@@ -31,9 +33,11 @@ class EntitySelect2TypeExtension extends DoctrineSelect2TypeExtension
     /**
      * {@inheritdoc}
      */
-    public function getLoader(ObjectManager $manager, $queryBuilder, $class)
+    public function getLoader(Options $options, $queryBuilder)
     {
-        return new AjaxORMQueryBuilderLoader($queryBuilder);
+        return null !== $options['ajax_entity_loader']
+            ? $options['ajax_entity_loader']
+            : new AjaxORMQueryBuilderLoader($queryBuilder);
     }
 
     /**
@@ -45,5 +49,19 @@ class EntitySelect2TypeExtension extends DoctrineSelect2TypeExtension
             $queryBuilder->getQuery()->getSQL(),
             $queryBuilder->getParameters()->toArray(),
         );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(array(
+            'ajax_entity_loader' => null,
+        ));
+
+        $resolver->addAllowedTypes('ajax_entity_loader', array('null', AjaxEntityLoaderInterface::class));
+
+        parent::configureOptions($resolver);
     }
 }

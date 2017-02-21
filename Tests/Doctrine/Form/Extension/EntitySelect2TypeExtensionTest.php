@@ -13,7 +13,9 @@ namespace Sonatra\Component\FormExtensions\Tests\Doctrine\Form\Extension;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\Tools\SchemaTool;
+use Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList\AjaxEntityLoaderInterface;
 use Sonatra\Component\FormExtensions\Doctrine\Form\Extension\EntitySelect2TypeExtension;
+use Sonatra\Component\FormExtensions\Doctrine\Form\Loader\AjaxDoctrineChoiceLoader;
 use Sonatra\Component\FormExtensions\Form\ChoiceList\Formatter\Select2AjaxChoiceListFormatter;
 use Sonatra\Component\FormExtensions\Form\Extension\ChoiceSelect2TypeExtension;
 use Sonatra\Component\FormExtensions\Tests\Form\Extension\AbstractSelect2TypeExtensionTest;
@@ -229,5 +231,30 @@ class EntitySelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTest
 
         // test cache with hash
         $this->factory->create($this->getExtensionTypeName(), $this->getSingleData(), $this->mergeOptions($options));
+    }
+
+    public function testAjaxEntityLoaderOption()
+    {
+        $ael = $this->getMockBuilder(AjaxEntityLoaderInterface::class)->getMock();
+        $options = array(
+            'ajax_entity_loader' => $ael,
+            'select2' => array(
+                'enabled' => true,
+                'ajax' => true,
+            ),
+        );
+
+        $form = $this->factory->create($this->getExtensionTypeName(), $this->getSingleData(), $this->mergeOptions($options));
+        $config = $form->getConfig();
+        $choiceLoader = $config->getOption('choice_loader');
+
+        $this->assertInstanceOf(AjaxDoctrineChoiceLoader::class, $choiceLoader);
+
+        $ref = new \ReflectionClass($choiceLoader);
+        $prop = $ref->getProperty('objectLoader');
+        $prop->setAccessible(true);
+        $objectLoader = $prop->getValue($choiceLoader);
+
+        $this->assertSame($ael, $objectLoader);
     }
 }

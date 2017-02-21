@@ -11,7 +11,6 @@
 
 namespace Sonatra\Component\FormExtensions\Doctrine\Form\Extension;
 
-use Doctrine\Common\Persistence\ObjectManager;
 use Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList\AjaxEntityLoaderInterface;
 use Sonatra\Component\FormExtensions\Doctrine\Form\Converter\NewTagConverter;
 use Sonatra\Component\FormExtensions\Doctrine\Form\EventListener\NewTagConverterListener;
@@ -93,10 +92,10 @@ abstract class DoctrineSelect2TypeExtension extends AbstractTypeExtension
                 }
 
                 if (null !== $options['query_builder']) {
-                    $entityLoader = $type->getLoader($options['em'], $options['query_builder'], $options['class']);
+                    $entityLoader = $type->getLoader($options, $options['query_builder']);
                 } else {
                     $queryBuilder = $options['em']->getRepository($options['class'])->createQueryBuilder('e');
-                    $entityLoader = $type->getLoader($options['em'], $queryBuilder, $options['class']);
+                    $entityLoader = $type->getLoader($options, $queryBuilder);
                 }
 
                 if ($options['select2']['ajax']) {
@@ -148,13 +147,12 @@ abstract class DoctrineSelect2TypeExtension extends AbstractTypeExtension
     /**
      * Return the default loader object.
      *
-     * @param ObjectManager $manager
-     * @param mixed         $queryBuilder
-     * @param string        $class
+     * @param Options $options
+     * @param mixed   $queryBuilder
      *
      * @return AjaxEntityLoaderInterface
      */
-    abstract public function getLoader(ObjectManager $manager, $queryBuilder, $class);
+    abstract public function getLoader(Options $options, $queryBuilder);
 
     /**
      * Gets important parts from QueryBuilder that will allow to cache its results.
