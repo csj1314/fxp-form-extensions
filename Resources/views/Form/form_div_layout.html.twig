@@ -93,7 +93,7 @@
         {%- endif -%}
         {%- if select2.placeholder is defined -%}
             'placeholder': '{{- select2.placeholder|e -}}',
-        {%- elseif select2.allow_clear -%}
+        {%- elseif select2.allow_clear is defined -%}
             'placeholder': {
                 id: "",
                 placeholder: ""
