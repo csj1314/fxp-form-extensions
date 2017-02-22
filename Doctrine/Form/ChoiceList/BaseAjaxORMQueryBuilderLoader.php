@@ -12,6 +12,7 @@
 namespace Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList;
 
 use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 
@@ -105,10 +106,14 @@ abstract class BaseAjaxORMQueryBuilderLoader implements AjaxEntityLoaderInterfac
             }));
         } elseif ('guid' === $metadata->getTypeOfField($identifier)) {
             $parameterType = Connection::PARAM_STR_ARRAY;
+            $type = Type::getType(Type::GUID);
+            $platform = $qb->getEntityManager()->getConnection()->getDatabasePlatform();
 
-            // Like above, but we just filter out empty strings.
-            $values = array_values(array_filter($values, function ($v) {
-                return (string) $v !== '';
+            // Like above, but we just filter out empty strings and invalid guid.
+            $values = array_values(array_filter($values, function ($v) use ($type, $platform) {
+                $guid = $type->convertToDatabaseValue($v, $platform);
+
+                return !empty($guid) && $guid !== '00000000-0000-0000-0000-000000000000';
             }));
         } else {
             $parameterType = Connection::PARAM_STR_ARRAY;
