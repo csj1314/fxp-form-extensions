@@ -32,9 +32,9 @@ class Select2ChoiceToValueTransformer implements DataTransformerInterface
         $this->choiceLoader = $choiceLoader;
     }
 
-    public function transform($choice)
+    public function transform($choices)
     {
-        return current($this->choiceLoader->loadValuesForChoices((array) $choice));
+        return current($this->choiceLoader->loadValuesForChoices((array) $choices));
     }
 
     public function reverseTransform($value)
