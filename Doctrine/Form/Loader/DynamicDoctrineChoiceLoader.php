@@ -65,9 +65,19 @@ class DynamicDoctrineChoiceLoader extends AbstractDynamicChoiceLoader
      */
     public function loadChoiceListForView(array $values, $value = null)
     {
-        $choiceList = $this->factory->createListFromChoices($this->loadEntities(), $value);
+        $list = $this->loadEntities();
 
-        return $choiceList;
+        if ($this->isAllowAdd()) {
+            $choices = $this->loadChoicesForValues($this->getRealValues($values, $value), $value);
+
+            foreach ($choices as $choice) {
+                if (is_string($choice)) {
+                    $list[] = $choice;
+                }
+            }
+        }
+
+        return $this->factory->createListFromChoices($list, $value);
     }
 
     /**
@@ -150,5 +160,27 @@ class DynamicDoctrineChoiceLoader extends AbstractDynamicChoiceLoader
     protected function loadEntities()
     {
         return $this->objectLoader->getEntities();
+    }
+
+    /**
+     * Get the choice names of values.
+     *
+     * @param array         $values The selected values
+     * @param null|callable $value  The callable which generates the values
+     *                              from choices
+     *
+     * @return array
+     */
+    protected function getRealValues(array $values, $value = null)
+    {
+        $value = null === $value ? array($this->idReader, 'getIdValue') : $value;
+
+        foreach ($values as &$val) {
+            if (is_object($val) && is_callable($value)) {
+                $val = call_user_func($value, $val);
+            }
+        }
+
+        return $values;
     }
 }

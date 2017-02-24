@@ -12,8 +12,7 @@
 namespace Sonatra\Component\FormExtensions\Doctrine\Form\Extension;
 
 use Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList\AjaxEntityLoaderInterface;
-use Sonatra\Component\FormExtensions\Doctrine\Form\Converter\NewTagConverter;
-use Sonatra\Component\FormExtensions\Doctrine\Form\EventListener\NewTagConverterListener;
+use Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList\Factory\TagDecorator;
 use Sonatra\Component\FormExtensions\Doctrine\Form\Loader\AjaxDoctrineChoiceLoader;
 use Sonatra\Component\FormExtensions\Doctrine\Form\Loader\DynamicDoctrineChoiceLoader;
 use Symfony\Component\Form\AbstractTypeExtension;
@@ -21,7 +20,6 @@ use Symfony\Component\Form\ChoiceList\Factory\CachingFactoryDecorator;
 use Symfony\Component\Form\ChoiceList\Factory\ChoiceListFactoryInterface;
 use Symfony\Component\Form\ChoiceList\Factory\DefaultChoiceListFactory;
 use Symfony\Component\Form\ChoiceList\Factory\PropertyAccessDecorator;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -47,18 +45,7 @@ abstract class DoctrineSelect2TypeExtension extends AbstractTypeExtension
      */
     public function __construct(ChoiceListFactoryInterface $choiceListFactory = null)
     {
-        $this->choiceListFactory = $choiceListFactory ?: new PropertyAccessDecorator(new DefaultChoiceListFactory());
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        if ($options['select2']['enabled'] && $options['select2']['tags']) {
-            $converterListener = new NewTagConverterListener($options['new_tag_converter']);
-            $builder->addEventSubscriber($converterListener);
-        }
+        $this->choiceListFactory = $choiceListFactory ?: new PropertyAccessDecorator(new TagDecorator(new DefaultChoiceListFactory()));
     }
 
     /**
@@ -130,15 +117,10 @@ abstract class DoctrineSelect2TypeExtension extends AbstractTypeExtension
                 : $value;
         };
 
-        $newTagConverter = function (Options $options) {
-            return new NewTagConverter($options['class'], $options['choice_label']);
-        };
-
         $resolver->setDefaults(array(
             'choice_loader' => $choiceLoader,
             'choice_name' => $choiceName,
             'choice_label_name' => null,
-            'new_tag_converter' => $newTagConverter,
         ));
 
         $resolver->setAllowedTypes('choice_label_name', array('null', 'string'));

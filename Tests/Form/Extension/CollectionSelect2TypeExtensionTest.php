@@ -349,8 +349,8 @@ class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTes
         $this->assertInstanceOf('Symfony\Component\Form\FormView', $selectorView);
 
         $valid = array(
-            new ChoiceView('foo', 'foo', 'Bar'),
-            new ChoiceView('Baz', 'Baz', 'Baz'),
+            'foo' => new ChoiceView('foo', 'foo', 'Bar'),
+            'Baz' => new ChoiceView('Baz', 'Baz', 'Baz'),
         );
         $this->assertEquals($valid, $selectorView->vars['choices']);
         $this->assertSame('true', $selectorView->vars['select2']['tags']);
@@ -369,7 +369,7 @@ class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTes
         $this->assertInstanceOf('Symfony\Component\Form\FormView', $selectorView);
 
         $valid = array(
-            new ChoiceView('foo', 'foo', 'Bar'),
+            'foo' => new ChoiceView('foo', 'foo', 'Bar'),
         );
         $this->assertEquals($valid, $selectorView->vars['choices']);
         $this->assertArrayNotHasKey('tags', $selectorView->vars['select2']);

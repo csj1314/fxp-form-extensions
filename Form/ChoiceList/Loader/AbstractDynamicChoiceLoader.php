@@ -11,6 +11,7 @@
 
 namespace Sonatra\Component\FormExtensions\Form\ChoiceList\Loader;
 
+use Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList\Factory\TagDecorator;
 use Symfony\Component\Form\ChoiceList\ChoiceListInterface;
 use Symfony\Component\Form\ChoiceList\Factory\ChoiceListFactoryInterface;
 use Symfony\Component\Form\ChoiceList\Factory\DefaultChoiceListFactory;
@@ -50,7 +51,7 @@ abstract class AbstractDynamicChoiceLoader implements DynamicChoiceLoaderInterfa
      */
     public function __construct($factory = null)
     {
-        $this->factory = $factory ?: new PropertyAccessDecorator(new DefaultChoiceListFactory());
+        $this->factory = $factory ?: new PropertyAccessDecorator(new TagDecorator(new DefaultChoiceListFactory()));
         $this->allowAdd = false;
     }
 

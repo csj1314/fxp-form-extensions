@@ -11,6 +11,7 @@
 
 namespace Sonatra\Component\FormExtensions\Form\Extension;
 
+use Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList\Factory\TagDecorator;
 use Sonatra\Component\FormExtensions\Form\ChoiceList\Formatter\Select2AjaxChoiceListFormatter;
 use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface;
 use Symfony\Component\Form\AbstractTypeExtension;
@@ -45,7 +46,7 @@ abstract class AbstractSelect2ConfigTypeExtension extends AbstractTypeExtension
     public function __construct($defaultPageSize = 10, ChoiceListFactoryInterface $choiceListFactory = null)
     {
         $this->ajaxPageSize = $defaultPageSize;
-        $this->choiceListFactory = $choiceListFactory ?: new PropertyAccessDecorator(new DefaultChoiceListFactory());
+        $this->choiceListFactory = $choiceListFactory ?: new PropertyAccessDecorator(new TagDecorator(new DefaultChoiceListFactory()));
     }
 
     /**

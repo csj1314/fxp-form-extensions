@@ -75,9 +75,7 @@ class AjaxDoctrineChoiceLoader extends DynamicDoctrineChoiceLoader implements Aj
      */
     public function loadChoiceListForView(array $values, $value = null)
     {
-        $choiceList = $this->factory->createListFromChoices($values, $value);
-
-        return $choiceList;
+        return $this->factory->createListFromChoices($values, $value);
     }
 
     /**

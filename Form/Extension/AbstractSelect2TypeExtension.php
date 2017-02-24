@@ -11,17 +11,16 @@
 
 namespace Sonatra\Component\FormExtensions\Form\Extension;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Sonatra\Component\Ajax\AjaxEvents;
 use Sonatra\Component\FormExtensions\Event\GetAjaxChoiceListEvent;
 use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface;
 use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\DynamicChoiceLoaderInterface;
-use Sonatra\Component\FormExtensions\Form\DataTransformer\Select2ChoiceToValueTransformer;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\ChoiceList\ChoiceListInterface;
 use Symfony\Component\Form\ChoiceList\Factory\ChoiceListFactoryInterface;
 use Symfony\Component\Form\ChoiceList\Loader\ChoiceLoaderInterface;
 use Symfony\Component\Form\ChoiceList\View\ChoiceListView;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -70,19 +69,6 @@ abstract class AbstractSelect2TypeExtension extends AbstractSelect2ConfigTypeExt
         $this->type = $type;
 
         parent::__construct($defaultPageSize, $choiceListFactory);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        if (!$options['select2']['enabled'] || $options['multiple'] || !$options['select2']['tags']) {
-            return;
-        }
-
-        $builder->resetViewTransformers();
-        $builder->addViewTransformer(new Select2ChoiceToValueTransformer($options['choice_loader']));
     }
 
     /**
@@ -143,7 +129,8 @@ abstract class AbstractSelect2TypeExtension extends AbstractSelect2ConfigTypeExt
             && $options['choice_loader'] instanceof DynamicChoiceLoaderInterface) {
             /* @var DynamicChoiceLoaderInterface $loader */
             $loader = $options['choice_loader'];
-            $values = is_object($form->getData()) ? array($form->getData()) : (array) $form->getData();
+            $values = $form->getData() instanceof ArrayCollection ? $form->getData()->toArray() : $form->getData();
+            $values = is_object($values) ? array($values) : (array) $values;
             $choiceListView = $this->createChoiceListView($loader->loadChoiceListForView($values, $options['choice_name']), $options);
 
             $view->vars = array_replace($view->vars, array(

@@ -13,6 +13,7 @@ namespace Sonatra\Component\FormExtensions\Tests\Form\ChoiceList\Loader;
 
 use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface;
 use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\DynamicChoiceLoaderInterface;
+use Sonatra\Component\FormExtensions\Tests\Doctrine\Form\Fixtures\MockEntity;
 
 /**
  * Base tests case for dynamic choice loader.
@@ -27,6 +28,18 @@ abstract class AbstractChoiceLoaderTest extends \PHPUnit_Framework_TestCase
             array(false),
             array(true),
         );
+    }
+
+    /**
+     * @return \Closure
+     */
+    protected function getValue()
+    {
+        return function ($val) {
+            return $val instanceof MockEntity
+                ? $val->getId()
+                : $val;
+        };
     }
 
     /**
@@ -122,9 +135,9 @@ abstract class AbstractChoiceLoaderTest extends \PHPUnit_Framework_TestCase
     public function testLoadChoiceList($group)
     {
         $loader = $this->createChoiceLoader($group);
-        $choiceList = $loader->loadChoiceList();
+        $choiceList = $loader->loadChoiceList($this->getValue());
         $this->assertInstanceOf('Symfony\Component\Form\ChoiceList\ChoiceListInterface', $choiceList);
-        $choiceList2 = $loader->loadChoiceList();
+        $choiceList2 = $loader->loadChoiceList($this->getValue());
         $this->assertSame($choiceList, $choiceList2);
     }
 
@@ -136,7 +149,7 @@ abstract class AbstractChoiceLoaderTest extends \PHPUnit_Framework_TestCase
     public function testLoadChoiceListForView($group)
     {
         $loader = $this->createChoiceLoader($group);
-        $choiceList = $loader->loadChoiceListForView(array('foo', 'bar', 'Test'));
+        $choiceList = $loader->loadChoiceListForView(array('foo', 'bar', 'Test'), $this->getValue());
 
         $this->assertInstanceOf('Symfony\Component\Form\ChoiceList\ChoiceListInterface', $choiceList);
         $this->assertEquals($this->getValidStructuredValues($group), $choiceList->getStructuredValues());
@@ -151,7 +164,7 @@ abstract class AbstractChoiceLoaderTest extends \PHPUnit_Framework_TestCase
     {
         $loader = $this->createChoiceLoader($group);
         $loader->setAllowAdd(true);
-        $choiceList = $loader->loadChoiceListForView(array('foo', 'bar', 'Test'));
+        $choiceList = $loader->loadChoiceListForView(array('foo', 'bar', 'Test'), $this->getValue());
 
         $this->assertInstanceOf('Symfony\Component\Form\ChoiceList\ChoiceListInterface', $choiceList);
 

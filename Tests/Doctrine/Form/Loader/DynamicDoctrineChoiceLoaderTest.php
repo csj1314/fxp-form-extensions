@@ -80,7 +80,7 @@ class DynamicDoctrineChoiceLoaderTest extends AbstractChoiceLoaderTest
                 $values = array();
 
                 foreach ($objects as $object) {
-                    $values[$object->getLabel()] = $object;
+                    $values[] = $object;
                 }
 
                 return $values;
@@ -92,8 +92,11 @@ class DynamicDoctrineChoiceLoaderTest extends AbstractChoiceLoaderTest
                 $entities = array();
 
                 foreach ($values as $id) {
-                    if (isset($objects[$id]) && is_string($idField)) {
-                        $entities[$id] = $objects[$id];
+                    foreach ($objects as $object) {
+                        if ($id === $object->getId()) {
+                            $entities[] = $object;
+                            break;
+                        }
                     }
                 }
 
@@ -113,7 +116,7 @@ class DynamicDoctrineChoiceLoaderTest extends AbstractChoiceLoaderTest
             ->will($this->returnCallback(function ($value) use ($objects) {
                 foreach ($objects as $i => $object) {
                     if ($object === $value) {
-                        return $i;
+                        return $object->getId();
                     }
                 }
 
@@ -129,9 +132,9 @@ class DynamicDoctrineChoiceLoaderTest extends AbstractChoiceLoaderTest
     protected function getValidStructuredValues($group)
     {
         return array(
-            'Bar' => '0',
-            'Foo' => '1',
-            'Baz' => '2',
+            '0' => 'foo',
+            '1' => 'bar',
+            '2' => 'baz',
         );
     }
 
@@ -140,9 +143,9 @@ class DynamicDoctrineChoiceLoaderTest extends AbstractChoiceLoaderTest
      */
     protected function getValidStructuredValuesWithNewTags($group)
     {
-        // new tags is not included because they are not managed by Doctrine
-
-        return $this->getValidStructuredValues($group);
+        return array_merge($this->getValidStructuredValues($group), array(
+            '3' => 'Test',
+        ));
     }
 
     /**
@@ -151,7 +154,7 @@ class DynamicDoctrineChoiceLoaderTest extends AbstractChoiceLoaderTest
     protected function getDataChoicesForValues()
     {
         return array(
-            0,
+            'foo',
             'Test',
         );
     }
@@ -194,7 +197,7 @@ class DynamicDoctrineChoiceLoaderTest extends AbstractChoiceLoaderTest
     protected function getValidValuesForChoices($group)
     {
         return array(
-            '0',
+            'foo',
         );
     }
 
@@ -212,7 +215,7 @@ class DynamicDoctrineChoiceLoaderTest extends AbstractChoiceLoaderTest
     protected function getValidValuesForChoicesWithNewTags($group)
     {
         return array(
-            '0',
+            'foo',
             'Test',
         );
     }

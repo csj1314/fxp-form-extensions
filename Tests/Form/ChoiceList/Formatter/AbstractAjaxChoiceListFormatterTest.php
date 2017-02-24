@@ -11,6 +11,7 @@
 
 namespace Sonatra\Component\FormExtensions\Tests\Form\ChoiceList\Formatter;
 
+use Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList\Factory\TagDecorator;
 use Sonatra\Component\FormExtensions\Form\ChoiceList\Formatter\AjaxChoiceListFormatterInterface;
 use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface;
 use Symfony\Component\Form\ChoiceList\ArrayChoiceList;
@@ -44,7 +45,7 @@ abstract class AbstractAjaxChoiceListFormatterTest extends \PHPUnit_Framework_Te
     {
         parent::setUp();
 
-        $this->choiceListFactory = new PropertyAccessDecorator(new DefaultChoiceListFactory());
+        $this->choiceListFactory = new PropertyAccessDecorator(new TagDecorator(new DefaultChoiceListFactory()));
         $this->choiceLoader = $this->getMockBuilder('Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface')->getMock();
         $this->formatter = $this->getFormatter();
 
