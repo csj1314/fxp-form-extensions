@@ -98,6 +98,33 @@ class AjaxORMQueryBuilderLoaderTest extends \PHPUnit_Framework_TestCase
         $loader->getEntitiesByIds('id', array(1, '', 2, 3, 'foo'));
     }
 
+    public function testFilterEmptyValues()
+    {
+        $em = DoctrineTestHelper::createTestEntityManager();
+
+        $query = $this->getMockBuilder('QueryMock')
+            ->setMethods(array('setParameter', 'getResult', 'getSql', '_doExecute'))
+            ->getMock();
+
+        $query->expects($this->never())
+            ->method('setParameter');
+
+        /* @var QueryBuilder|\PHPUnit_Framework_MockObject_MockObject $qb */
+        $qb = $this->getMockBuilder('Doctrine\ORM\QueryBuilder')
+            ->setConstructorArgs(array($em))
+            ->setMethods(array('getQuery'))
+            ->getMock();
+
+        $qb->expects($this->never())
+            ->method('getQuery');
+
+        $qb->select('e')
+            ->from('Symfony\Bridge\Doctrine\Tests\Fixtures\SingleIntIdEntity', 'e');
+
+        $loader = new AjaxORMQueryBuilderLoader($qb);
+        $loader->getEntitiesByIds('id', array());
+    }
+
     public function testSetSearch()
     {
         $em = DoctrineTestHelper::createTestEntityManager();
