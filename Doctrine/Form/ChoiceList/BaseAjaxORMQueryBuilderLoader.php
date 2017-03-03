@@ -52,7 +52,9 @@ abstract class BaseAjaxORMQueryBuilderLoader implements AjaxEntityLoaderInterfac
     {
         if (null === $this->size) {
             $paginator = new Paginator($this->getFilterableQueryBuilder());
+            $this->prePaginate();
             $this->size = (int) $paginator->count();
+            $this->postPaginate();
         }
 
         return $this->size;
@@ -69,7 +71,11 @@ abstract class BaseAjaxORMQueryBuilderLoader implements AjaxEntityLoaderInterfac
         $paginator->getQuery()->setFirstResult(($pageNumber - 1) * $pageSize)
             ->setMaxResults($pageSize);
 
-        return $paginator->getIterator();
+        $this->prePaginate();
+        $result = $paginator->getIterator();
+        $this->postPaginate();
+
+        return $result;
     }
 
     /**
@@ -79,7 +85,11 @@ abstract class BaseAjaxORMQueryBuilderLoader implements AjaxEntityLoaderInterfac
     {
         $qb = clone $this->getFilterableQueryBuilder();
 
-        return $qb->getQuery()->getResult();
+        $this->prePaginate();
+        $result = $qb->getQuery()->getResult();
+        $this->postPaginate();
+
+        return $result;
     }
 
     /**
@@ -119,12 +129,18 @@ abstract class BaseAjaxORMQueryBuilderLoader implements AjaxEntityLoaderInterfac
             $parameterType = Connection::PARAM_STR_ARRAY;
         }
 
-        return !$values
-            ? array()
-            : $qb->andWhere($where)
-                ->getQuery()
-                ->setParameter($parameter, $values, $parameterType)
-                ->getResult();
+        if (!$values) {
+            return array();
+        }
+
+        $this->prePaginate();
+        $result = $qb->andWhere($where)
+            ->getQuery()
+            ->setParameter($parameter, $values, $parameterType)
+            ->getResult();
+        $this->postPaginate();
+
+        return $result;
     }
 
     /**
@@ -133,6 +149,20 @@ abstract class BaseAjaxORMQueryBuilderLoader implements AjaxEntityLoaderInterfac
     public function reset()
     {
         $this->size = null;
+    }
+
+    /**
+     * Action before the pagination.
+     */
+    protected function prePaginate()
+    {
+    }
+
+    /**
+     * Action after the pagination.
+     */
+    protected function postPaginate()
+    {
     }
 
     /**
