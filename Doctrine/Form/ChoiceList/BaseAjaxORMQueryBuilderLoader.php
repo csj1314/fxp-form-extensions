@@ -129,7 +129,7 @@ abstract class BaseAjaxORMQueryBuilderLoader implements AjaxEntityLoaderInterfac
             $parameterType = Connection::PARAM_STR_ARRAY;
         }
 
-        if (!$values) {
+        if (empty($values)) {
             return array();
         }
 
