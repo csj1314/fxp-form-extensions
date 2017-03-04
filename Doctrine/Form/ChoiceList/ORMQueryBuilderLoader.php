@@ -51,7 +51,11 @@ class ORMQueryBuilderLoader implements EntityLoaderInterface
      */
     public function getEntities()
     {
-        return $this->queryBuilder->getQuery()->execute();
+        $this->preLoad();
+        $result = $this->queryBuilder->getQuery()->execute();
+        $this->postLoad();
+
+        return $result;
     }
 
     /**
@@ -71,10 +75,14 @@ class ORMQueryBuilderLoader implements EntityLoaderInterface
             return array();
         }
 
-        return $qb->andWhere($where)
+        $this->preLoad();
+        $result = $qb->andWhere($where)
             ->getQuery()
             ->setParameter($parameter, $values, $parameterType)
             ->getResult();
+        $this->postLoad();
+
+        return $result;
     }
 
     /**
@@ -118,5 +126,19 @@ class ORMQueryBuilderLoader implements EntityLoaderInterface
         }
 
         return array($parameterType, $values);
+    }
+
+    /**
+     * Action before the loading.
+     */
+    protected function preLoad()
+    {
+    }
+
+    /**
+     * Action after the loading.
+     */
+    protected function postLoad()
+    {
     }
 }
