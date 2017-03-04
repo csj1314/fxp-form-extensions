@@ -150,6 +150,18 @@ class ORMQueryBuilderLoaderTest extends \PHPUnit_Framework_TestCase
         $loader->getEntities();
     }
 
+    public function testGetQueryBuilder()
+    {
+        /* @var QueryBuilder|\PHPUnit_Framework_MockObject_MockObject $qb */
+        $qb = $this->getMockBuilder('Doctrine\ORM\QueryBuilder')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $loader = new ORMQueryBuilderLoader($qb);
+
+        $this->assertSame($qb, $loader->getQueryBuilder());
+    }
+
     /**
      * Init the doctrine entity manager.
      *

@@ -37,6 +37,16 @@ class ORMQueryBuilderLoader implements EntityLoaderInterface
     }
 
     /**
+     * Get the query builder.
+     *
+     * @return QueryBuilder
+     */
+    public function getQueryBuilder()
+    {
+        return $this->queryBuilder;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function getEntities()
