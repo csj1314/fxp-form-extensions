@@ -123,7 +123,7 @@ class DynamicDoctrineChoiceLoaderTest extends AbstractChoiceLoaderTest
                 throw new RuntimeException('MOCK_EXCEPTION');
             }));
 
-        return new DynamicDoctrineChoiceLoader($this->objectLoader, $this->idReader, 'label');
+        return new DynamicDoctrineChoiceLoader($this->objectLoader, array($this->idReader, 'getIdValue'), $this->idReader->getIdField(), 'label');
     }
 
     /**

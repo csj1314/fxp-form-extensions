@@ -137,7 +137,7 @@ class AjaxDoctrineChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
                 throw new RuntimeException('MOCK_EXCEPTION');
             }));
 
-        return new AjaxDoctrineChoiceLoader($this->objectLoader, $this->idReader, 'label');
+        return new AjaxDoctrineChoiceLoader($this->objectLoader, array($this->idReader, 'getIdValue'), $this->idReader->getIdField(), 'label');
     }
 
     /**

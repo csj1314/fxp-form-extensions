@@ -14,7 +14,6 @@ namespace Sonatra\Component\FormExtensions\Doctrine\Form\Loader;
 use Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList\AjaxEntityLoaderInterface;
 use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface;
 use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\Traits\AjaxLoaderTrait;
-use Symfony\Bridge\Doctrine\Form\ChoiceList\IdReader;
 use Symfony\Component\Form\ChoiceList\Factory\ChoiceListFactoryInterface;
 use Symfony\Component\PropertyAccess\PropertyPath;
 
@@ -34,15 +33,15 @@ class AjaxDoctrineChoiceLoader extends DynamicDoctrineChoiceLoader implements Aj
      * Creates a new choice loader.
      *
      * @param AjaxEntityLoaderInterface         $objectLoader The objects loader
-     * @param IdReader                          $idReader     The reader for the object
-     *                                                        IDs
+     * @param callable                          $choiceValue  The callable choice value
+     * @param string                            $idField      The id field
      * @param null|callable|string|PropertyPath $label        The callable or path generating the choice labels
      * @param ChoiceListFactoryInterface|null   $factory      The factory for creating
      *                                                        the loaded choice list
      */
-    public function __construct(AjaxEntityLoaderInterface $objectLoader, IdReader $idReader, $label, $factory = null)
+    public function __construct(AjaxEntityLoaderInterface $objectLoader, $choiceValue, $idField, $label, $factory = null)
     {
-        parent::__construct($objectLoader, $idReader, $label, $factory);
+        parent::__construct($objectLoader, $choiceValue, $idField, $label, $factory);
 
         $this->initAjax();
         $this->reset();
@@ -62,10 +61,7 @@ class AjaxDoctrineChoiceLoader extends DynamicDoctrineChoiceLoader implements Aj
     public function loadPaginatedChoiceList($value = null)
     {
         $objects = $this->objectLoader->getPaginatedEntities($this->getPageSize(), $this->getPageNumber());
-
-        if (null === $value && $this->idReader->isSingleId()) {
-            $value = array($this->idReader, 'getIdValue');
-        }
+        $value = $this->getCallableValue($value);
 
         return $this->factory->createListFromChoices($objects, $value);
     }

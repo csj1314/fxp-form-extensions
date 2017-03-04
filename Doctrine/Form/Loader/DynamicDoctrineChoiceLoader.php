@@ -13,7 +13,6 @@ namespace Sonatra\Component\FormExtensions\Doctrine\Form\Loader;
 
 use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AbstractDynamicChoiceLoader;
 use Symfony\Bridge\Doctrine\Form\ChoiceList\EntityLoaderInterface;
-use Symfony\Bridge\Doctrine\Form\ChoiceList\IdReader;
 use Symfony\Component\Form\ChoiceList\Factory\ChoiceListFactoryInterface;
 use Symfony\Component\Form\Exception\RuntimeException;
 use Symfony\Component\PropertyAccess\PropertyPath;
@@ -29,26 +28,32 @@ class DynamicDoctrineChoiceLoader extends AbstractDynamicChoiceLoader
     protected $objectLoader;
 
     /**
-     * @var IdReader
+     * @var callable
      */
-    protected $idReader;
+    protected $choiceValue;
+
+    /**
+     * @var string
+     */
+    protected $idField;
 
     /**
      * Creates a new choice loader.
      *
      * @param EntityLoaderInterface             $objectLoader The objects loader
-     * @param IdReader                          $idReader     The reader for the object
-     *                                                        IDs
+     * @param callable                          $choiceValue  The callable choice value
+     * @param string                            $idField      The id field
      * @param null|callable|string|PropertyPath $label        The callable or path generating the choice labels
      * @param ChoiceListFactoryInterface|null   $factory      The factory for creating
      *                                                        the loaded choice list
      */
-    public function __construct(EntityLoaderInterface $objectLoader, IdReader $idReader, $label, $factory = null)
+    public function __construct(EntityLoaderInterface $objectLoader, $choiceValue, $idField, $label, $factory = null)
     {
         parent::__construct($factory);
 
         $this->objectLoader = $objectLoader;
-        $this->idReader = $idReader;
+        $this->choiceValue = $choiceValue;
+        $this->idField = $idField;
         $this->label = $label;
     }
 
@@ -104,12 +109,13 @@ class DynamicDoctrineChoiceLoader extends AbstractDynamicChoiceLoader
             return array();
         }
 
-        $unorderedObjects = $this->objectLoader->getEntitiesByIds($this->idReader->getIdField(), $values);
+        $value = $this->getCallableValue($value);
+        $unorderedObjects = $this->objectLoader->getEntitiesByIds($this->idField, $values);
         $objectsById = array();
         $objects = array();
 
         foreach ($unorderedObjects as $object) {
-            $objectsById[$this->idReader->getIdValue($object)] = $object;
+            $objectsById[call_user_func($value, $object)] = $object;
         }
 
         foreach ($values as $i => $id) {
@@ -133,12 +139,13 @@ class DynamicDoctrineChoiceLoader extends AbstractDynamicChoiceLoader
             return array();
         }
 
+        $value = $this->getCallableValue($value);
         $values = array();
 
         foreach ($choices as $i => $object) {
             if (is_object($object)) {
                 try {
-                    $values[$i] = (string) $this->idReader->getIdValue($object);
+                    $values[$i] = (string) call_user_func($value, $object);
                 } catch (RuntimeException $e) {
                     if (!$this->isAllowAdd()) {
                         throw $e;
@@ -173,7 +180,7 @@ class DynamicDoctrineChoiceLoader extends AbstractDynamicChoiceLoader
      */
     protected function getRealValues(array $values, $value = null)
     {
-        $value = null === $value ? array($this->idReader, 'getIdValue') : $value;
+        $value = $this->getCallableValue($value);
 
         foreach ($values as &$val) {
             if (is_object($val) && is_callable($value)) {
@@ -182,5 +189,20 @@ class DynamicDoctrineChoiceLoader extends AbstractDynamicChoiceLoader
         }
 
         return $values;
+    }
+
+    /**
+     * Get the callable which generates the values from choices.
+     *
+     * @param null|callable $value The callable which generates the values
+     *                             from choices
+     *
+     * @return callable
+     */
+    protected function getCallableValue($value = null)
+    {
+        return null === $value
+            ? $this->choiceValue
+            : $value;
     }
 }
