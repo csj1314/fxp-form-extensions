@@ -11,8 +11,6 @@
 
 namespace Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList;
 
-use Doctrine\DBAL\Connection;
-use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 
@@ -102,32 +100,7 @@ abstract class BaseAjaxORMQueryBuilderLoader implements AjaxEntityLoaderInterfac
         $parameter = 'AjaxORMQueryBuilderLoader_getEntitiesByIds_'.$identifier;
         $where = $qb->expr()->in($alias.'.'.$identifier, ':'.$parameter);
 
-        // Guess type
-        $entity = current($qb->getRootEntities());
-        $metadata = $qb->getEntityManager()->getClassMetadata($entity);
-
-        if (in_array($metadata->getTypeOfField($identifier), array('integer', 'bigint', 'smallint'))) {
-            $parameterType = Connection::PARAM_INT_ARRAY;
-
-            // Filter out non-integer values (e.g. ""). If we don't, some
-            // databases such as PostgreSQL fail.
-            $values = array_values(array_filter($values, function ($v) {
-                return (string) $v === (string) (int) $v;
-            }));
-        } elseif ('guid' === $metadata->getTypeOfField($identifier)) {
-            $parameterType = Connection::PARAM_STR_ARRAY;
-            $type = Type::getType(Type::GUID);
-            $platform = $qb->getEntityManager()->getConnection()->getDatabasePlatform();
-
-            // Like above, but we just filter out empty strings and invalid guid.
-            $values = array_values(array_filter($values, function ($v) use ($type, $platform) {
-                $guid = $type->convertToDatabaseValue($v, $platform);
-
-                return !empty($guid) && $guid !== '00000000-0000-0000-0000-000000000000';
-            }));
-        } else {
-            $parameterType = Connection::PARAM_STR_ARRAY;
-        }
+        list($parameterType, $values) = ORMQueryBuilderLoader::cleanValues($qb, $identifier, $values);
 
         if (empty($values)) {
             return array();
