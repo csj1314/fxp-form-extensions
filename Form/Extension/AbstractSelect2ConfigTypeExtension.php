@@ -171,7 +171,11 @@ abstract class AbstractSelect2ConfigTypeExtension extends AbstractTypeExtension
         $choiceListFactory = $this->choiceListFactory;
 
         if ($resolver->isDefined('choice_loader')) {
+            $resolver->addAllowedTypes('choice_loader', \Closure::class);
+
             $resolver->setNormalizer('choice_loader', function (Options $options, $value) use ($choiceListFactory) {
+                $value = $value instanceof \Closure ? $value($options, $value) : $value;
+
                 if ($options['select2']['enabled']) {
                     $value = Select2Util::convertToDynamicLoader($choiceListFactory, $options, $value);
                     $value->setAllowAdd($options['select2']['tags']);
