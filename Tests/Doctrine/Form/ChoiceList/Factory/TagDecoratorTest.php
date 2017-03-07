@@ -100,8 +100,8 @@ class TagDecoratorTest extends \PHPUnit_Framework_TestCase
 
         $this->factory->expects($this->once())
             ->method('createListFromLoader')
-            ->willReturnCallback(function ($loader, $value) use ($self, $loader) {
-                $self->assertSame($loader, $loader);
+            ->willReturnCallback(function ($funLoader, $value) use ($self, $loader) {
+                $self->assertSame($loader, $funLoader);
                 $self->assertInstanceOf(\Closure::class, $value);
                 /* @var ChoiceLoaderInterface|\PHPUnit_Framework_MockObject_MockObject $loader */
                 $result = $loader->loadValuesForChoices(array(), $value);
