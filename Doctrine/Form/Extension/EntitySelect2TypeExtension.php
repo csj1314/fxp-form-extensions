@@ -14,6 +14,7 @@ namespace Sonatra\Component\FormExtensions\Doctrine\Form\Extension;
 use Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList\AjaxEntityLoaderInterface;
 use Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList\AjaxORMQueryBuilderLoader;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\ChoiceList\Factory\ChoiceListFactoryInterface;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -23,11 +24,30 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class EntitySelect2TypeExtension extends DoctrineSelect2TypeExtension
 {
     /**
+     * @var string
+     */
+    protected $extendedType;
+
+    /**
+     * Constructor.
+     *
+     * @param string $extendedType The extended type
+     *
+     * @param ChoiceListFactoryInterface $choiceListFactory
+     */
+    public function __construct($extendedType = EntityType::class, ChoiceListFactoryInterface $choiceListFactory = null)
+    {
+        parent::__construct($choiceListFactory);
+
+        $this->extendedType = $extendedType;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function getExtendedType()
     {
-        return EntityType::class;
+        return $this->extendedType;
     }
 
     /**
