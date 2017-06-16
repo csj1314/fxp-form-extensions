@@ -15,16 +15,16 @@
     "prefer-stable": true,
     "require" : {
         "php" : ">=7.0.0",
-        "symfony/serializer": "^3.2.0",
-        "symfony/http-foundation": "^3.2.0",
-        "symfony/property-access": "^3.2.0",
-        "symfony/event-dispatcher": "^3.2.0",
-        "symfony/routing": "^3.2.0",
-        "symfony/form": "^3.2.0",
+        "symfony/serializer": "^3.3.0",
+        "symfony/http-foundation": "^3.3.0",
+        "symfony/property-access": "^3.3.0",
+        "symfony/event-dispatcher": "^3.3.0",
+        "symfony/routing": "^3.3.0",
+        "symfony/form": "^3.3.0",
         "sonatra/ajax" : "^1.0.0"
     },
     "require-dev" : {
-        "symfony/doctrine-bridge" : "^3.2.0",
+        "symfony/doctrine-bridge" : "^3.3.0",
         "doctrine/orm" : "^2.5.0"
     },
     "autoload": {
