@@ -11,6 +11,7 @@
 
 namespace Sonatra\Component\FormExtensions\Tests\Form\Util;
 
+use PHPUnit\Framework\TestCase;
 use Sonatra\Component\FormExtensions\Form\Util\DateTimeUtil;
 
 /**
@@ -18,7 +19,7 @@ use Sonatra\Component\FormExtensions\Form\Util\DateTimeUtil;
  *
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-class DateTimeUtilTest extends \PHPUnit_Framework_TestCase
+class DateTimeUtilTest extends TestCase
 {
     public function testGetJsFormat()
     {

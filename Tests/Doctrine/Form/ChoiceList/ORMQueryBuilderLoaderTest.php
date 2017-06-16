@@ -15,13 +15,14 @@ use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\SchemaTool;
+use PHPUnit\Framework\TestCase;
 use Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList\ORMQueryBuilderLoader;
 use Symfony\Bridge\Doctrine\Test\DoctrineTestHelper;
 
 /**
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-class ORMQueryBuilderLoaderTest extends \PHPUnit_Framework_TestCase
+class ORMQueryBuilderLoaderTest extends TestCase
 {
     public function getIdentityTypes()
     {

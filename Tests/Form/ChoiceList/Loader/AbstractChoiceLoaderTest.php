@@ -11,6 +11,7 @@
 
 namespace Sonatra\Component\FormExtensions\Tests\Form\ChoiceList\Loader;
 
+use PHPUnit\Framework\TestCase;
 use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface;
 use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\DynamicChoiceLoaderInterface;
 use Sonatra\Component\FormExtensions\Tests\Doctrine\Form\Fixtures\MockEntity;
@@ -20,7 +21,7 @@ use Sonatra\Component\FormExtensions\Tests\Doctrine\Form\Fixtures\MockEntity;
  *
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-abstract class AbstractChoiceLoaderTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractChoiceLoaderTest extends TestCase
 {
     public function getIsGroup()
     {

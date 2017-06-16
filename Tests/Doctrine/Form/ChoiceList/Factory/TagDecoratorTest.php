@@ -11,6 +11,7 @@
 
 namespace Sonatra\Component\FormExtensions\Tests\Doctrine\Form\ChoiceList\Factory;
 
+use PHPUnit\Framework\TestCase;
 use Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList\Factory\TagDecorator;
 use Symfony\Component\Form\ChoiceList\Factory\ChoiceListFactoryInterface;
 use Symfony\Component\Form\ChoiceList\Loader\ChoiceLoaderInterface;
@@ -18,7 +19,7 @@ use Symfony\Component\Form\ChoiceList\Loader\ChoiceLoaderInterface;
 /**
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-class TagDecoratorTest extends \PHPUnit_Framework_TestCase
+class TagDecoratorTest extends TestCase
 {
     /**
      * @var ChoiceListFactoryInterface|\PHPUnit_Framework_MockObject_MockObject

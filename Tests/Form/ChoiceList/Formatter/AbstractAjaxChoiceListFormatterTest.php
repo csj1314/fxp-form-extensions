@@ -11,6 +11,7 @@
 
 namespace Sonatra\Component\FormExtensions\Tests\Form\ChoiceList\Formatter;
 
+use PHPUnit\Framework\TestCase;
 use Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList\Factory\TagDecorator;
 use Sonatra\Component\FormExtensions\Form\ChoiceList\Formatter\AjaxChoiceListFormatterInterface;
 use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface;
@@ -24,7 +25,7 @@ use Symfony\Component\Form\ChoiceList\Factory\PropertyAccessDecorator;
  *
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-abstract class AbstractAjaxChoiceListFormatterTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractAjaxChoiceListFormatterTest extends TestCase
 {
     /**
      * @var PropertyAccessDecorator

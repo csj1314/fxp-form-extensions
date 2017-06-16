@@ -14,6 +14,7 @@ namespace Sonatra\Component\FormExtensions\Tests\Doctrine\Form\Type;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\QueryBuilder;
+use PHPUnit\Framework\TestCase;
 use Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList\ORMQueryBuilderLoader;
 use Sonatra\Component\FormExtensions\Doctrine\Form\Type\EntityType;
 
@@ -22,7 +23,7 @@ use Sonatra\Component\FormExtensions\Doctrine\Form\Type\EntityType;
  *
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-class EntityTypeTest extends \PHPUnit_Framework_TestCase
+class EntityTypeTest extends TestCase
 {
     public function testGetLoader()
     {

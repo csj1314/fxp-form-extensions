@@ -11,6 +11,7 @@
 
 namespace Sonatra\Component\FormExtensions\Tests\Form\Extension;
 
+use PHPUnit\Framework\TestCase;
 use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface;
 use Sonatra\Component\FormExtensions\Form\Helper\AjaxChoiceListHelper;
 use Symfony\Component\Form\FormInterface;
@@ -21,7 +22,7 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-class AjaxChoiceListHelperTest extends \PHPUnit_Framework_TestCase
+class AjaxChoiceListHelperTest extends TestCase
 {
     /**
      * @return string

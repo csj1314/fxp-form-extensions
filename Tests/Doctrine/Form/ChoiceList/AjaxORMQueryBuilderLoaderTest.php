@@ -15,13 +15,14 @@ use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\SchemaTool;
+use PHPUnit\Framework\TestCase;
 use Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList\AjaxORMQueryBuilderLoader;
 use Symfony\Bridge\Doctrine\Test\DoctrineTestHelper;
 
 /**
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-class AjaxORMQueryBuilderLoaderTest extends \PHPUnit_Framework_TestCase
+class AjaxORMQueryBuilderLoaderTest extends TestCase
 {
     public function getIdentityTypes()
     {
@@ -129,13 +130,21 @@ class AjaxORMQueryBuilderLoaderTest extends \PHPUnit_Framework_TestCase
     {
         $em = DoctrineTestHelper::createTestEntityManager();
 
+        $query = $this->getMockBuilder('QueryMock')
+            ->setMethods(array('getResult', 'getSql', '_doExecute'))
+            ->getMock();
         /* @var QueryBuilder|\PHPUnit_Framework_MockObject_MockObject $qb */
         $qb = $this->getMockBuilder('Doctrine\ORM\QueryBuilder')
             ->setConstructorArgs(array($em))
             ->setMethods(array('getQuery'))
             ->getMock();
+        $qb->expects($this->once())
+            ->method('getQuery')
+            ->willReturn($query);
         $loader = new AjaxORMQueryBuilderLoader($qb);
         $loader->setSearch('test', 'foo');
+
+        $loader->getEntities();
     }
 
     public function testGetEntities()
@@ -172,7 +181,7 @@ class AjaxORMQueryBuilderLoaderTest extends \PHPUnit_Framework_TestCase
             ->from('Symfony\Bridge\Doctrine\Tests\Fixtures\SingleIntIdEntity', 'e');
 
         $loader = new AjaxORMQueryBuilderLoader($qb);
-        $loader->getPaginatedEntities(10, 1);
+        $this->assertInstanceOf(\ArrayIterator::class, $loader->getPaginatedEntities(10, 1));
     }
 
     public function testGetSize()
@@ -184,7 +193,7 @@ class AjaxORMQueryBuilderLoaderTest extends \PHPUnit_Framework_TestCase
             ->from('Symfony\Bridge\Doctrine\Tests\Fixtures\SingleIntIdEntity', 'e');
 
         $loader = new AjaxORMQueryBuilderLoader($qb);
-        $loader->getSize();
+        $this->assertSame(0, $loader->getSize());
     }
 
     /**

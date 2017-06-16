@@ -11,6 +11,7 @@
 
 namespace Sonatra\Component\FormExtensions\Tests\Event;
 
+use PHPUnit\Framework\TestCase;
 use Sonatra\Component\FormExtensions\Event\GetAjaxChoiceListEvent;
 use Sonatra\Component\FormExtensions\Form\ChoiceList\Formatter\AjaxChoiceListFormatterInterface;
 use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface;
@@ -22,7 +23,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
  *
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-class GetAjaxChoiceListEventTest extends \PHPUnit_Framework_TestCase
+class GetAjaxChoiceListEventTest extends TestCase
 {
     /**
      * @var GetAjaxChoiceListEvent

@@ -11,6 +11,7 @@
 
 namespace Sonatra\Component\FormExtensions\Tests\Form\Util;
 
+use PHPUnit\Framework\TestCase;
 use Sonatra\Component\FormExtensions\Form\Util\FormUtil;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormInterface;
@@ -20,7 +21,7 @@ use Symfony\Component\Form\FormInterface;
  *
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-class FormUtilTest extends \PHPUnit_Framework_TestCase
+class FormUtilTest extends TestCase
 {
     public function testIsFormType()
     {
