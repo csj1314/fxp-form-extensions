@@ -31,8 +31,7 @@ class EntitySelect2TypeExtension extends DoctrineSelect2TypeExtension
     /**
      * Constructor.
      *
-     * @param string $extendedType The extended type
-     *
+     * @param string                     $extendedType      The extended type
      * @param ChoiceListFactoryInterface $choiceListFactory
      */
     public function __construct($extendedType = EntityType::class, ChoiceListFactoryInterface $choiceListFactory = null)
