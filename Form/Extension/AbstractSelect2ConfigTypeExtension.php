@@ -154,9 +154,7 @@ abstract class AbstractSelect2ConfigTypeExtension extends AbstractTypeExtension
             $select2Resolver->setAllowedTypes('ajax_page_size', 'int');
 
             $select2Resolver->setNormalizer('ajax_url', function (Options $options, $value) {
-                return $value instanceof \Closure
-                    ? $value($options, $value)
-                    : $value;
+                return $value instanceof \Closure ? $value($options, $value) : $value;
             });
 
             return $select2Resolver->resolve($value);

@@ -279,8 +279,7 @@ abstract class AbstractSelect2TypeExtension extends AbstractSelect2ConfigTypeExt
      */
     private function createChoiceListView(ChoiceListInterface $choiceList, array $options)
     {
-        return $this->choiceListFactory->createView(
-            $choiceList,
+        return $this->choiceListFactory->createView($choiceList,
             $options['preferred_choices'],
             $options['choice_label'],
             $options['choice_name'],

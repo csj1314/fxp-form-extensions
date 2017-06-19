@@ -78,15 +78,7 @@ class DateTimeUtil
             $time_format = $seconds ? \IntlDateFormatter::MEDIUM : \IntlDateFormatter::SHORT;
         }
 
-        $formatter = new \IntlDateFormatter(
-            $locale,
-            $date_format,
-            $time_format,
-            $timezone,
-            \IntlDateFormatter::GREGORIAN,
-            null
-        );
-
+        $formatter = new \IntlDateFormatter($locale, $date_format, $time_format, $timezone, \IntlDateFormatter::GREGORIAN, null);
         $formatter->setLenient(false);
 
         return $formatter;
