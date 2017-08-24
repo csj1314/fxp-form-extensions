@@ -20,15 +20,23 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
 abstract class BaseAjaxORMQueryBuilderLoader implements AjaxEntityLoaderInterface
 {
     /**
+     * @var AjaxORMFilter
+     */
+    protected $filter;
+
+    /**
      * @var int|null
      */
     protected $size;
 
     /**
      * Constructor.
+     *
+     * @param AjaxORMFilter $filter The ajax filter
      */
-    public function __construct()
+    public function __construct(AjaxORMFilter $filter = null)
     {
+        $this->filter = $filter ?: new AjaxORMFilter();
         $this->reset();
     }
 
@@ -39,8 +47,7 @@ abstract class BaseAjaxORMQueryBuilderLoader implements AjaxEntityLoaderInterfac
     {
         $qb = $this->getFilterableQueryBuilder();
         $alias = current($qb->getRootAliases());
-        $qb->andWhere("LOWER({$alias}.{$identifier}) LIKE LOWER(:{$identifier})");
-        $qb->setParameter($identifier, "%{$search}%");
+        $this->filter->filter($qb, $alias, $identifier, $search);
     }
 
     /**

@@ -12,6 +12,7 @@
 namespace Sonatra\Component\FormExtensions\Doctrine\Form\Extension;
 
 use Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList\AjaxEntityLoaderInterface;
+use Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList\AjaxORMFilter;
 use Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList\AjaxORMQueryBuilderLoader;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\ChoiceList\Factory\ChoiceListFactoryInterface;
@@ -56,7 +57,7 @@ class EntitySelect2TypeExtension extends DoctrineSelect2TypeExtension
     {
         return null !== $options['ajax_entity_loader']
             ? $options['ajax_entity_loader']
-            : new AjaxORMQueryBuilderLoader($queryBuilder);
+            : new AjaxORMQueryBuilderLoader($queryBuilder, $options['ajax_entity_filter']);
     }
 
     /**
@@ -77,9 +78,11 @@ class EntitySelect2TypeExtension extends DoctrineSelect2TypeExtension
     {
         $resolver->setDefaults(array(
             'ajax_entity_loader' => null,
+            'ajax_entity_filter' => null,
         ));
 
         $resolver->addAllowedTypes('ajax_entity_loader', array('null', AjaxEntityLoaderInterface::class));
+        $resolver->addAllowedTypes('ajax_entity_filter', array('null', AjaxORMFilter::class));
 
         parent::configureOptions($resolver);
     }

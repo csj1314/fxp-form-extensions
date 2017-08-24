@@ -37,15 +37,16 @@ class AjaxORMQueryBuilderLoader extends BaseAjaxORMQueryBuilderLoader
     /**
      * Construct an ORM Query Builder Loader.
      *
-     * @param QueryBuilder $queryBuilder The query builder for creating the query builder
+     * @param QueryBuilder  $query  The query builder for creating the query builder
+     * @param AjaxORMFilter $filter The ajax filter
      *
      * @throws UnexpectedTypeException
      */
-    public function __construct(QueryBuilder $queryBuilder)
+    public function __construct(QueryBuilder $query, AjaxORMFilter $filter = null)
     {
-        $this->queryBuilder = $queryBuilder;
+        $this->queryBuilder = $query;
 
-        parent::__construct();
+        parent::__construct($filter);
     }
 
     /**
