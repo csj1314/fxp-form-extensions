@@ -1,7 +1,7 @@
 {
     "license": "MIT",
     "dependencies": {
-        "@sonatra/jquery-datetime-picker": "git+ssh://git@github.com/sonatra/sonatra-jquery-datetime-picker.git#master",
+        "@sonatra/jquery-datetime-picker": "git://github.com/sonatra/sonatra-jquery-datetime-picker.git#master",
         "select2": "^4.0.0"
     }
 }
