@@ -25,6 +25,11 @@ abstract class BaseAjaxORMQueryBuilderLoader implements AjaxEntityLoaderInterfac
     protected $filter;
 
     /**
+     * @var QueryBuilderTransformer
+     */
+    protected $qbTransformer;
+
+    /**
      * @var int|null
      */
     protected $size;
@@ -32,11 +37,13 @@ abstract class BaseAjaxORMQueryBuilderLoader implements AjaxEntityLoaderInterfac
     /**
      * Constructor.
      *
-     * @param AjaxORMFilter $filter The ajax filter
+     * @param AjaxORMFilter           $filter        The ajax filter
+     * @param QueryBuilderTransformer $qbTransformer The query builder transformer
      */
-    public function __construct(AjaxORMFilter $filter = null)
+    public function __construct(AjaxORMFilter $filter = null, QueryBuilderTransformer $qbTransformer = null)
     {
         $this->filter = $filter ?: new AjaxORMFilter();
+        $this->qbTransformer = $qbTransformer ?: new QueryBuilderTransformer();
         $this->reset();
     }
 
@@ -72,7 +79,7 @@ abstract class BaseAjaxORMQueryBuilderLoader implements AjaxEntityLoaderInterfac
     {
         $pageSize = $pageSize < 1 ? 1 : $pageSize;
         $pageNumber = $pageNumber < 1 ? 1 : $pageNumber;
-        $paginator = new Paginator($this->getFilterableQueryBuilder());
+        $paginator = new Paginator($this->qbTransformer->getQuery($this->getFilterableQueryBuilder()));
         $paginator->getQuery()->setFirstResult(($pageNumber - 1) * $pageSize)
             ->setMaxResults($pageSize);
 
@@ -91,7 +98,7 @@ abstract class BaseAjaxORMQueryBuilderLoader implements AjaxEntityLoaderInterfac
         $qb = clone $this->getFilterableQueryBuilder();
 
         $this->prePaginate();
-        $result = $qb->getQuery()->getResult();
+        $result = $this->qbTransformer->getQuery($qb)->getResult();
         $this->postPaginate();
 
         return $result;
@@ -114,8 +121,7 @@ abstract class BaseAjaxORMQueryBuilderLoader implements AjaxEntityLoaderInterfac
         }
 
         $this->prePaginate();
-        $result = $qb->andWhere($where)
-            ->getQuery()
+        $result = $this->qbTransformer->getQuery($qb->andWhere($where))
             ->setParameter($parameter, $values, $parameterType)
             ->getResult();
         $this->postPaginate();

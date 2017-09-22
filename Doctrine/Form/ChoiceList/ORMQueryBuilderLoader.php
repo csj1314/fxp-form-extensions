@@ -27,6 +27,11 @@ class ORMQueryBuilderLoader implements EntityLoaderInterface
     private $queryBuilder;
 
     /**
+     * @var QueryBuilderTransformer
+     */
+    private $qbTransformer;
+
+    /**
      * Constructor.
      *
      * @param QueryBuilder $queryBuilder The query builder for creating the query builder
@@ -34,6 +39,7 @@ class ORMQueryBuilderLoader implements EntityLoaderInterface
     public function __construct(QueryBuilder $queryBuilder)
     {
         $this->queryBuilder = $queryBuilder;
+        $this->setQueryBuilderTransformer(new QueryBuilderTransformer());
     }
 
     /**
@@ -52,7 +58,7 @@ class ORMQueryBuilderLoader implements EntityLoaderInterface
     public function getEntities()
     {
         $this->preLoad();
-        $result = $this->queryBuilder->getQuery()->execute();
+        $result = $this->qbTransformer->getQuery($this->queryBuilder)->execute();
         $this->postLoad();
 
         return $result;
@@ -76,8 +82,7 @@ class ORMQueryBuilderLoader implements EntityLoaderInterface
         }
 
         $this->preLoad();
-        $result = $qb->andWhere($where)
-            ->getQuery()
+        $result = $this->qbTransformer->getQuery($qb->andWhere($where))
             ->setParameter($parameter, $values, $parameterType)
             ->getResult();
         $this->postLoad();
@@ -126,6 +131,16 @@ class ORMQueryBuilderLoader implements EntityLoaderInterface
         }
 
         return array($parameterType, $values);
+    }
+
+    /**
+     * Set the query builder transformer.
+     *
+     * @param QueryBuilderTransformer $qbTransformer The query builder transformer
+     */
+    public function setQueryBuilderTransformer(QueryBuilderTransformer $qbTransformer)
+    {
+        $this->qbTransformer = $qbTransformer;
     }
 
     /**

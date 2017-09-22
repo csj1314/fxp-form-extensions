@@ -55,9 +55,11 @@ class EntitySelect2TypeExtension extends DoctrineSelect2TypeExtension
      */
     public function getLoader(Options $options, $queryBuilder)
     {
+        $qbTransformer = isset($options['query_builder_transformer']) ? $options['query_builder_transformer'] : null;
+
         return null !== $options['ajax_entity_loader']
             ? $options['ajax_entity_loader']
-            : new AjaxORMQueryBuilderLoader($queryBuilder, $options['ajax_entity_filter']);
+            : new AjaxORMQueryBuilderLoader($queryBuilder, $options['ajax_entity_filter'], $qbTransformer);
     }
 
     /**

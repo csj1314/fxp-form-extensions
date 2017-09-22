@@ -16,7 +16,10 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\QueryBuilder;
 use PHPUnit\Framework\TestCase;
 use Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList\ORMQueryBuilderLoader;
+use Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList\QueryBuilderTransformer;
 use Sonatra\Component\FormExtensions\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Tests case for entity type.
@@ -33,9 +36,16 @@ class EntityTypeTest extends TestCase
         $om = $this->getMockBuilder(ObjectManager::class)->getMock();
         /* @var QueryBuilder $qb */
         $qb = $this->getMockBuilder(QueryBuilder::class)->disableOriginalConstructor()->getMock();
+        /* @var FormBuilderInterface|\PHPUnit_Framework_MockObject_MockObject $builder */
+        $builder = $this->getMockBuilder(FormBuilderInterface::class)->getMock();
 
         $type = new EntityType($mr);
+        $type->configureOptions(new OptionsResolver());
         $loader = $type->getLoader($om, $qb, \stdClass::class);
+        $type->buildForm($builder, array(
+            'multiple' => false,
+            'query_builder_transformer' => new QueryBuilderTransformer(),
+        ));
 
         $this->assertInstanceOf(ORMQueryBuilderLoader::class, $loader);
     }
