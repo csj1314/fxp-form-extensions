@@ -33,8 +33,8 @@ class TimeJqueryTypeExtension extends DateTimeJqueryTypeExtension
         $time_format = $options['with_seconds'] ? \IntlDateFormatter::MEDIUM : \IntlDateFormatter::SHORT;
 
         $builder->resetViewTransformers();
-        $builder->addViewTransformer(new DateTimeToLocalizedStringTransformer($options['user_timezone'], $options['user_timezone'], \IntlDateFormatter::NONE, $time_format, null, null
-        ));
+        $builder->addViewTransformer(new DateTimeToLocalizedStringTransformer($options['user_timezone'],
+            $options['user_timezone'], \IntlDateFormatter::NONE, $time_format, \IntlDateFormatter::GREGORIAN, null));
     }
 
     /**
