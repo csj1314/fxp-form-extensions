@@ -124,7 +124,7 @@ class ORMQueryBuilderLoader implements EntityLoaderInterface
             $values = array_values(array_filter($values, function ($v) use ($type, $platform) {
                 $guid = $type->convertToDatabaseValue($v, $platform);
 
-                return !empty($guid) && $guid !== '00000000-0000-0000-0000-000000000000';
+                return !empty($guid) && '00000000-0000-0000-0000-000000000000' !== $guid;
             }));
         } else {
             $parameterType = Connection::PARAM_STR_ARRAY;

@@ -101,7 +101,7 @@ abstract class DoctrineSelect2TypeExtension extends AbstractTypeExtension
                     );
                 }
 
-                if ($hash !== null) {
+                if (null !== $hash) {
                     $choiceLoaders[$hash] = $doctrineChoiceLoader;
                 }
 

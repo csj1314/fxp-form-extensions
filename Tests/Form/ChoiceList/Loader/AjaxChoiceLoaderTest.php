@@ -127,7 +127,7 @@ class AjaxChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
                 );
             }
 
-            if ($pageNumber === 2) {
+            if (2 === $pageNumber) {
                 $valid = array(
                     'Group 2' => array(
                         'Baz' => 'baz',
@@ -144,7 +144,7 @@ class AjaxChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
                 $valid['Baz'] = 'baz';
             }
 
-            if ($pageNumber === 2) {
+            if (2 === $pageNumber) {
                 $valid = array(
                     'Baz' => 'baz',
                 );
