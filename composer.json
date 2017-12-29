@@ -1,14 +1,14 @@
 {
-    "name" : "sonatra/form-extensions",
+    "name" : "fxp/form-extensions",
     "type": "symfony-bundle",
     "description": "Add new types for Symfony form",
     "keywords": ["datetime", "date", "time", "picker", "form", "hammerjs", "knob", "select2", "ajax"],
-    "homepage": "https://github.com/sonatra/sonatra-form-extensions",
+    "homepage": "https://github.com/fxpio/fxp-form-extensions",
     "license": "MIT",
     "authors": [
         {
             "name": "François Pluchino",
-            "email": "francois.pluchino@sonatra.com"
+            "email": "francois.pluchino@gmail.com"
         }
     ],
     "minimum-stability": "dev",
@@ -21,7 +21,7 @@
         "symfony/event-dispatcher": "^3.4.0|^4.0.0",
         "symfony/routing": "^3.4.0|^4.0.0",
         "symfony/form": "^3.4.0|^4.0.0",
-        "sonatra/ajax" : "^1.0.0"
+        "fxp/ajax" : "^1.0.0"
     },
     "require-dev" : {
         "symfony/doctrine-bridge" : "^3.4.0|^4.0.0",
@@ -34,7 +34,7 @@
         }
     },
     "autoload": {
-        "psr-4": { "Sonatra\\Component\\FormExtensions\\": "" },
+        "psr-4": { "Fxp\\Component\\FormExtensions\\": "" },
         "exclude-from-classmap": [
             "/Tests/"
         ]

@@ -1,24 +1,24 @@
 <?php
 
 /*
- * This file is part of the Sonatra package.
+ * This file is part of the Fxp package.
  *
- * (c) François Pluchino <francois.pluchino@sonatra.com>
+ * (c) François Pluchino <francois.pluchino@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Component\FormExtensions\Tests\Doctrine\Form\Extension;
+namespace Fxp\Component\FormExtensions\Tests\Doctrine\Form\Extension;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\Tools\SchemaTool;
-use Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList\AjaxEntityLoaderInterface;
-use Sonatra\Component\FormExtensions\Doctrine\Form\Extension\EntitySelect2TypeExtension;
-use Sonatra\Component\FormExtensions\Doctrine\Form\Loader\AjaxDoctrineChoiceLoader;
-use Sonatra\Component\FormExtensions\Form\ChoiceList\Formatter\Select2AjaxChoiceListFormatter;
-use Sonatra\Component\FormExtensions\Form\Extension\ChoiceSelect2TypeExtension;
-use Sonatra\Component\FormExtensions\Tests\Form\Extension\AbstractSelect2TypeExtensionTest;
+use Fxp\Component\FormExtensions\Doctrine\Form\ChoiceList\AjaxEntityLoaderInterface;
+use Fxp\Component\FormExtensions\Doctrine\Form\Extension\EntitySelect2TypeExtension;
+use Fxp\Component\FormExtensions\Doctrine\Form\Loader\AjaxDoctrineChoiceLoader;
+use Fxp\Component\FormExtensions\Form\ChoiceList\Formatter\Select2AjaxChoiceListFormatter;
+use Fxp\Component\FormExtensions\Form\Extension\ChoiceSelect2TypeExtension;
+use Fxp\Component\FormExtensions\Tests\Form\Extension\AbstractSelect2TypeExtensionTest;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bridge\Doctrine\Test\DoctrineTestHelper;
 use Symfony\Bridge\Doctrine\Tests\Fixtures\SingleIntIdEntity;
@@ -30,7 +30,7 @@ use Symfony\Component\Form\Forms;
 /**
  * Tests case for entity of select2 form extension type.
  *
- * @author François Pluchino <francois.pluchino@sonatra.com>
+ * @author François Pluchino <francois.pluchino@gmail.com>
  */
 class EntitySelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTest
 {
@@ -228,7 +228,7 @@ class EntitySelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTest
         $this->assertTrue($select2Opts['enabled']);
         $this->assertFalse($select2Opts['ajax']);
         $this->assertFalse($select2Opts['tags']);
-        $this->assertInstanceOf('Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\DynamicChoiceLoaderInterface', $config->getOption('choice_loader'));
+        $this->assertInstanceOf('Fxp\Component\FormExtensions\Form\ChoiceList\Loader\DynamicChoiceLoaderInterface', $config->getOption('choice_loader'));
 
         // test cache with hash
         $this->factory->create($this->getExtensionTypeName(), $this->getSingleData(), $this->mergeOptions($options));

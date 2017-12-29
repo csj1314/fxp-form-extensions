@@ -1,19 +1,19 @@
 <?php
 
 /*
- * This file is part of the Sonatra package.
+ * This file is part of the Fxp package.
  *
- * (c) François Pluchino <francois.pluchino@sonatra.com>
+ * (c) François Pluchino <francois.pluchino@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Component\FormExtensions\Tests\Form\Extension;
+namespace Fxp\Component\FormExtensions\Tests\Form\Extension;
 
-use Sonatra\Component\FormExtensions\Form\Extension\BaseChoiceSelect2TypeExtension;
-use Sonatra\Component\FormExtensions\Form\Extension\ChoiceSelect2TypeExtension;
-use Sonatra\Component\FormExtensions\Form\Extension\CollectionSelect2TypeExtension;
+use Fxp\Component\FormExtensions\Form\Extension\BaseChoiceSelect2TypeExtension;
+use Fxp\Component\FormExtensions\Form\Extension\ChoiceSelect2TypeExtension;
+use Fxp\Component\FormExtensions\Form\Extension\CollectionSelect2TypeExtension;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\ChoiceList\View\ChoiceView;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -29,7 +29,7 @@ use Symfony\Component\Routing\RouterInterface;
 /**
  * Tests case for collection of select2 form extension type.
  *
- * @author François Pluchino <francois.pluchino@sonatra.com>
+ * @author François Pluchino <francois.pluchino@gmail.com>
  */
 class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTest
 {
@@ -119,7 +119,7 @@ class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTes
         $this->assertTrue($select2Opts['enabled']);
         $this->assertFalse($select2Opts['ajax']);
         $this->assertTrue($select2Opts['tags']);
-        $this->assertInstanceOf('Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\DynamicChoiceLoaderInterface', $config->getOption('choice_loader'));
+        $this->assertInstanceOf('Fxp\Component\FormExtensions\Form\ChoiceList\Loader\DynamicChoiceLoaderInterface', $config->getOption('choice_loader'));
 
         $view = $form->createView();
 
@@ -178,7 +178,7 @@ class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTes
         $select2Opts = $config->getOption('select2');
         $this->assertTrue($select2Opts['enabled']);
         $this->assertFalse($select2Opts['ajax']);
-        $this->assertInstanceOf('Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\DynamicChoiceLoaderInterface', $config->getOption('choice_loader'));
+        $this->assertInstanceOf('Fxp\Component\FormExtensions\Form\ChoiceList\Loader\DynamicChoiceLoaderInterface', $config->getOption('choice_loader'));
 
         $view = $form->createView();
 
@@ -212,7 +212,7 @@ class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTes
         $select2Opts = $config->getOption('select2');
         $this->assertTrue($select2Opts['enabled']);
         $this->assertTrue($select2Opts['ajax']);
-        $this->assertInstanceOf('Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface', $config->getOption('choice_loader'));
+        $this->assertInstanceOf('Fxp\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface', $config->getOption('choice_loader'));
 
         $view = $form->createView();
 
@@ -246,7 +246,7 @@ class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTes
         $this->assertTrue($select2Opts['enabled']);
         $this->assertTrue($select2Opts['ajax']);
         $this->assertTrue($select2Opts['tags']);
-        $this->assertInstanceOf('Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface', $config->getOption('choice_loader'));
+        $this->assertInstanceOf('Fxp\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface', $config->getOption('choice_loader'));
 
         $view = $form->createView();
 

@@ -4,8 +4,60 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "abf91d6a711ce3c6b4fb586a2a7f40c5",
+    "content-hash": "a296707dc082cc2bee593ba1dda85592",
     "packages": [
+        {
+            "name": "fxp/ajax",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fxpio/fxp-ajax.git",
+                "reference": "28a421214f5e2f2754ce557f0dc4db9d771823a2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fxpio/fxp-ajax/zipball/28a421214f5e2f2754ce557f0dc4db9d771823a2",
+                "reference": "28a421214f5e2f2754ce557f0dc4db9d771823a2",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.0",
+                "symfony/event-dispatcher": "^3.4.0|^4.0.0",
+                "symfony/http-foundation": "^3.4.0|^4.0.0",
+                "symfony/http-kernel": "^3.4.0|^4.0.0",
+                "symfony/serializer": "^3.4.0|^4.0.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Fxp\\Component\\Ajax\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "François Pluchino",
+                    "email": "francois.pluchino@gmail.com"
+                }
+            ],
+            "description": "Intercept the ajax request identified by the event dispatcher",
+            "homepage": "https://github.com/fxpio/fxp-ajax",
+            "keywords": [
+                "AJAX response"
+            ],
+            "time": "2017-12-28T16:19:54+00:00"
+        },
         {
             "name": "psr/log",
             "version": "1.0.2",
@@ -52,58 +104,6 @@
                 "psr-3"
             ],
             "time": "2016-10-10T12:19:37+00:00"
-        },
-        {
-            "name": "sonatra/ajax",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sonatra/sonatra-ajax.git",
-                "reference": "e236ee05bcf5c74412f599508372f986bc2ad20e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sonatra/sonatra-ajax/zipball/e236ee05bcf5c74412f599508372f986bc2ad20e",
-                "reference": "e236ee05bcf5c74412f599508372f986bc2ad20e",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1.0",
-                "symfony/event-dispatcher": "^3.4.0|^4.0.0",
-                "symfony/http-foundation": "^3.4.0|^4.0.0",
-                "symfony/http-kernel": "^3.4.0|^4.0.0",
-                "symfony/serializer": "^3.4.0|^4.0.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Sonatra\\Component\\Ajax\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "François Pluchino",
-                    "email": "francois.pluchino@sonatra.com"
-                }
-            ],
-            "description": "Intercept the ajax request identified by the event dispatcher",
-            "homepage": "https://github.com/sonatra/sonatra-ajax",
-            "keywords": [
-                "AJAX response"
-            ],
-            "time": "2017-12-26T17:25:47+00:00"
         },
         {
             "name": "symfony/debug",
@@ -1585,16 +1585,16 @@
         },
         {
             "name": "foxy/foxy",
-            "version": "v1.0.0-beta2",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/foxypkg/foxy.git",
-                "reference": "87af57c641a15fa372caeb0c85a08e9f34f1ea33"
+                "url": "https://github.com/fxpio/foxy.git",
+                "reference": "c8225f715cbe0b9310972e3d67ca15955691a26e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/foxypkg/foxy/zipball/87af57c641a15fa372caeb0c85a08e9f34f1ea33",
-                "reference": "87af57c641a15fa372caeb0c85a08e9f34f1ea33",
+                "url": "https://api.github.com/repos/fxpio/foxy/zipball/c8225f715cbe0b9310972e3d67ca15955691a26e",
+                "reference": "c8225f715cbe0b9310972e3d67ca15955691a26e",
                 "shasum": ""
             },
             "require": {
@@ -1630,7 +1630,7 @@
                 }
             ],
             "description": "Fast, reliable, and secure NPM/Yarn bridge for Composer",
-            "homepage": "https://github.com/foxypkg/foxy",
+            "homepage": "https://github.com/fxpio/foxy",
             "keywords": [
                 "Bridge",
                 "asset",
@@ -1641,7 +1641,7 @@
                 "package",
                 "yarn"
             ],
-            "time": "2017-10-03T14:33:14+00:00"
+            "time": "2017-12-28T12:45:51+00:00"
         },
         {
             "name": "symfony/console",

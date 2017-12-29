@@ -1,20 +1,20 @@
 <?php
 
 /*
- * This file is part of the Sonatra package.
+ * This file is part of the Fxp package.
  *
- * (c) François Pluchino <francois.pluchino@sonatra.com>
+ * (c) François Pluchino <francois.pluchino@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Component\FormExtensions\Tests\Form\ChoiceList\Formatter;
+namespace Fxp\Component\FormExtensions\Tests\Form\ChoiceList\Formatter;
 
+use Fxp\Component\FormExtensions\Doctrine\Form\ChoiceList\Factory\TagDecorator;
+use Fxp\Component\FormExtensions\Form\ChoiceList\Formatter\AjaxChoiceListFormatterInterface;
+use Fxp\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface;
 use PHPUnit\Framework\TestCase;
-use Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList\Factory\TagDecorator;
-use Sonatra\Component\FormExtensions\Form\ChoiceList\Formatter\AjaxChoiceListFormatterInterface;
-use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface;
 use Symfony\Component\Form\ChoiceList\ArrayChoiceList;
 use Symfony\Component\Form\ChoiceList\ChoiceListInterface;
 use Symfony\Component\Form\ChoiceList\Factory\DefaultChoiceListFactory;
@@ -23,7 +23,7 @@ use Symfony\Component\Form\ChoiceList\Factory\PropertyAccessDecorator;
 /**
  * Base of tests case for choice list formatter.
  *
- * @author François Pluchino <francois.pluchino@sonatra.com>
+ * @author François Pluchino <francois.pluchino@gmail.com>
  */
 abstract class AbstractAjaxChoiceListFormatterTest extends TestCase
 {
@@ -47,7 +47,7 @@ abstract class AbstractAjaxChoiceListFormatterTest extends TestCase
         parent::setUp();
 
         $this->choiceListFactory = new PropertyAccessDecorator(new TagDecorator(new DefaultChoiceListFactory()));
-        $this->choiceLoader = $this->getMockBuilder('Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface')->getMock();
+        $this->choiceLoader = $this->getMockBuilder('Fxp\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface')->getMock();
         $this->formatter = $this->getFormatter();
 
         $this->choiceLoader->expects($this->any())

@@ -1,27 +1,27 @@
 <?php
 
 /*
- * This file is part of the Sonatra package.
+ * This file is part of the Fxp package.
  *
- * (c) François Pluchino <francois.pluchino@sonatra.com>
+ * (c) François Pluchino <francois.pluchino@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Component\FormExtensions\Tests\Doctrine\Form\Loader;
+namespace Fxp\Component\FormExtensions\Tests\Doctrine\Form\Loader;
 
-use Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList\AjaxEntityLoaderInterface;
-use Sonatra\Component\FormExtensions\Doctrine\Form\Loader\AjaxDoctrineChoiceLoader;
-use Sonatra\Component\FormExtensions\Tests\Doctrine\Form\Fixtures\MockEntity;
-use Sonatra\Component\FormExtensions\Tests\Form\ChoiceList\Loader\AbstractAjaxChoiceLoaderTest;
+use Fxp\Component\FormExtensions\Doctrine\Form\ChoiceList\AjaxEntityLoaderInterface;
+use Fxp\Component\FormExtensions\Doctrine\Form\Loader\AjaxDoctrineChoiceLoader;
+use Fxp\Component\FormExtensions\Tests\Doctrine\Form\Fixtures\MockEntity;
+use Fxp\Component\FormExtensions\Tests\Form\ChoiceList\Loader\AbstractAjaxChoiceLoaderTest;
 use Symfony\Bridge\Doctrine\Form\ChoiceList\IdReader;
 use Symfony\Component\Form\Exception\RuntimeException;
 
 /**
  * Tests case for ajax doctrine choice loader.
  *
- * @author François Pluchino <francois.pluchino@sonatra.com>
+ * @author François Pluchino <francois.pluchino@gmail.com>
  */
 class AjaxDoctrineChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
 {
@@ -48,7 +48,7 @@ class AjaxDoctrineChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
             new MockEntity('baz', 'Baz'),
         );
 
-        $this->objectLoader = $this->getMockBuilder('Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList\AjaxEntityLoaderInterface')->getMock();
+        $this->objectLoader = $this->getMockBuilder('Fxp\Component\FormExtensions\Doctrine\Form\ChoiceList\AjaxEntityLoaderInterface')->getMock();
         $this->idReader = $this->getMockBuilder('Symfony\Bridge\Doctrine\Form\ChoiceList\IdReader')
             ->disableOriginalConstructor()
             ->getMock();

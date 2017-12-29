@@ -1,13 +1,13 @@
-Sonatra Form Extensions
-=======================
+Fxp Form Extensions
+===================
 
-[![Latest Version](https://img.shields.io/packagist/v/sonatra/form-extensions.svg)](https://packagist.org/packages/sonatra/form-extensions)
-[![Build Status](https://img.shields.io/travis/sonatra/sonatra-form-extensions/master.svg)](https://travis-ci.org/sonatra/sonatra-form-extensions)
-[![Coverage Status](https://img.shields.io/coveralls/sonatra/sonatra-form-extensions/master.svg)](https://coveralls.io/r/sonatra/sonatra-form-extensions?branch=master)
-[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/sonatra/sonatra-form-extensions/master.svg)](https://scrutinizer-ci.com/g/sonatra/sonatra-form-extensions?branch=master)
+[![Latest Version](https://img.shields.io/packagist/v/fxp/form-extensions.svg)](https://packagist.org/packages/fxp/form-extensions)
+[![Build Status](https://img.shields.io/travis/fxpio/fxp-form-extensions/master.svg)](https://travis-ci.org/fxpio/fxp-form-extensions)
+[![Coverage Status](https://img.shields.io/coveralls/fxpio/fxp-form-extensions/master.svg)](https://coveralls.io/r/fxpio/fxp-form-extensions?branch=master)
+[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/fxpio/fxp-form-extensions/master.svg)](https://scrutinizer-ci.com/g/fxpio/fxp-form-extensions?branch=master)
 [![SensioLabsInsight](https://img.shields.io/sensiolabs/i/d49b1a61-bbed-4064-8021-5c27d89e5697.svg)](https://insight.sensiolabs.com/projects/d49b1a61-bbed-4064-8021-5c27d89e5697)
 
-The Sonatra Form Extensions add Symfony form types.
+The Fxp Form Extensions add Symfony form types.
 
 Features include:
 
@@ -54,10 +54,10 @@ This library is under the MIT license. See the complete license in the library:
 About
 -----
 
-Sonatra FormExtensions is a [sonatra](https://github.com/sonatra) initiative.
-See also the list of [contributors](https://github.com/sonatra/sonatra-form-extensions/graphs/contributors).
+Fxp FormExtensions is a [François Pluchino](https://github.com/francoispluchino) initiative.
+See also the list of [contributors](https://github.com/fxpio/fxp-form-extensions/graphs/contributors).
 
 Reporting an issue or a feature request
 ---------------------------------------
 
-Issues and feature requests are tracked in the [Github issue tracker](https://github.com/sonatra/sonatra-form-extensions/issues).
+Issues and feature requests are tracked in the [Github issue tracker](https://github.com/fxpio/fxp-form-extensions/issues).

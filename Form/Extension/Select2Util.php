@@ -1,27 +1,27 @@
 <?php
 
 /*
- * This file is part of the Sonatra package.
+ * This file is part of the Fxp package.
  *
- * (c) François Pluchino <francois.pluchino@sonatra.com>
+ * (c) François Pluchino <francois.pluchino@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Component\FormExtensions\Form\Extension;
+namespace Fxp\Component\FormExtensions\Form\Extension;
 
-use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoader;
-use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface;
-use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\DynamicChoiceLoader;
-use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\DynamicChoiceLoaderInterface;
+use Fxp\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoader;
+use Fxp\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface;
+use Fxp\Component\FormExtensions\Form\ChoiceList\Loader\DynamicChoiceLoader;
+use Fxp\Component\FormExtensions\Form\ChoiceList\Loader\DynamicChoiceLoaderInterface;
 use Symfony\Component\Form\ChoiceList\Factory\ChoiceListFactoryInterface;
 use Symfony\Component\Form\ChoiceList\Loader\ChoiceLoaderInterface;
 use Symfony\Component\Form\Exception\InvalidConfigurationException;
 use Symfony\Component\OptionsResolver\Options;
 
 /**
- * @author François Pluchino <francois.pluchino@sonatra.com>
+ * @author François Pluchino <francois.pluchino@gmail.com>
  */
 class Select2Util
 {

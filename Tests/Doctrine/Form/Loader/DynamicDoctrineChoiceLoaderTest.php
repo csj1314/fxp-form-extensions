@@ -1,19 +1,19 @@
 <?php
 
 /*
- * This file is part of the Sonatra package.
+ * This file is part of the Fxp package.
  *
- * (c) François Pluchino <francois.pluchino@sonatra.com>
+ * (c) François Pluchino <francois.pluchino@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Component\FormExtensions\Tests\Doctrine\Form\Loader;
+namespace Fxp\Component\FormExtensions\Tests\Doctrine\Form\Loader;
 
-use Sonatra\Component\FormExtensions\Doctrine\Form\Loader\DynamicDoctrineChoiceLoader;
-use Sonatra\Component\FormExtensions\Tests\Doctrine\Form\Fixtures\MockEntity;
-use Sonatra\Component\FormExtensions\Tests\Form\ChoiceList\Loader\AbstractChoiceLoaderTest;
+use Fxp\Component\FormExtensions\Doctrine\Form\Loader\DynamicDoctrineChoiceLoader;
+use Fxp\Component\FormExtensions\Tests\Doctrine\Form\Fixtures\MockEntity;
+use Fxp\Component\FormExtensions\Tests\Form\ChoiceList\Loader\AbstractChoiceLoaderTest;
 use Symfony\Bridge\Doctrine\Form\ChoiceList\EntityLoaderInterface;
 use Symfony\Bridge\Doctrine\Form\ChoiceList\IdReader;
 use Symfony\Component\Form\Exception\RuntimeException;
@@ -21,7 +21,7 @@ use Symfony\Component\Form\Exception\RuntimeException;
 /**
  * Tests case for dynamic doctrine choice loader.
  *
- * @author François Pluchino <francois.pluchino@sonatra.com>
+ * @author François Pluchino <francois.pluchino@gmail.com>
  */
 class DynamicDoctrineChoiceLoaderTest extends AbstractChoiceLoaderTest
 {

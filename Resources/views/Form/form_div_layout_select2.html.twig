@@ -171,7 +171,7 @@
         'language': '{{- select2.language|e -}}'
     });
     {% if select2.ajax.enabled or select2.tags is defined %}
-    $( '#{{ id }}' ).on('change.sonatra_select2', function () {
+    $( '#{{ id }}' ).on('change.fxp_select2', function () {
         var opts = [];
         $('option:selected', this).each(function (index, el) {
             var $el = $(el);

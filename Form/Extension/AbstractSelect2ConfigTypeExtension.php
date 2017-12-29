@@ -1,19 +1,19 @@
 <?php
 
 /*
- * This file is part of the Sonatra package.
+ * This file is part of the Fxp package.
  *
- * (c) François Pluchino <francois.pluchino@sonatra.com>
+ * (c) François Pluchino <francois.pluchino@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Component\FormExtensions\Form\Extension;
+namespace Fxp\Component\FormExtensions\Form\Extension;
 
-use Sonatra\Component\FormExtensions\Doctrine\Form\ChoiceList\Factory\TagDecorator;
-use Sonatra\Component\FormExtensions\Form\ChoiceList\Formatter\Select2AjaxChoiceListFormatter;
-use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface;
+use Fxp\Component\FormExtensions\Doctrine\Form\ChoiceList\Factory\TagDecorator;
+use Fxp\Component\FormExtensions\Form\ChoiceList\Formatter\Select2AjaxChoiceListFormatter;
+use Fxp\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\ChoiceList\Factory\ChoiceListFactoryInterface;
 use Symfony\Component\Form\ChoiceList\Factory\DefaultChoiceListFactory;
@@ -23,7 +23,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Routing\RouterInterface;
 
 /**
- * @author François Pluchino <francois.pluchino@sonatra.com>
+ * @author François Pluchino <francois.pluchino@gmail.com>
  */
 abstract class AbstractSelect2ConfigTypeExtension extends AbstractTypeExtension
 {
@@ -140,7 +140,7 @@ abstract class AbstractSelect2ConfigTypeExtension extends AbstractTypeExtension
             $select2Resolver->setAllowedTypes('allow_clear', array('null', 'bool'));
             $select2Resolver->setAllowedTypes('tags', 'bool');
             $select2Resolver->setAllowedTypes('ajax', 'bool');
-            $select2Resolver->setAllowedTypes('ajax_formatter', 'Sonatra\Component\FormExtensions\Form\ChoiceList\Formatter\AjaxChoiceListFormatterInterface');
+            $select2Resolver->setAllowedTypes('ajax_formatter', 'Fxp\Component\FormExtensions\Form\ChoiceList\Formatter\AjaxChoiceListFormatterInterface');
             $select2Resolver->setAllowedTypes('ajax_parameters', 'array');
             $select2Resolver->setAllowedTypes('ajax_reference_type', 'bool');
             $select2Resolver->setAllowedTypes('ajax_data_type', array('null', 'string'));

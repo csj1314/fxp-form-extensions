@@ -1,17 +1,17 @@
 <?php
 
 /*
- * This file is part of the Sonatra package.
+ * This file is part of the Fxp package.
  *
- * (c) François Pluchino <francois.pluchino@sonatra.com>
+ * (c) François Pluchino <francois.pluchino@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Component\FormExtensions\Tests\Form\Extension;
+namespace Fxp\Component\FormExtensions\Tests\Form\Extension;
 
-use Sonatra\Component\FormExtensions\Form\Extension\ChoiceSelect2TypeExtension;
+use Fxp\Component\FormExtensions\Form\Extension\ChoiceSelect2TypeExtension;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\ChoiceList\Loader\ChoiceLoaderInterface;
 use Symfony\Component\Form\FormBuilder;
@@ -25,7 +25,7 @@ use Symfony\Component\Routing\RouterInterface;
 /**
  * Tests case for abstract select2 form extension type.
  *
- * @author François Pluchino <francois.pluchino@sonatra.com>
+ * @author François Pluchino <francois.pluchino@gmail.com>
  */
 abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
 {
@@ -102,12 +102,12 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
 
     protected function getDynamicLoaderInterface()
     {
-        return 'Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\DynamicChoiceLoaderInterface';
+        return 'Fxp\Component\FormExtensions\Form\ChoiceList\Loader\DynamicChoiceLoaderInterface';
     }
 
     protected function getAjaxLoaderInterface()
     {
-        return 'Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface';
+        return 'Fxp\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface';
     }
 
     /**

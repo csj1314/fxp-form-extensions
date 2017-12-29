@@ -1,18 +1,18 @@
 <?php
 
 /*
- * This file is part of the Sonatra package.
+ * This file is part of the Fxp package.
  *
- * (c) François Pluchino <francois.pluchino@sonatra.com>
+ * (c) François Pluchino <francois.pluchino@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Component\FormExtensions\Tests\Form\Extension;
+namespace Fxp\Component\FormExtensions\Tests\Form\Extension;
 
-use Sonatra\Component\FormExtensions\Form\Extension\BaseChoiceSelect2TypeExtension;
-use Sonatra\Component\FormExtensions\Form\Extension\ChoiceSelect2TypeExtension;
+use Fxp\Component\FormExtensions\Form\Extension\BaseChoiceSelect2TypeExtension;
+use Fxp\Component\FormExtensions\Form\Extension\ChoiceSelect2TypeExtension;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\Forms;
@@ -25,7 +25,7 @@ use Symfony\Component\Routing\RouterInterface;
 /**
  * Abstract tests case for base choice select2 form extension type.
  *
- * @author François Pluchino <francois.pluchino@sonatra.com>
+ * @author François Pluchino <francois.pluchino@gmail.com>
  */
 abstract class AbstractBaseChoiceSelect2TypeExtensionTest extends TypeTestCase
 {
@@ -86,6 +86,6 @@ abstract class AbstractBaseChoiceSelect2TypeExtensionTest extends TypeTestCase
         $select2Opts = $config->getOption('select2');
         $this->assertArrayHasKey('ajax_route', $select2Opts);
         $this->assertNull($select2Opts['ajax_route']);
-        $this->assertEquals('sonatra_form_extensions_ajax_'.StringUtil::fqcnToBlockPrefix($this->getExtensionTypeName()), $config->getAttribute('select2_ajax_route'));
+        $this->assertEquals('fxp_form_extensions_ajax_'.StringUtil::fqcnToBlockPrefix($this->getExtensionTypeName()), $config->getAttribute('select2_ajax_route'));
     }
 }

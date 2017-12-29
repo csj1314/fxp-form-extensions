@@ -1,25 +1,25 @@
 <?php
 
 /*
- * This file is part of the Sonatra package.
+ * This file is part of the Fxp package.
  *
- * (c) François Pluchino <francois.pluchino@sonatra.com>
+ * (c) François Pluchino <francois.pluchino@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Component\FormExtensions\Tests\Form\ChoiceList\Loader;
+namespace Fxp\Component\FormExtensions\Tests\Form\ChoiceList\Loader;
 
+use Fxp\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface;
+use Fxp\Component\FormExtensions\Form\ChoiceList\Loader\DynamicChoiceLoaderInterface;
+use Fxp\Component\FormExtensions\Tests\Doctrine\Form\Fixtures\MockEntity;
 use PHPUnit\Framework\TestCase;
-use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface;
-use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\DynamicChoiceLoaderInterface;
-use Sonatra\Component\FormExtensions\Tests\Doctrine\Form\Fixtures\MockEntity;
 
 /**
  * Base tests case for dynamic choice loader.
  *
- * @author François Pluchino <francois.pluchino@sonatra.com>
+ * @author François Pluchino <francois.pluchino@gmail.com>
  */
 abstract class AbstractChoiceLoaderTest extends TestCase
 {

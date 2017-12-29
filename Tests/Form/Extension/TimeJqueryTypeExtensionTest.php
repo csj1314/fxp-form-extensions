@@ -1,18 +1,18 @@
 <?php
 
 /*
- * This file is part of the Sonatra package.
+ * This file is part of the Fxp package.
  *
- * (c) François Pluchino <francois.pluchino@sonatra.com>
+ * (c) François Pluchino <francois.pluchino@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Component\FormExtensions\Tests\Form\Extension;
+namespace Fxp\Component\FormExtensions\Tests\Form\Extension;
 
-use Sonatra\Component\FormExtensions\Form\Extension\DateTimeJqueryTypeExtension;
-use Sonatra\Component\FormExtensions\Form\Extension\TimeJqueryTypeExtension;
+use Fxp\Component\FormExtensions\Form\Extension\DateTimeJqueryTypeExtension;
+use Fxp\Component\FormExtensions\Form\Extension\TimeJqueryTypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\Forms;
@@ -21,7 +21,7 @@ use Symfony\Component\Form\Test\TypeTestCase;
 /**
  * Tests case for time jquery form extension type.
  *
- * @author François Pluchino <francois.pluchino@sonatra.com>
+ * @author François Pluchino <francois.pluchino@gmail.com>
  */
 class TimeJqueryTypeExtensionTest extends TypeTestCase
 {

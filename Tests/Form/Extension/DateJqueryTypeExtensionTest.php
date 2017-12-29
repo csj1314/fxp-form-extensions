@@ -1,18 +1,18 @@
 <?php
 
 /*
- * This file is part of the Sonatra package.
+ * This file is part of the Fxp package.
  *
- * (c) François Pluchino <francois.pluchino@sonatra.com>
+ * (c) François Pluchino <francois.pluchino@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Component\FormExtensions\Tests\Form\Extension;
+namespace Fxp\Component\FormExtensions\Tests\Form\Extension;
 
-use Sonatra\Component\FormExtensions\Form\Extension\DateJqueryTypeExtension;
-use Sonatra\Component\FormExtensions\Form\Extension\DateTimeJqueryTypeExtension;
+use Fxp\Component\FormExtensions\Form\Extension\DateJqueryTypeExtension;
+use Fxp\Component\FormExtensions\Form\Extension\DateTimeJqueryTypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\Forms;
@@ -21,7 +21,7 @@ use Symfony\Component\Form\Test\TypeTestCase;
 /**
  * Tests case for date jquery form extension type.
  *
- * @author François Pluchino <francois.pluchino@sonatra.com>
+ * @author François Pluchino <francois.pluchino@gmail.com>
  */
 class DateJqueryTypeExtensionTest extends TypeTestCase
 {

@@ -1,18 +1,18 @@
 <?php
 
 /*
- * This file is part of the Sonatra package.
+ * This file is part of the Fxp package.
  *
- * (c) François Pluchino <francois.pluchino@sonatra.com>
+ * (c) François Pluchino <francois.pluchino@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Component\FormExtensions\Form\Helper;
+namespace Fxp\Component\FormExtensions\Form\Helper;
 
-use Sonatra\Component\FormExtensions\Form\ChoiceList\Formatter\AjaxChoiceListFormatterInterface;
-use Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface;
+use Fxp\Component\FormExtensions\Form\ChoiceList\Formatter\AjaxChoiceListFormatterInterface;
+use Fxp\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface;
 use Symfony\Component\Form\Exception\InvalidArgumentException;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -27,7 +27,7 @@ use Symfony\Component\Serializer\Serializer;
 /**
  * Helper for generate the AJAX response for the form choice list.
  *
- * @author François Pluchino <francois.pluchino@sonatra.com>
+ * @author François Pluchino <francois.pluchino@gmail.com>
  */
 class AjaxChoiceListHelper
 {
@@ -60,7 +60,7 @@ class AjaxChoiceListHelper
         }
 
         if (!$choiceLoader instanceof AjaxChoiceLoaderInterface) {
-            throw new UnexpectedTypeException($choiceLoader, 'Sonatra\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface');
+            throw new UnexpectedTypeException($choiceLoader, 'Fxp\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface');
         }
 
         $data = static::getData($request, $choiceLoader, $formatter, $prefix);
@@ -138,7 +138,7 @@ class AjaxChoiceListHelper
         $formatter = $formatter['ajax_formatter'];
 
         if (!$formatter instanceof AjaxChoiceListFormatterInterface) {
-            throw new UnexpectedTypeException($formatter, 'Sonatra\Component\FormExtensions\Form\ChoiceList\Formatter\AjaxChoiceListFormatterInterface');
+            throw new UnexpectedTypeException($formatter, 'Fxp\Component\FormExtensions\Form\ChoiceList\Formatter\AjaxChoiceListFormatterInterface');
         }
 
         return $formatter;
