@@ -26,21 +26,21 @@ class DynamicChoiceLoaderTest extends AbstractChoiceLoaderTest
     protected function createChoiceLoader($group = false)
     {
         if ($group) {
-            $choices = array(
-                'Group 1' => array(
+            $choices = [
+                'Group 1' => [
                     'Bar' => 'foo',
                     'Foo' => 'bar',
-                ),
-                'Group 2' => array(
+                ],
+                'Group 2' => [
                     'Baz' => 'baz',
-                ),
-            );
+                ],
+            ];
         } else {
-            $choices = array(
+            $choices = [
                 'Bar' => 'foo',
                 'Foo' => 'bar',
                 'Baz' => 'baz',
-            );
+            ];
         }
 
         return new DynamicChoiceLoader($choices);
@@ -52,22 +52,22 @@ class DynamicChoiceLoaderTest extends AbstractChoiceLoaderTest
     protected function getValidStructuredValues($group)
     {
         if ($group) {
-            return array(
-                'Group 1' => array(
+            return [
+                'Group 1' => [
                     'Bar' => 'foo',
                     'Foo' => 'bar',
-                ),
-                'Group 2' => array(
+                ],
+                'Group 2' => [
                     'Baz' => 'baz',
-                ),
-            );
+                ],
+            ];
         }
 
-        return array(
+        return [
             'Bar' => 'foo',
             'Foo' => 'bar',
             'Baz' => 'baz',
-        );
+        ];
     }
 
     /**
@@ -78,9 +78,9 @@ class DynamicChoiceLoaderTest extends AbstractChoiceLoaderTest
         $existing = $this->getValidStructuredValues($group);
 
         if ($group) {
-            $existing['-------'] = array(
+            $existing['-------'] = [
                 'Test' => 'Test',
-            );
+            ];
         } else {
             $existing['Test'] = 'Test';
         }
@@ -93,10 +93,10 @@ class DynamicChoiceLoaderTest extends AbstractChoiceLoaderTest
      */
     protected function getDataChoicesForValues()
     {
-        return array(
+        return [
             'foo',
             'Test',
-        );
+        ];
     }
 
     /**
@@ -104,9 +104,9 @@ class DynamicChoiceLoaderTest extends AbstractChoiceLoaderTest
      */
     protected function getValidChoicesForValues($group)
     {
-        return array(
+        return [
             'foo',
-        );
+        ];
     }
 
     /**
@@ -114,10 +114,10 @@ class DynamicChoiceLoaderTest extends AbstractChoiceLoaderTest
      */
     protected function getValidChoicesForValuesWithNewTags($group)
     {
-        return array(
+        return [
             'foo',
             'Test',
-        );
+        ];
     }
 
     /**
@@ -125,10 +125,10 @@ class DynamicChoiceLoaderTest extends AbstractChoiceLoaderTest
      */
     protected function getDataForValuesForChoices($group)
     {
-        return array(
+        return [
             'foo',
             'Test',
-        );
+        ];
     }
 
     /**
@@ -136,9 +136,9 @@ class DynamicChoiceLoaderTest extends AbstractChoiceLoaderTest
      */
     protected function getValidValuesForChoices($group)
     {
-        return array(
+        return [
             'foo',
-        );
+        ];
     }
 
     /**
@@ -146,10 +146,10 @@ class DynamicChoiceLoaderTest extends AbstractChoiceLoaderTest
      */
     protected function getDataForValuesForChoicesWithNewTags($group)
     {
-        return array(
+        return [
             0,
             'Test',
-        );
+        ];
     }
 
     /**
@@ -157,9 +157,9 @@ class DynamicChoiceLoaderTest extends AbstractChoiceLoaderTest
      */
     protected function getValidValuesForChoicesWithNewTags($group)
     {
-        return array(
+        return [
             2 => '0',
             3 => 'Test',
-        );
+        ];
     }
 }

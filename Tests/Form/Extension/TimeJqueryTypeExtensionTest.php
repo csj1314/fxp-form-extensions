@@ -45,7 +45,7 @@ class TimeJqueryTypeExtensionTest extends TypeTestCase
 
     public function testDefaultOption()
     {
-        $form = $this->factory->create(TimeType::class, null, array('locale' => 'en'));
+        $form = $this->factory->create(TimeType::class, null, ['locale' => 'en']);
         $config = $form->getConfig();
 
         $this->assertEquals('single_text', $config->getOption('widget'));
@@ -57,16 +57,16 @@ class TimeJqueryTypeExtensionTest extends TypeTestCase
 
     public function testFormatFr()
     {
-        $form = $this->factory->create(TimeType::class, null, array('locale' => 'fr_FR'));
+        $form = $this->factory->create(TimeType::class, null, ['locale' => 'fr_FR']);
 
         $this->assertEquals('HH:mm', $form->getConfig()->getOption('format'));
     }
 
     public function testDefaultAttributes()
     {
-        $form = $this->factory->create(TimeType::class, null, array('locale' => 'en'));
+        $form = $this->factory->create(TimeType::class, null, ['locale' => 'en']);
         $view = $form->createView();
-        $validAttr = array(
+        $validAttr = [
             'data-locale' => 'en',
             'data-date-picker' => 'false',
             'data-time-picker' => 'true',
@@ -77,19 +77,19 @@ class TimeJqueryTypeExtensionTest extends TypeTestCase
             'data-with-seconds' => 'false',
             'data-datetime-picker' => 'true',
             'data-button-id' => 'time_datetime_btn',
-        );
+        ];
 
         $this->assertEquals($validAttr, $view->vars['attr']);
     }
 
     public function testWidgetIsNotSingleText()
     {
-        $form = $this->factory->create(TimeType::class, null, array(
+        $form = $this->factory->create(TimeType::class, null, [
             'locale' => 'en_EN',
             'widget' => 'text',
-        ));
+        ]);
         $view = $form->createView();
 
-        $this->assertEquals(array(), $view->vars['attr']);
+        $this->assertEquals([], $view->vars['attr']);
     }
 }

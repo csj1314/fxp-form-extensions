@@ -75,7 +75,7 @@ class AjaxChoiceLoader extends DynamicChoiceLoader implements AjaxChoiceLoaderIn
      */
     protected function resetSearchChoices()
     {
-        $filteredChoices = array();
+        $filteredChoices = [];
 
         foreach ($this->choices as $key => $choice) {
             if (is_array($choice)) {
@@ -102,7 +102,7 @@ class AjaxChoiceLoader extends DynamicChoiceLoader implements AjaxChoiceLoaderIn
 
             if (false !== stripos($label, $this->search) && !in_array($id, $this->getIds())) {
                 if (!array_key_exists($group, $filteredChoices)) {
-                    $filteredChoices[$group] = array();
+                    $filteredChoices[$group] = [];
                 }
 
                 $filteredChoices[$group][$key] = $choice;
@@ -136,7 +136,7 @@ class AjaxChoiceLoader extends DynamicChoiceLoader implements AjaxChoiceLoaderIn
      */
     protected function getIdAndLabel($key, $value)
     {
-        return array($value, $key);
+        return [$value, $key];
     }
 
     /**

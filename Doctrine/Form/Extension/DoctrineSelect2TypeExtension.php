@@ -36,7 +36,7 @@ abstract class DoctrineSelect2TypeExtension extends AbstractTypeExtension
     /**
      * @var AjaxDoctrineChoiceLoader[]
      */
-    private $choiceLoaders = array();
+    private $choiceLoaders = [];
 
     /**
      * Constructor.
@@ -66,12 +66,12 @@ abstract class DoctrineSelect2TypeExtension extends AbstractTypeExtension
                 // also if concrete Type can return important QueryBuilder parts to generate
                 // hash key we go for it as well
                 if (!$options['query_builder'] || false !== ($qbParts = $type->getQueryBuilderPartsForCachingHash($options['query_builder']))) {
-                    $hash = CachingFactoryDecorator::generateHash(array(
+                    $hash = CachingFactoryDecorator::generateHash([
                         $options['em'],
                         $options['class'],
                         $qbParts,
                         $options['select2']['ajax'],
-                    ));
+                    ]);
 
                     if (isset($choiceLoaders[$hash])) {
                         return $choiceLoaders[$hash];
@@ -113,17 +113,17 @@ abstract class DoctrineSelect2TypeExtension extends AbstractTypeExtension
 
         $choiceName = function (Options $options, $value) {
             return isset($options['id_reader'])
-                ? array($options['id_reader'], 'getIdValue')
+                ? [$options['id_reader'], 'getIdValue']
                 : $value;
         };
 
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'choice_loader' => $choiceLoader,
             'choice_name' => $choiceName,
             'choice_label_name' => null,
-        ));
+        ]);
 
-        $resolver->setAllowedTypes('choice_label_name', array('null', 'string'));
+        $resolver->setAllowedTypes('choice_label_name', ['null', 'string']);
     }
 
     /**

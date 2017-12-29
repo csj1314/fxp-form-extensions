@@ -41,14 +41,14 @@ class TagDecoratorTest extends TestCase
     {
         $object = new \stdClass();
 
-        return array(
-            array(array('foo'), array('foo'), null),
-            array(array(23), array(24), function ($v = null) {
+        return [
+            [['foo'], ['foo'], null],
+            [[23], [24], function ($v = null) {
                 return is_int($v) ? $v + 1 : $v;
-            }),
-            array(array(23), array(23), null),
-            array(array($object), array($object), null),
-        );
+            }],
+            [[23], [23], null],
+            [[$object], [$object], null],
+        ];
     }
 
     /**
@@ -105,7 +105,7 @@ class TagDecoratorTest extends TestCase
                 $self->assertSame($loader, $funLoader);
                 $self->assertInstanceOf(\Closure::class, $value);
                 /* @var ChoiceLoaderInterface|\PHPUnit_Framework_MockObject_MockObject $loader */
-                $result = $loader->loadValuesForChoices(array(), $value);
+                $result = $loader->loadValuesForChoices([], $value);
 
                 foreach ($result as &$choice) {
                     $choice = call_user_func($value, $choice);

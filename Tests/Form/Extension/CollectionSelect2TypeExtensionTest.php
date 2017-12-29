@@ -62,7 +62,7 @@ class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTes
     {
         $options = parent::mergeOptions($options);
         $options['entry_type'] = CurrencyType::class;
-        $options['select2'] = isset($options['select2']) ? $options['select2'] : array();
+        $options['select2'] = isset($options['select2']) ? $options['select2'] : [];
 
         if (!array_key_exists('enabled', $options['select2'])) {
             $options['select2']['enabled'] = true;
@@ -73,7 +73,7 @@ class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTes
 
     protected function getSingleData()
     {
-        return array('EUR');
+        return ['EUR'];
     }
 
     protected function getValidSingleValue()
@@ -88,12 +88,12 @@ class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTes
 
     protected function getMultipleData()
     {
-        return array('EUR', 'USD');
+        return ['EUR', 'USD'];
     }
 
     protected function getValidMultipleValue()
     {
-        return array('EUR', 'USD');
+        return ['EUR', 'USD'];
     }
 
     protected function getValidAjaxMultipleValue()
@@ -103,7 +103,7 @@ class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTes
 
     public function testDefaultOptions()
     {
-        $form = $this->factory->create($this->getExtensionTypeName(), $this->getSingleData(), $this->mergeOptions(array()));
+        $form = $this->factory->create($this->getExtensionTypeName(), $this->getSingleData(), $this->mergeOptions([]));
 
         $this->assertTrue($form->getConfig()->hasAttribute('selector'));
         /* @var FormBuilderInterface $config */
@@ -140,7 +140,7 @@ class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTes
 
     public function testDisabled()
     {
-        $options = $this->mergeOptions(array());
+        $options = $this->mergeOptions([]);
         $options['select2']['enabled'] = false;
         $form = $this->factory->create($this->getExtensionTypeName(), $this->getSingleData(), $options);
 
@@ -160,7 +160,7 @@ class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTes
 
     public function testSingleWithTags()
     {
-        $options = array('select2' => array('tags' => true));
+        $options = ['select2' => ['tags' => true]];
         $form = $this->factory->create($this->getExtensionTypeName(), $this->getSingleData(), $this->mergeOptions($options));
 
         $this->assertTrue($form->getConfig()->hasAttribute('selector'));
@@ -194,7 +194,7 @@ class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTes
 
     public function testSingleAjax()
     {
-        $options = array('select2' => array('ajax' => true));
+        $options = ['select2' => ['ajax' => true]];
         $form = $this->factory->create($this->getExtensionTypeName(), $this->getSingleData(), $this->mergeOptions($options));
 
         $this->assertTrue($form->getConfig()->hasAttribute('selector'));
@@ -227,7 +227,7 @@ class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTes
 
     public function testSingleAjaxWithTags()
     {
-        $options = array('select2' => array('ajax' => true, 'tags' => true));
+        $options = ['select2' => ['ajax' => true, 'tags' => true]];
         $form = $this->factory->create($this->getExtensionTypeName(), $this->getSingleData(), $this->mergeOptions($options));
 
         $this->assertTrue($form->getConfig()->hasAttribute('selector'));
@@ -273,7 +273,7 @@ class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTes
 
     public function testRequiredAjaxEmptyChoice()
     {
-        $options = array('select2' => array('ajax' => true));
+        $options = ['select2' => ['ajax' => true]];
         $form = $this->factory->create($this->getExtensionTypeName(), null, $this->mergeOptions($options));
         $view = $form->createView();
 
@@ -282,7 +282,7 @@ class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTes
         $selectorView = $view->vars['selector'];
         $this->assertInstanceOf('Symfony\Component\Form\FormView', $selectorView);
 
-        $this->assertEquals(array(), $selectorView->vars['choices']);
+        $this->assertEquals([], $selectorView->vars['choices']);
     }
 
     public function testSinglePlaceHolder()
@@ -293,7 +293,7 @@ class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTes
 
     public function testAjaxRoute()
     {
-        $options = array('required' => false, 'select2' => array('ajax' => true, 'ajax_route' => 'foobar'));
+        $options = ['required' => false, 'select2' => ['ajax' => true, 'ajax_route' => 'foobar']];
         $form = $this->factory->create($this->getExtensionTypeName(), null, $this->mergeOptions($options));
         $view = $form->createView();
 
@@ -311,7 +311,7 @@ class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTes
      */
     public function testWithoutChoice()
     {
-        $options = $this->mergeOptions(array());
+        $options = $this->mergeOptions([]);
         $options['entry_type'] = TextType::class;
 
         $this->factory->create($this->getExtensionTypeName(), null, $options);
@@ -331,11 +331,11 @@ class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTes
 
     public function testDefaultType()
     {
-        $options = array(
-            'select2' => array(
+        $options = [
+            'select2' => [
                 'enabled' => true,
-            ),
-        );
+            ],
+        ];
 
         $form = $this->factory->create($this->getExtensionTypeName(), null, $options);
 
@@ -344,8 +344,8 @@ class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTes
 
     public function testAllowAddTag()
     {
-        $options = array('allow_add' => true, 'entry_options' => array('choices' => array('Bar' => 'foo')));
-        $data = array('foo', 'Baz');
+        $options = ['allow_add' => true, 'entry_options' => ['choices' => ['Bar' => 'foo']]];
+        $data = ['foo', 'Baz'];
         $form = $this->factory->create($this->getExtensionTypeName(), $data, $this->mergeOptions($options));
         $view = $form->createView();
 
@@ -354,18 +354,18 @@ class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTes
         $selectorView = $view->vars['selector'];
         $this->assertInstanceOf('Symfony\Component\Form\FormView', $selectorView);
 
-        $valid = array(
+        $valid = [
             'foo' => new ChoiceView('foo', 'foo', 'Bar'),
             'Baz' => new ChoiceView('Baz', 'Baz', 'Baz'),
-        );
+        ];
         $this->assertEquals($valid, $selectorView->vars['choices']);
         $this->assertSame('true', $selectorView->vars['select2']['tags']);
     }
 
     public function testDenyAddTag()
     {
-        $options = array('allow_add' => false, 'entry_options' => array('choices' => array('Bar' => 'foo')));
-        $data = array('foo', 'Baz');
+        $options = ['allow_add' => false, 'entry_options' => ['choices' => ['Bar' => 'foo']]];
+        $data = ['foo', 'Baz'];
         $form = $this->factory->create($this->getExtensionTypeName(), $data, $this->mergeOptions($options));
         $view = $form->createView();
 
@@ -374,9 +374,9 @@ class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTes
         $selectorView = $view->vars['selector'];
         $this->assertInstanceOf('Symfony\Component\Form\FormView', $selectorView);
 
-        $valid = array(
+        $valid = [
             'foo' => new ChoiceView('foo', 'foo', 'Bar'),
-        );
+        ];
         $this->assertEquals($valid, $selectorView->vars['choices']);
         $this->assertArrayNotHasKey('tags', $selectorView->vars['select2']);
     }

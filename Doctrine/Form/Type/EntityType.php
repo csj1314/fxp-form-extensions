@@ -56,10 +56,10 @@ class EntityType extends BaseEntityType
     {
         parent::configureOptions($resolver);
 
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'query_builder_transformer' => null,
-        ));
+        ]);
 
-        $resolver->addAllowedTypes('query_builder_transformer', array('null', QueryBuilderTransformer::class));
+        $resolver->addAllowedTypes('query_builder_transformer', ['null', QueryBuilderTransformer::class]);
     }
 }

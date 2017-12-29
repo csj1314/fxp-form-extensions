@@ -67,10 +67,10 @@ class EntitySelect2TypeExtension extends DoctrineSelect2TypeExtension
      */
     public function getQueryBuilderPartsForCachingHash($queryBuilder)
     {
-        return array(
+        return [
             $queryBuilder->getQuery()->getSQL(),
             $queryBuilder->getParameters()->toArray(),
-        );
+        ];
     }
 
     /**
@@ -78,13 +78,13 @@ class EntitySelect2TypeExtension extends DoctrineSelect2TypeExtension
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'ajax_entity_loader' => null,
             'ajax_entity_filter' => null,
-        ));
+        ]);
 
-        $resolver->addAllowedTypes('ajax_entity_loader', array('null', AjaxEntityLoaderInterface::class));
-        $resolver->addAllowedTypes('ajax_entity_filter', array('null', AjaxORMFilter::class));
+        $resolver->addAllowedTypes('ajax_entity_loader', ['null', AjaxEntityLoaderInterface::class]);
+        $resolver->addAllowedTypes('ajax_entity_filter', ['null', AjaxORMFilter::class]);
 
         parent::configureOptions($resolver);
     }

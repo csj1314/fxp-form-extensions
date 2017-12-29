@@ -25,10 +25,10 @@ abstract class AbstractChoiceLoaderTest extends TestCase
 {
     public function getIsGroup()
     {
-        return array(
-            array(false),
-            array(true),
-        );
+        return [
+            [false],
+            [true],
+        ];
     }
 
     /**
@@ -150,7 +150,7 @@ abstract class AbstractChoiceLoaderTest extends TestCase
     public function testLoadChoiceListForView($group)
     {
         $loader = $this->createChoiceLoader($group);
-        $choiceList = $loader->loadChoiceListForView(array('foo', 'bar', 'Test'), $this->getValue());
+        $choiceList = $loader->loadChoiceListForView(['foo', 'bar', 'Test'], $this->getValue());
 
         $this->assertInstanceOf('Symfony\Component\Form\ChoiceList\ChoiceListInterface', $choiceList);
         $this->assertEquals($this->getValidStructuredValues($group), $choiceList->getStructuredValues());
@@ -165,7 +165,7 @@ abstract class AbstractChoiceLoaderTest extends TestCase
     {
         $loader = $this->createChoiceLoader($group);
         $loader->setAllowAdd(true);
-        $choiceList = $loader->loadChoiceListForView(array('foo', 'bar', 'Test'), $this->getValue());
+        $choiceList = $loader->loadChoiceListForView(['foo', 'bar', 'Test'], $this->getValue());
 
         $this->assertInstanceOf('Symfony\Component\Form\ChoiceList\ChoiceListInterface', $choiceList);
 
@@ -180,7 +180,7 @@ abstract class AbstractChoiceLoaderTest extends TestCase
     public function testLoadChoicesForValuesWithEmptyValues($group)
     {
         $loader = $this->createChoiceLoader($group);
-        $this->assertCount(0, $loader->loadChoicesForValues(array()));
+        $this->assertCount(0, $loader->loadChoicesForValues([]));
     }
 
     /**
@@ -216,7 +216,7 @@ abstract class AbstractChoiceLoaderTest extends TestCase
     public function testLoadValuesForChoicesWithEmptyValues($group)
     {
         $loader = $this->createChoiceLoader($group);
-        $this->assertCount(0, $loader->loadValuesForChoices(array()));
+        $this->assertCount(0, $loader->loadValuesForChoices([]));
     }
 
     /**

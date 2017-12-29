@@ -42,12 +42,12 @@ class LanguageSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTest
 
     protected function getMultipleData()
     {
-        return array('fr', 'en');
+        return ['fr', 'en'];
     }
 
     protected function getValidMultipleValue()
     {
-        return array('fr', 'en');
+        return ['fr', 'en'];
     }
 
     protected function getValidAjaxMultipleValue()

@@ -33,26 +33,26 @@ class Select2AjaxChoiceListFormatterTest extends AbstractAjaxChoiceListFormatter
      */
     protected function getValidResponseData()
     {
-        return array(
+        return [
             'size' => 3,
             'pageNumber' => 1,
             'pageSize' => 10,
             'search' => null,
-            'items' => array(
-                array(
+            'items' => [
+                [
                     'id' => '0',
                     'text' => 'Bar',
-                ),
-                array(
+                ],
+                [
                     'id' => '1',
                     'text' => 'Foo',
-                ),
-                array(
+                ],
+                [
                     'id' => '2',
                     'text' => 'Baz',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
     }
 
     /**
@@ -60,35 +60,35 @@ class Select2AjaxChoiceListFormatterTest extends AbstractAjaxChoiceListFormatter
      */
     protected function getValidGroupResponseData()
     {
-        return array(
+        return [
             'size' => 3,
             'pageNumber' => 1,
             'pageSize' => 10,
             'search' => null,
-            'items' => array(
-                array(
+            'items' => [
+                [
                     'text' => 'Group 1',
-                    'children' => array(
-                        array(
+                    'children' => [
+                        [
                             'id' => '0',
                             'text' => 'Bar',
-                        ),
-                        array(
+                        ],
+                        [
                             'id' => '1',
                             'text' => 'Foo',
-                        ),
-                    ),
-                ),
-                array(
+                        ],
+                    ],
+                ],
+                [
                     'text' => 'Group 2',
-                    'children' => array(
-                        array(
+                    'children' => [
+                        [
                             'id' => '2',
                             'text' => 'Baz',
-                        ),
-                    ),
-                ),
-            ),
-        );
+                        ],
+                    ],
+                ],
+            ],
+        ];
     }
 }

@@ -26,10 +26,10 @@ class DateJqueryTypeExtension extends DateTimeJqueryTypeExtension
     {
         parent::configureOptions($resolver);
 
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'date_picker' => true,
             'time_picker' => false,
-        ));
+        ]);
     }
 
     /**

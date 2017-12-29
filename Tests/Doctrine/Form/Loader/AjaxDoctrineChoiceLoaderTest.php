@@ -42,11 +42,11 @@ class AjaxDoctrineChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
 
     public function setUp()
     {
-        $this->objects = array(
+        $this->objects = [
             new MockEntity('foo', 'Bar'),
             new MockEntity('bar', 'Foo'),
             new MockEntity('baz', 'Baz'),
-        );
+        ];
 
         $this->objectLoader = $this->getMockBuilder('Fxp\Component\FormExtensions\Doctrine\Form\ChoiceList\AjaxEntityLoaderInterface')->getMock();
         $this->idReader = $this->getMockBuilder('Symfony\Bridge\Doctrine\Form\ChoiceList\IdReader')
@@ -62,9 +62,9 @@ class AjaxDoctrineChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
 
     public function getIsGroup()
     {
-        return array(
-            array(false),
-        );
+        return [
+            [false],
+        ];
     }
 
     /**
@@ -81,7 +81,7 @@ class AjaxDoctrineChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
         $this->objectLoader->expects($this->any())
             ->method('getEntities')
             ->will($this->returnCallback(function () use ($objects) {
-                $values = array();
+                $values = [];
 
                 foreach ($objects as $object) {
                     $values[$object->getLabel()] = $object;
@@ -93,7 +93,7 @@ class AjaxDoctrineChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
         $this->objectLoader->expects($this->any())
             ->method('getPaginatedEntities')
             ->will($this->returnCallback(function ($pageSize, $pageNumber) use ($objects) {
-                $values = array();
+                $values = [];
 
                 if (is_int($pageSize) && is_int($pageNumber)) {
                     $values[$objects[1]->getLabel()] = $objects[1];
@@ -106,7 +106,7 @@ class AjaxDoctrineChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
         $this->objectLoader->expects($this->any())
             ->method('getEntitiesByIds')
             ->will($this->returnCallback(function ($idField, $values) use ($objects) {
-                $entities = array();
+                $entities = [];
 
                 foreach ($values as $id) {
                     if (isset($objects[$id]) && is_string($idField)) {
@@ -137,7 +137,7 @@ class AjaxDoctrineChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
                 throw new RuntimeException('MOCK_EXCEPTION');
             }));
 
-        return new AjaxDoctrineChoiceLoader($this->objectLoader, array($this->idReader, 'getIdValue'), $this->idReader->getIdField(), 'label');
+        return new AjaxDoctrineChoiceLoader($this->objectLoader, [$this->idReader, 'getIdValue'], $this->idReader->getIdField(), 'label');
     }
 
     /**
@@ -145,11 +145,11 @@ class AjaxDoctrineChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
      */
     protected function getValidStructuredValues($group)
     {
-        return array(
+        return [
             '0' => 'foo',
             '1' => 'bar',
             '2' => 'Test',
-        );
+        ];
     }
 
     /**
@@ -167,10 +167,10 @@ class AjaxDoctrineChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
      */
     protected function getDataChoicesForValues()
     {
-        return array(
+        return [
             0,
             'Test',
-        );
+        ];
     }
 
     /**
@@ -178,9 +178,9 @@ class AjaxDoctrineChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
      */
     protected function getValidChoicesForValues($group)
     {
-        return array(
+        return [
             0 => $this->objects[0],
-        );
+        ];
     }
 
     /**
@@ -188,10 +188,10 @@ class AjaxDoctrineChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
      */
     protected function getValidChoicesForValuesWithNewTags($group)
     {
-        return array(
+        return [
             0 => $this->objects[0],
             1 => 'Test',
-        );
+        ];
     }
 
     /**
@@ -199,10 +199,10 @@ class AjaxDoctrineChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
      */
     protected function getDataForValuesForChoices($group)
     {
-        return array(
+        return [
             $this->objects[0],
             'Test',
-        );
+        ];
     }
 
     /**
@@ -210,9 +210,9 @@ class AjaxDoctrineChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
      */
     protected function getValidValuesForChoices($group)
     {
-        return array(
+        return [
             '0',
-        );
+        ];
     }
 
     /**
@@ -228,10 +228,10 @@ class AjaxDoctrineChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
      */
     protected function getValidValuesForChoicesWithNewTags($group)
     {
-        return array(
+        return [
             '0',
             'Test',
-        );
+        ];
     }
 
     /**
@@ -239,7 +239,7 @@ class AjaxDoctrineChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
      */
     protected function getValidStructuredValuesForSearch($group)
     {
-        return array();
+        return [];
     }
 
     /**
@@ -247,10 +247,10 @@ class AjaxDoctrineChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
      */
     protected function getValidStructuredValuesForPagination($group, $pageNumber, $pageSize)
     {
-        return array(
+        return [
             'Foo' => '1',
             'Baz' => '2',
-        );
+        ];
     }
 
     /**

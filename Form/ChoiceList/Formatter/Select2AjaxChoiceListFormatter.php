@@ -46,13 +46,13 @@ class Select2AjaxChoiceListFormatter implements AjaxChoiceListFormatterInterface
     {
         $view = $this->choiceListFactory->createView($choiceLoader->loadPaginatedChoiceList(), null, $choiceLoader->getLabel());
 
-        return array(
+        return [
             'size' => $choiceLoader->getSize(),
             'pageNumber' => $choiceLoader->getPageNumber(),
             'pageSize' => $choiceLoader->getPageSize(),
             'search' => $choiceLoader->getSearch(),
             'items' => FormatterUtil::formatResultData($this, $view),
-        );
+        ];
     }
 
     /**
@@ -60,10 +60,10 @@ class Select2AjaxChoiceListFormatter implements AjaxChoiceListFormatterInterface
      */
     public function formatChoice(ChoiceView $choice)
     {
-        return array(
+        return [
             'id' => $choice->value,
             'text' => $choice->label,
-        );
+        ];
     }
 
     /**
@@ -71,10 +71,10 @@ class Select2AjaxChoiceListFormatter implements AjaxChoiceListFormatterInterface
      */
     public function formatGroupChoice(ChoiceGroupView $choiceGroup)
     {
-        return array(
+        return [
             'text' => $choiceGroup->label,
-            'children' => array(),
-        );
+            'children' => [],
+        ];
     }
 
     /**

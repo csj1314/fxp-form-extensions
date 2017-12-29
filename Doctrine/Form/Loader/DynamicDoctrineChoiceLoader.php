@@ -106,13 +106,13 @@ class DynamicDoctrineChoiceLoader extends AbstractDynamicChoiceLoader
     {
         // Performance optimization
         if (empty($values)) {
-            return array();
+            return [];
         }
 
         $value = $this->getCallableValue($value);
         $unorderedObjects = $this->objectLoader->getEntitiesByIds($this->idField, $values);
-        $objectsById = array();
-        $objects = array();
+        $objectsById = [];
+        $objects = [];
 
         foreach ($unorderedObjects as $object) {
             $objectsById[call_user_func($value, $object)] = $object;
@@ -136,11 +136,11 @@ class DynamicDoctrineChoiceLoader extends AbstractDynamicChoiceLoader
     {
         // Performance optimization
         if (empty($choices)) {
-            return array();
+            return [];
         }
 
         $value = $this->getCallableValue($value);
-        $values = array();
+        $values = [];
 
         foreach ($choices as $i => $object) {
             if (is_object($object)) {

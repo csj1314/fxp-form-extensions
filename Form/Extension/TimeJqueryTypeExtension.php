@@ -44,10 +44,10 @@ class TimeJqueryTypeExtension extends DateTimeJqueryTypeExtension
     {
         parent::configureOptions($resolver);
 
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'date_picker' => false,
             'time_picker' => true,
-        ));
+        ]);
     }
 
     /**

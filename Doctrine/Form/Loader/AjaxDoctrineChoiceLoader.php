@@ -90,6 +90,6 @@ class AjaxDoctrineChoiceLoader extends DynamicDoctrineChoiceLoader implements Aj
      */
     protected function loadEntities()
     {
-        return array();
+        return [];
     }
 }

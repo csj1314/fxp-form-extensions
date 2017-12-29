@@ -23,7 +23,7 @@ class ChoiceSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTest
 {
     protected function getChoices()
     {
-        return array_flip(array(0 => 'A', 1 => 'B', 2 => 'C', 3 => 'D'));
+        return array_flip([0 => 'A', 1 => 'B', 2 => 'C', 3 => 'D']);
     }
 
     protected function getExtensionTypeName()
@@ -48,12 +48,12 @@ class ChoiceSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTest
 
     protected function getMultipleData()
     {
-        return array('1', '2');
+        return ['1', '2'];
     }
 
     protected function getValidMultipleValue()
     {
-        return array('1', '2');
+        return ['1', '2'];
     }
 
     protected function getValidAjaxMultipleValue()

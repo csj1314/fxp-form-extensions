@@ -41,7 +41,7 @@ class DateTimeJqueryTypeExtensionTest extends TypeTestCase
 
     public function testDefaultOption()
     {
-        $form = $this->factory->create(DateTimeType::class, null, array('locale' => 'en_EN'));
+        $form = $this->factory->create(DateTimeType::class, null, ['locale' => 'en_EN']);
         $config = $form->getConfig();
 
         $this->assertEquals('single_text', $config->getOption('widget'));
@@ -53,16 +53,16 @@ class DateTimeJqueryTypeExtensionTest extends TypeTestCase
 
     public function testFormatFr()
     {
-        $form = $this->factory->create(DateTimeType::class, null, array('locale' => 'fr_FR'));
+        $form = $this->factory->create(DateTimeType::class, null, ['locale' => 'fr_FR']);
 
-        $this->assertTrue(in_array($form->getConfig()->getOption('format'), array('dd/MM/y HH:mm', 'dd/MM/yy HH:mm')));
+        $this->assertTrue(in_array($form->getConfig()->getOption('format'), ['dd/MM/y HH:mm', 'dd/MM/yy HH:mm']));
     }
 
     public function testDefaultAttributes()
     {
-        $form = $this->factory->create(DateTimeType::class, null, array('locale' => 'en_EN'));
+        $form = $this->factory->create(DateTimeType::class, null, ['locale' => 'en_EN']);
         $view = $form->createView();
-        $validAttr = array(
+        $validAttr = [
             'data-locale' => 'en_EN',
             'data-date-picker' => 'true',
             'data-time-picker' => 'true',
@@ -73,20 +73,20 @@ class DateTimeJqueryTypeExtensionTest extends TypeTestCase
             'data-with-seconds' => 'false',
             'data-datetime-picker' => 'true',
             'data-button-id' => 'datetime_datetime_btn',
-        );
+        ];
 
         $this->assertEquals($validAttr, $view->vars['attr']);
     }
 
     public function testWidgetIsNotSingleText()
     {
-        $form = $this->factory->create(DateTimeType::class, null, array(
+        $form = $this->factory->create(DateTimeType::class, null, [
             'locale' => 'en_EN',
             'widget' => 'text',
-        ));
+        ]);
         $view = $form->createView();
 
-        $this->assertEquals(array(), $view->vars['attr']);
+        $this->assertEquals([], $view->vars['attr']);
     }
 
     /**

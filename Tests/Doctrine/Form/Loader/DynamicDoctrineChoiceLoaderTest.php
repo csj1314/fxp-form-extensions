@@ -42,11 +42,11 @@ class DynamicDoctrineChoiceLoaderTest extends AbstractChoiceLoaderTest
 
     public function setUp()
     {
-        $this->objects = array(
+        $this->objects = [
             new MockEntity('foo', 'Bar'),
             new MockEntity('bar', 'Foo'),
             new MockEntity('baz', 'Baz'),
-        );
+        ];
 
         $this->objectLoader = $this->getMockBuilder('Symfony\Bridge\Doctrine\Form\ChoiceList\EntityLoaderInterface')->getMock();
         $this->idReader = $this->getMockBuilder('Symfony\Bridge\Doctrine\Form\ChoiceList\IdReader')
@@ -62,9 +62,9 @@ class DynamicDoctrineChoiceLoaderTest extends AbstractChoiceLoaderTest
 
     public function getIsGroup()
     {
-        return array(
-            array(false),
-        );
+        return [
+            [false],
+        ];
     }
 
     /**
@@ -77,7 +77,7 @@ class DynamicDoctrineChoiceLoaderTest extends AbstractChoiceLoaderTest
         $this->objectLoader->expects($this->any())
             ->method('getEntities')
             ->will($this->returnCallback(function () use ($objects) {
-                $values = array();
+                $values = [];
 
                 foreach ($objects as $object) {
                     $values[] = $object;
@@ -89,7 +89,7 @@ class DynamicDoctrineChoiceLoaderTest extends AbstractChoiceLoaderTest
         $this->objectLoader->expects($this->any())
             ->method('getEntitiesByIds')
             ->will($this->returnCallback(function ($idField, $values) use ($objects) {
-                $entities = array();
+                $entities = [];
 
                 foreach ($values as $id) {
                     foreach ($objects as $object) {
@@ -123,7 +123,7 @@ class DynamicDoctrineChoiceLoaderTest extends AbstractChoiceLoaderTest
                 throw new RuntimeException('MOCK_EXCEPTION');
             }));
 
-        return new DynamicDoctrineChoiceLoader($this->objectLoader, array($this->idReader, 'getIdValue'), $this->idReader->getIdField(), 'label');
+        return new DynamicDoctrineChoiceLoader($this->objectLoader, [$this->idReader, 'getIdValue'], $this->idReader->getIdField(), 'label');
     }
 
     /**
@@ -131,11 +131,11 @@ class DynamicDoctrineChoiceLoaderTest extends AbstractChoiceLoaderTest
      */
     protected function getValidStructuredValues($group)
     {
-        return array(
+        return [
             '0' => 'foo',
             '1' => 'bar',
             '2' => 'baz',
-        );
+        ];
     }
 
     /**
@@ -143,9 +143,9 @@ class DynamicDoctrineChoiceLoaderTest extends AbstractChoiceLoaderTest
      */
     protected function getValidStructuredValuesWithNewTags($group)
     {
-        return array_merge($this->getValidStructuredValues($group), array(
+        return array_merge($this->getValidStructuredValues($group), [
             '3' => 'Test',
-        ));
+        ]);
     }
 
     /**
@@ -153,10 +153,10 @@ class DynamicDoctrineChoiceLoaderTest extends AbstractChoiceLoaderTest
      */
     protected function getDataChoicesForValues()
     {
-        return array(
+        return [
             'foo',
             'Test',
-        );
+        ];
     }
 
     /**
@@ -164,9 +164,9 @@ class DynamicDoctrineChoiceLoaderTest extends AbstractChoiceLoaderTest
      */
     protected function getValidChoicesForValues($group)
     {
-        return array(
+        return [
             0 => $this->objects[0],
-        );
+        ];
     }
 
     /**
@@ -174,10 +174,10 @@ class DynamicDoctrineChoiceLoaderTest extends AbstractChoiceLoaderTest
      */
     protected function getValidChoicesForValuesWithNewTags($group)
     {
-        return array(
+        return [
             0 => $this->objects[0],
             1 => 'Test',
-        );
+        ];
     }
 
     /**
@@ -185,10 +185,10 @@ class DynamicDoctrineChoiceLoaderTest extends AbstractChoiceLoaderTest
      */
     protected function getDataForValuesForChoices($group)
     {
-        return array(
+        return [
             $this->objects[0],
             'Test',
-        );
+        ];
     }
 
     /**
@@ -196,9 +196,9 @@ class DynamicDoctrineChoiceLoaderTest extends AbstractChoiceLoaderTest
      */
     protected function getValidValuesForChoices($group)
     {
-        return array(
+        return [
             'foo',
-        );
+        ];
     }
 
     /**
@@ -214,10 +214,10 @@ class DynamicDoctrineChoiceLoaderTest extends AbstractChoiceLoaderTest
      */
     protected function getValidValuesForChoicesWithNewTags($group)
     {
-        return array(
+        return [
             'foo',
             'Test',
-        );
+        ];
     }
 
     /**
@@ -248,10 +248,10 @@ class DynamicDoctrineChoiceLoaderTest extends AbstractChoiceLoaderTest
     public function testNotAddNewTags($group)
     {
         $loader = $this->createChoiceLoader($group);
-        $choices = array(
+        $choices = [
             $this->objects[0],
             new MockEntity(null, 'Test'),
-        );
+        ];
 
         $loader->loadValuesForChoices($choices);
     }

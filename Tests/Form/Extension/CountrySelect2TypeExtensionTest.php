@@ -42,12 +42,12 @@ class CountrySelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTest
 
     protected function getMultipleData()
     {
-        return array('FR', 'US');
+        return ['FR', 'US'];
     }
 
     protected function getValidMultipleValue()
     {
-        return array('FR', 'US');
+        return ['FR', 'US'];
     }
 
     protected function getValidAjaxMultipleValue()

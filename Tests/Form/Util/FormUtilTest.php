@@ -53,9 +53,9 @@ class FormUtilTest extends TestCase
         /* @var FormInterface $form */
         $this->assertTrue(FormUtil::isFormType($form, TextType::class));
         $this->assertTrue(FormUtil::isFormType($form, get_class($formInnerType)));
-        $this->assertTrue(FormUtil::isFormType($form, array(TextType::class, get_class($formInnerType))));
-        $this->assertTrue(FormUtil::isFormType($form, array(TextType::class, 'Baz')));
+        $this->assertTrue(FormUtil::isFormType($form, [TextType::class, get_class($formInnerType)]));
+        $this->assertTrue(FormUtil::isFormType($form, [TextType::class, 'Baz']));
         $this->assertFalse(FormUtil::isFormType($form, 'Baz'));
-        $this->assertFalse(FormUtil::isFormType($form, array('Baz', 'Boo!')));
+        $this->assertFalse(FormUtil::isFormType($form, ['Baz', 'Boo!']));
     }
 }

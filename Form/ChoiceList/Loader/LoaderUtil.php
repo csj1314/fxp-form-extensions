@@ -57,7 +57,7 @@ class LoaderUtil
             $endTo = $choiceLoader->getSize();
         }
 
-        return array($startTo, $endTo);
+        return [$startTo, $endTo];
     }
 
     /**
@@ -71,7 +71,7 @@ class LoaderUtil
      */
     protected static function paginateSimpleChoices(array $choices, $startTo, $endTo)
     {
-        $paginatedChoices = array();
+        $paginatedChoices = [];
         $index = 0;
 
         foreach ($choices as $key => $choice) {
@@ -96,7 +96,7 @@ class LoaderUtil
      */
     protected static function paginateGroupChoices(array $choices, $startTo, $endTo)
     {
-        $paginatedChoices = array();
+        $paginatedChoices = [];
         $index = 0;
 
         foreach ($choices as $groupName => $groupChoices) {

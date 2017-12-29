@@ -26,11 +26,11 @@ class AjaxORMQueryBuilderLoaderTest extends TestCase
 {
     public function getIdentityTypes()
     {
-        return array(
-            array('Symfony\Bridge\Doctrine\Tests\Fixtures\SingleStringIdEntity', Connection::PARAM_STR_ARRAY),
-            array('Symfony\Bridge\Doctrine\Tests\Fixtures\SingleIntIdEntity', Connection::PARAM_INT_ARRAY),
-            array('Fxp\Component\FormExtensions\Tests\Doctrine\Form\Fixtures\SingleGuidIdEntity', Connection::PARAM_STR_ARRAY),
-        );
+        return [
+            ['Symfony\Bridge\Doctrine\Tests\Fixtures\SingleStringIdEntity', Connection::PARAM_STR_ARRAY],
+            ['Symfony\Bridge\Doctrine\Tests\Fixtures\SingleIntIdEntity', Connection::PARAM_INT_ARRAY],
+            ['Fxp\Component\FormExtensions\Tests\Doctrine\Form\Fixtures\SingleGuidIdEntity', Connection::PARAM_STR_ARRAY],
+        ];
     }
 
     /**
@@ -44,18 +44,18 @@ class AjaxORMQueryBuilderLoaderTest extends TestCase
         $em = DoctrineTestHelper::createTestEntityManager();
 
         $query = $this->getMockBuilder('QueryMock')
-            ->setMethods(array('setParameter', 'getResult', 'getSql', '_doExecute'))
+            ->setMethods(['setParameter', 'getResult', 'getSql', '_doExecute'])
             ->getMock();
 
         $query->expects($this->once())
             ->method('setParameter')
-            ->with('AjaxORMQueryBuilderLoader_getEntitiesByIds_id', array(1, 2), $expectedType)
+            ->with('AjaxORMQueryBuilderLoader_getEntitiesByIds_id', [1, 2], $expectedType)
             ->willReturn($query);
 
         /* @var QueryBuilder|\PHPUnit_Framework_MockObject_MockObject $qb */
         $qb = $this->getMockBuilder('Doctrine\ORM\QueryBuilder')
-            ->setConstructorArgs(array($em))
-            ->setMethods(array('getQuery'))
+            ->setConstructorArgs([$em])
+            ->setMethods(['getQuery'])
             ->getMock();
 
         $qb->expects($this->once())
@@ -66,7 +66,7 @@ class AjaxORMQueryBuilderLoaderTest extends TestCase
             ->from($className, 'e');
 
         $loader = new AjaxORMQueryBuilderLoader($qb);
-        $loader->getEntitiesByIds('id', array(1, 2));
+        $loader->getEntitiesByIds('id', [1, 2]);
     }
 
     public function testFilterNonIntegerValues()
@@ -74,18 +74,18 @@ class AjaxORMQueryBuilderLoaderTest extends TestCase
         $em = DoctrineTestHelper::createTestEntityManager();
 
         $query = $this->getMockBuilder('QueryMock')
-            ->setMethods(array('setParameter', 'getResult', 'getSql', '_doExecute'))
+            ->setMethods(['setParameter', 'getResult', 'getSql', '_doExecute'])
             ->getMock();
 
         $query->expects($this->once())
             ->method('setParameter')
-            ->with('AjaxORMQueryBuilderLoader_getEntitiesByIds_id', array(1, 2, 3), Connection::PARAM_INT_ARRAY)
+            ->with('AjaxORMQueryBuilderLoader_getEntitiesByIds_id', [1, 2, 3], Connection::PARAM_INT_ARRAY)
             ->willReturn($query);
 
         /* @var QueryBuilder|\PHPUnit_Framework_MockObject_MockObject $qb */
         $qb = $this->getMockBuilder('Doctrine\ORM\QueryBuilder')
-            ->setConstructorArgs(array($em))
-            ->setMethods(array('getQuery'))
+            ->setConstructorArgs([$em])
+            ->setMethods(['getQuery'])
             ->getMock();
 
         $qb->expects($this->once())
@@ -96,7 +96,7 @@ class AjaxORMQueryBuilderLoaderTest extends TestCase
             ->from('Symfony\Bridge\Doctrine\Tests\Fixtures\SingleIntIdEntity', 'e');
 
         $loader = new AjaxORMQueryBuilderLoader($qb);
-        $loader->getEntitiesByIds('id', array(1, '', 2, 3, 'foo'));
+        $loader->getEntitiesByIds('id', [1, '', 2, 3, 'foo']);
     }
 
     public function testFilterEmptyValues()
@@ -104,7 +104,7 @@ class AjaxORMQueryBuilderLoaderTest extends TestCase
         $em = DoctrineTestHelper::createTestEntityManager();
 
         $query = $this->getMockBuilder('QueryMock')
-            ->setMethods(array('setParameter', 'getResult', 'getSql', '_doExecute'))
+            ->setMethods(['setParameter', 'getResult', 'getSql', '_doExecute'])
             ->getMock();
 
         $query->expects($this->never())
@@ -112,8 +112,8 @@ class AjaxORMQueryBuilderLoaderTest extends TestCase
 
         /* @var QueryBuilder|\PHPUnit_Framework_MockObject_MockObject $qb */
         $qb = $this->getMockBuilder('Doctrine\ORM\QueryBuilder')
-            ->setConstructorArgs(array($em))
-            ->setMethods(array('getQuery'))
+            ->setConstructorArgs([$em])
+            ->setMethods(['getQuery'])
             ->getMock();
 
         $qb->expects($this->never())
@@ -123,7 +123,7 @@ class AjaxORMQueryBuilderLoaderTest extends TestCase
             ->from('Symfony\Bridge\Doctrine\Tests\Fixtures\SingleIntIdEntity', 'e');
 
         $loader = new AjaxORMQueryBuilderLoader($qb);
-        $loader->getEntitiesByIds('id', array());
+        $loader->getEntitiesByIds('id', []);
     }
 
     public function testSetSearch()
@@ -131,12 +131,12 @@ class AjaxORMQueryBuilderLoaderTest extends TestCase
         $em = DoctrineTestHelper::createTestEntityManager();
 
         $query = $this->getMockBuilder('QueryMock')
-            ->setMethods(array('getResult', 'getSql', '_doExecute'))
+            ->setMethods(['getResult', 'getSql', '_doExecute'])
             ->getMock();
         /* @var QueryBuilder|\PHPUnit_Framework_MockObject_MockObject $qb */
         $qb = $this->getMockBuilder('Doctrine\ORM\QueryBuilder')
-            ->setConstructorArgs(array($em))
-            ->setMethods(array('getQuery'))
+            ->setConstructorArgs([$em])
+            ->setMethods(['getQuery'])
             ->getMock();
         $qb->expects($this->once())
             ->method('getQuery')
@@ -152,13 +152,13 @@ class AjaxORMQueryBuilderLoaderTest extends TestCase
         $em = DoctrineTestHelper::createTestEntityManager();
 
         $query = $this->getMockBuilder('QueryMock')
-            ->setMethods(array('getResult', 'getSql', '_doExecute'))
+            ->setMethods(['getResult', 'getSql', '_doExecute'])
             ->getMock();
 
         /* @var QueryBuilder|\PHPUnit_Framework_MockObject_MockObject $qb */
         $qb = $this->getMockBuilder('Doctrine\ORM\QueryBuilder')
-            ->setConstructorArgs(array($em))
-            ->setMethods(array('getQuery'))
+            ->setConstructorArgs([$em])
+            ->setMethods(['getQuery'])
             ->getMock();
 
         $qb->expects($this->once())
@@ -205,9 +205,9 @@ class AjaxORMQueryBuilderLoaderTest extends TestCase
     {
         $em = DoctrineTestHelper::createTestEntityManager();
         $schemaTool = new SchemaTool($em);
-        $classes = array(
+        $classes = [
             $em->getClassMetadata('Symfony\Bridge\Doctrine\Tests\Fixtures\SingleIntIdEntity'),
-        );
+        ];
 
         try {
             $schemaTool->dropSchema($classes);

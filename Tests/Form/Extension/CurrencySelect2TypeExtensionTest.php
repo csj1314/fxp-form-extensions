@@ -42,12 +42,12 @@ class CurrencySelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTest
 
     protected function getMultipleData()
     {
-        return array('EUR', 'USD');
+        return ['EUR', 'USD'];
     }
 
     protected function getValidMultipleValue()
     {
-        return array('EUR', 'USD');
+        return ['EUR', 'USD'];
     }
 
     protected function getValidAjaxMultipleValue()

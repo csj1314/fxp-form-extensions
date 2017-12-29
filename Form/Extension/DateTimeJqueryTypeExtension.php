@@ -34,7 +34,7 @@ class DateTimeJqueryTypeExtension extends AbstractTypeExtension
         }
 
         $attr = $view->vars['attr'];
-        $dataAttributes = array(
+        $dataAttributes = [
             'locale',
             'date_picker',
             'time_picker',
@@ -53,7 +53,7 @@ class DateTimeJqueryTypeExtension extends AbstractTypeExtension
             'second_min',
             'second_max',
             'second_step',
-        );
+        ];
 
         foreach ($dataAttributes as $dataAttr) {
             $name = str_replace('_', '-', $dataAttr);
@@ -70,11 +70,11 @@ class DateTimeJqueryTypeExtension extends AbstractTypeExtension
             $attr['data-'.$name] = $value;
         }
 
-        $view->vars['attr'] = array_merge($attr, array(
+        $view->vars['attr'] = array_merge($attr, [
             'data-datetime-picker' => 'true',
             'data-button-id' => $view->vars['id'].'_datetime_btn',
             'data-format' => DateTimeUtil::convertToJsFormat($attr['data-format']),
-        ));
+        ]);
     }
 
     /**
@@ -88,7 +88,7 @@ class DateTimeJqueryTypeExtension extends AbstractTypeExtension
                                             $options['with_seconds']);
         };
 
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'widget' => 'single_text',
             'locale' => \Locale::getDefault(),
             'user_timezone' => null,
@@ -112,7 +112,7 @@ class DateTimeJqueryTypeExtension extends AbstractTypeExtension
             'placeholder' => null,
             'with_minutes' => true,
             'with_seconds' => false,
-        ));
+        ]);
     }
 
     /**

@@ -112,9 +112,9 @@ class AjaxChoiceListHelperTest extends TestCase
             ->method('getAttribute')
             ->will($this->returnCallback(function ($value) use ($formatter) {
                 return 'select2' === $value
-                    ? array(
+                    ? [
                         'ajax_formatter' => $formatter,
-                    )
+                    ]
                     : null;
             }));
 
@@ -131,13 +131,13 @@ class AjaxChoiceListHelperTest extends TestCase
 
     public function getAjaxIds()
     {
-        return array(
-            array(null),
-            array(''),
-            array('1'),
-            array('1,2'),
-            array(array(1, 2)),
-        );
+        return [
+            [null],
+            [''],
+            ['1'],
+            ['1,2'],
+            [[1, 2]],
+        ];
     }
 
     /**
@@ -171,9 +171,9 @@ class AjaxChoiceListHelperTest extends TestCase
             ->method('getAttribute')
             ->will($this->returnCallback(function ($value) use ($formatter, $choiceLoader) {
                 if ('select2' === $value) {
-                    return array(
+                    return [
                         'ajax_formatter' => $formatter,
-                    );
+                    ];
                 } elseif ('choice_loader' === $value) {
                     return $choiceLoader;
                 }
@@ -216,13 +216,13 @@ class AjaxChoiceListHelperTest extends TestCase
         $choiceList = $this->getMockBuilder('Symfony\Component\Form\ChoiceList\ChoiceListInterface')->getMock();
         $choiceList->expects($this->any())
             ->method('getChoices')
-            ->will($this->returnValue(array()));
+            ->will($this->returnValue([]));
         $choiceList->expects($this->any())
             ->method('getOriginalKeys')
-            ->will($this->returnValue(array()));
+            ->will($this->returnValue([]));
         $choiceList->expects($this->any())
             ->method('getStructuredValues')
-            ->will($this->returnValue(array()));
+            ->will($this->returnValue([]));
 
         /* @var AjaxChoiceLoaderInterface|\PHPUnit_Framework_MockObject_MockObject $choiceLoader */
         $choiceLoader = $this->getMockBuilder('Fxp\Component\FormExtensions\Form\ChoiceList\Loader\AjaxChoiceLoaderInterface')->getMock();

@@ -45,9 +45,9 @@ class CollectionSelect2TypeExtension extends AbstractSelect2ConfigTypeExtension
 
         try {
             $selector = $builder->getFormFactory()->createBuilder($options['entry_type'], null, array_merge(
-                $this->normalizeOptions($options, $options['entry_options']), array(
+                $this->normalizeOptions($options, $options['entry_options']), [
                     'multiple' => true,
-                ))
+                ])
             );
             $builder->setAttribute('selector', $selector);
             $builder->setAttribute('choice_loader', $selector->getOption('choice_loader'));
@@ -74,14 +74,14 @@ class CollectionSelect2TypeExtension extends AbstractSelect2ConfigTypeExtension
         $selector = $selectorBuilder->getForm();
         $selectorView = $selector->createView($view);
 
-        $selectorView->vars = array_replace($selectorView->vars, array(
+        $selectorView->vars = array_replace($selectorView->vars, [
             'id' => $view->vars['id'],
             'full_name' => $view->vars['full_name'].'[]',
-        ));
+        ]);
 
-        $view->vars = array_replace($view->vars, array(
+        $view->vars = array_replace($view->vars, [
             'selector' => $selectorView,
-        ));
+        ]);
     }
 
     /**
@@ -91,7 +91,7 @@ class CollectionSelect2TypeExtension extends AbstractSelect2ConfigTypeExtension
     {
         parent::configureOptions($resolver);
 
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'entry_type' => function (Options $options, $value) {
                 return $options['select2']['enabled'] ? ChoiceType::class : $value;
             },
@@ -104,7 +104,7 @@ class CollectionSelect2TypeExtension extends AbstractSelect2ConfigTypeExtension
             'prototype' => function (Options $options, $value) {
                 return $options['select2']['enabled'] ? false : $value;
             },
-        ));
+        ]);
 
         $resolver->setNormalizer('prototype', function (Options $options, $value) {
             return $options['select2']['enabled'] ? false : $value;
@@ -112,11 +112,11 @@ class CollectionSelect2TypeExtension extends AbstractSelect2ConfigTypeExtension
 
         $resolver->setNormalizer('entry_options', function (Options $options, $value) {
             if ($options['select2']['enabled']) {
-                $value = array_merge($value, array(
-                    'select2' => array_merge($options['select2'], array(
+                $value = array_merge($value, [
+                    'select2' => array_merge($options['select2'], [
                         'tags' => $options['allow_add'],
-                    )),
-                ));
+                    ]),
+                ]);
             }
 
             return $value;
@@ -134,13 +134,13 @@ class CollectionSelect2TypeExtension extends AbstractSelect2ConfigTypeExtension
     protected function normalizeOptions(array $options, array $value)
     {
         return $options['select2']['enabled']
-            ? array_merge($value, array(
+            ? array_merge($value, [
                 'error_bubbling' => false,
                 'multiple' => false,
-                'select2' => array_merge($options['select2'], array(
+                'select2' => array_merge($options['select2'], [
                     'tags' => $options['allow_add'],
-                )),
-            ))
+                ]),
+            ])
             : $value;
     }
 }

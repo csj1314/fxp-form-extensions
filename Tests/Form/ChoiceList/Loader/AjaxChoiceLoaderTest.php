@@ -26,21 +26,21 @@ class AjaxChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
     protected function createChoiceLoader($group = false)
     {
         if ($group) {
-            $choices = array(
-                'Group 1' => array(
+            $choices = [
+                'Group 1' => [
                     'Bar' => 'foo',
                     'Foo' => 'bar',
-                ),
-                'Group 2' => array(
+                ],
+                'Group 2' => [
                     'Baz' => 'baz',
-                ),
-            );
+                ],
+            ];
         } else {
-            $choices = array(
+            $choices = [
                 'Bar' => 'foo',
                 'Foo' => 'bar',
                 'Baz' => 'baz',
-            );
+            ];
         }
 
         return new AjaxChoiceLoader($choices);
@@ -52,18 +52,18 @@ class AjaxChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
     protected function getValidStructuredValues($group)
     {
         if ($group) {
-            return array(
-                'Group 1' => array(
+            return [
+                'Group 1' => [
                     'Bar' => 'foo',
                     'Foo' => 'bar',
-                ),
-            );
+                ],
+            ];
         }
 
-        return array(
+        return [
             'Bar' => 'foo',
             'Foo' => 'bar',
-        );
+        ];
     }
 
     /**
@@ -74,9 +74,9 @@ class AjaxChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
         $existing = $this->getValidStructuredValues($group);
 
         if ($group) {
-            $existing['-------'] = array(
+            $existing['-------'] = [
                 'Test' => 'Test',
-            );
+            ];
         } else {
             $existing['Test'] = 'Test';
         }
@@ -90,19 +90,19 @@ class AjaxChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
     protected function getValidStructuredValuesForSearch($group)
     {
         if ($group) {
-            $valid = array(
-                'Group 1' => array(
+            $valid = [
+                'Group 1' => [
                     'Bar' => 'foo',
-                ),
-                'Group 2' => array(
+                ],
+                'Group 2' => [
                     'Baz' => 'baz',
-                ),
-            );
+                ],
+            ];
         } else {
-            $valid = array(
+            $valid = [
                 'Bar' => 'foo',
                 'Baz' => 'baz',
-            );
+            ];
         }
 
         return $valid;
@@ -114,40 +114,40 @@ class AjaxChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
     protected function getValidStructuredValuesForPagination($group, $pageNumber, $pageSize)
     {
         if ($group) {
-            $valid = array(
-                'Group 1' => array(
+            $valid = [
+                'Group 1' => [
                     'Bar' => 'foo',
                     'Foo' => 'bar',
-                ),
-            );
+                ],
+            ];
 
             if ($pageSize <= 0) {
-                $valid['Group 2'] = array(
+                $valid['Group 2'] = [
                     'Baz' => 'baz',
-                );
+                ];
             }
 
             if (2 === $pageNumber) {
-                $valid = array(
-                    'Group 2' => array(
+                $valid = [
+                    'Group 2' => [
                         'Baz' => 'baz',
-                    ),
-                );
+                    ],
+                ];
             }
         } else {
-            $valid = array(
+            $valid = [
                 'Bar' => 'foo',
                 'Foo' => 'bar',
-            );
+            ];
 
             if ($pageSize <= 0) {
                 $valid['Baz'] = 'baz';
             }
 
             if (2 === $pageNumber) {
-                $valid = array(
+                $valid = [
                     'Baz' => 'baz',
-                );
+                ];
             }
         }
 
@@ -159,10 +159,10 @@ class AjaxChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
      */
     protected function getDataChoicesForValues()
     {
-        return array(
+        return [
             'foo',
             'Test',
-        );
+        ];
     }
 
     /**
@@ -170,9 +170,9 @@ class AjaxChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
      */
     protected function getValidChoicesForValues($group)
     {
-        return array(
+        return [
             'foo',
-        );
+        ];
     }
 
     /**
@@ -180,10 +180,10 @@ class AjaxChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
      */
     protected function getValidChoicesForValuesWithNewTags($group)
     {
-        return array(
+        return [
             'foo',
             'Test',
-        );
+        ];
     }
 
     /**
@@ -191,10 +191,10 @@ class AjaxChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
      */
     protected function getDataForValuesForChoices($group)
     {
-        return array(
+        return [
             'foo',
             'Test',
-        );
+        ];
     }
 
     /**
@@ -202,9 +202,9 @@ class AjaxChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
      */
     protected function getValidValuesForChoices($group)
     {
-        return array(
+        return [
             'foo',
-        );
+        ];
     }
 
     /**
@@ -212,10 +212,10 @@ class AjaxChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
      */
     protected function getDataForValuesForChoicesWithNewTags($group)
     {
-        return array(
+        return [
             0,
             'Test',
-        );
+        ];
     }
 
     /**
@@ -223,9 +223,9 @@ class AjaxChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
      */
     protected function getValidValuesForChoicesWithNewTags($group)
     {
-        return array(
+        return [
             2 => '0',
             3 => 'Test',
-        );
+        ];
     }
 }

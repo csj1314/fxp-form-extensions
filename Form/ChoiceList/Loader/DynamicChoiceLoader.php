@@ -91,7 +91,7 @@ class DynamicChoiceLoader extends AbstractDynamicChoiceLoader
     {
         // Performance optimization
         if (empty($values)) {
-            return array();
+            return [];
         }
 
         return $this->addNewValues($this->loadChoiceList($value)
@@ -105,7 +105,7 @@ class DynamicChoiceLoader extends AbstractDynamicChoiceLoader
     {
         // Performance optimization
         if (empty($choices)) {
-            return array();
+            return [];
         }
 
         return $this->addNewValues($this->loadChoiceList($value)
@@ -162,8 +162,8 @@ class DynamicChoiceLoader extends AbstractDynamicChoiceLoader
     {
         $structuredValues = $this->loadChoiceList($value)->getStructuredValues();
         $values = $this->forceStringValues($values);
-        $allChoices = array();
-        $choices = array();
+        $allChoices = [];
+        $choices = [];
         $isGrouped = false;
 
         foreach ($structuredValues as $group => $choice) {

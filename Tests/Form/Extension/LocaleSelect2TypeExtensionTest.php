@@ -42,12 +42,12 @@ class LocaleSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTest
 
     protected function getMultipleData()
     {
-        return array('fr_FR', 'en_US');
+        return ['fr_FR', 'en_US'];
     }
 
     protected function getValidMultipleValue()
     {
-        return array('fr_FR', 'en_US');
+        return ['fr_FR', 'en_US'];
     }
 
     protected function getValidAjaxMultipleValue()

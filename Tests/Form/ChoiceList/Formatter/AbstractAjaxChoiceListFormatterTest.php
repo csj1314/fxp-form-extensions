@@ -104,11 +104,11 @@ abstract class AbstractAjaxChoiceListFormatterTest extends TestCase
         $baz = new \StdClass();
         $baz->label = 'Baz';
 
-        return new ArrayChoiceList(array(
+        return new ArrayChoiceList([
             'foo' => $foo,
             'bar' => $bar,
             'baz' => $baz,
-        ));
+        ]);
     }
 
     /**
@@ -123,15 +123,15 @@ abstract class AbstractAjaxChoiceListFormatterTest extends TestCase
         $baz = new \StdClass();
         $baz->label = 'Baz';
 
-        return new ArrayChoiceList(array(
-            'Group 1' => array(
+        return new ArrayChoiceList([
+            'Group 1' => [
                 'foo' => $foo,
                 'bar' => $bar,
-            ),
-            'Group 2' => array(
+            ],
+            'Group 2' => [
                 'baz' => $baz,
-            ),
-        ));
+            ],
+        ]);
     }
 
     /**

@@ -33,13 +33,13 @@ class Select2ChoiceListHelperTest extends AjaxChoiceListHelperTest
      */
     public function testGenerateResponseWithCreateFormatter($ajaxIds)
     {
-        $validContent = array(
+        $validContent = [
             'size' => null,
             'pageNumber' => null,
             'pageSize' => null,
             'search' => null,
-            'items' => array(),
-        );
+            'items' => [],
+        ];
 
         $this->executeGenerateResponseWithCreateFormatter($ajaxIds, $validContent);
     }

@@ -73,12 +73,12 @@ class EntitySelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTest
 
         $this->em = DoctrineTestHelper::createTestEntityManager();
         $this->emRegistry = $this->createRegistryMock('default', $this->em);
-        $this->items = array();
+        $this->items = [];
 
         $schemaTool = new SchemaTool($this->em);
-        $classes = array(
+        $classes = [
             $this->em->getClassMetadata(self::SINGLE_INT_ID_CLASS),
-        );
+        ];
 
         try {
             $schemaTool->dropSchema($classes);
@@ -134,7 +134,7 @@ class EntitySelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTest
         $item3 = new SingleIntIdEntity(3, 'Baz');
         $item4 = new SingleIntIdEntity(4, 'Boo!');
 
-        $this->items = array(1 => $item1, 2 => $item2, 3 => $item3, 4 => $item4);
+        $this->items = [1 => $item1, 2 => $item2, 3 => $item3, 4 => $item4];
 
         $this->em->persist($item1);
         $this->em->persist($item2);
@@ -173,12 +173,12 @@ class EntitySelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTest
 
     protected function getMultipleData()
     {
-        return array($this->items[1], $this->items[2]);
+        return [$this->items[1], $this->items[2]];
     }
 
     protected function getValidMultipleValue()
     {
-        return array('1', '2');
+        return ['1', '2'];
     }
 
     protected function getValidAjaxMultipleValue()
@@ -211,12 +211,12 @@ class EntitySelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTest
             ->select('e')
             ->from($this::SINGLE_INT_ID_CLASS, 'e')
         ;
-        $options = array(
+        $options = [
             'query_builder' => $qb,
-            'select2' => array(
+            'select2' => [
                 'enabled' => true,
-            ),
-        );
+            ],
+        ];
 
         $form = $this->factory->create($this->getExtensionTypeName(), $this->getSingleData(), $this->mergeOptions($options));
         $config = $form->getConfig();
@@ -237,13 +237,13 @@ class EntitySelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTest
     public function testAjaxEntityLoaderOption()
     {
         $ael = $this->getMockBuilder(AjaxEntityLoaderInterface::class)->getMock();
-        $options = array(
+        $options = [
             'ajax_entity_loader' => $ael,
-            'select2' => array(
+            'select2' => [
                 'enabled' => true,
                 'ajax' => true,
-            ),
-        );
+            ],
+        ];
 
         $form = $this->factory->create($this->getExtensionTypeName(), $this->getSingleData(), $this->mergeOptions($options));
         $config = $form->getConfig();

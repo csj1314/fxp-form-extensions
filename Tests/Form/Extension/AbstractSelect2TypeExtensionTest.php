@@ -147,7 +147,7 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
 
     public function testDefaultOptions()
     {
-        $form = $this->factory->create($this->getExtensionTypeName(), $this->getSingleData(), $this->mergeOptions(array()));
+        $form = $this->factory->create($this->getExtensionTypeName(), $this->getSingleData(), $this->mergeOptions([]));
         $config = $form->getConfig();
 
         $this->assertFalse($config->getOption('compound'));
@@ -172,11 +172,11 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
 
     public function testDefaultEnabledOptions()
     {
-        $form = $this->factory->create($this->getExtensionTypeName(), $this->getSingleData(), $this->mergeOptions(array(
-            'select2' => array(
+        $form = $this->factory->create($this->getExtensionTypeName(), $this->getSingleData(), $this->mergeOptions([
+            'select2' => [
                 'enabled' => true,
-            ),
-        )));
+            ],
+        ]));
         $config = $form->getConfig();
 
         $this->assertFalse($config->getOption('compound'));
@@ -197,7 +197,7 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
 
     public function testDisabled()
     {
-        $options = array('select2' => array('enabled' => false));
+        $options = ['select2' => ['enabled' => false]];
         $form = $this->factory->create($this->getExtensionTypeName(), $this->getSingleData(), $this->mergeOptions($options));
         $config = $form->getConfig();
 
@@ -216,7 +216,7 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
 
     public function testSingleWithTags()
     {
-        $options = array('select2' => array('enabled' => true, 'tags' => true));
+        $options = ['select2' => ['enabled' => true, 'tags' => true]];
         $form = $this->factory->create($this->getExtensionTypeName(), $this->getSingleData(), $this->mergeOptions($options));
         $config = $form->getConfig();
 
@@ -239,7 +239,7 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
 
     public function testSingleAjax()
     {
-        $options = array('select2' => array('enabled' => true, 'ajax' => true));
+        $options = ['select2' => ['enabled' => true, 'ajax' => true]];
         $form = $this->factory->create($this->getExtensionTypeName(), $this->getSingleData(), $this->mergeOptions($options));
         $config = $form->getConfig();
 
@@ -261,7 +261,7 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
 
     public function testSingleAjaxWithTags()
     {
-        $options = array('select2' => array('enabled' => true, 'ajax' => true, 'tags' => true));
+        $options = ['select2' => ['enabled' => true, 'ajax' => true, 'tags' => true]];
         $form = $this->factory->create($this->getExtensionTypeName(), $this->getSingleData(), $this->mergeOptions($options));
         $config = $form->getConfig();
 
@@ -283,7 +283,7 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
 
     public function testMultiple()
     {
-        $options = array('multiple' => true, 'select2' => array('enabled' => true));
+        $options = ['multiple' => true, 'select2' => ['enabled' => true]];
         $form = $this->factory->create($this->getExtensionTypeName(), $this->getMultipleData(), $this->mergeOptions($options));
         $config = $form->getConfig();
 
@@ -305,7 +305,7 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
 
     public function testMultipleAjax()
     {
-        $options = array('multiple' => true, 'select2' => array('enabled' => true, 'ajax' => true));
+        $options = ['multiple' => true, 'select2' => ['enabled' => true, 'ajax' => true]];
         $form = $this->factory->create($this->getExtensionTypeName(), $this->getMultipleData(), $this->mergeOptions($options));
         $config = $form->getConfig();
 
@@ -327,16 +327,16 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
 
     public function testRequiredAjaxEmptyChoice()
     {
-        $options = array('select2' => array('enabled' => true, 'ajax' => true));
+        $options = ['select2' => ['enabled' => true, 'ajax' => true]];
         $form = $this->factory->create($this->getExtensionTypeName(), null, $this->mergeOptions($options));
         $view = $form->createView();
 
-        $this->assertEquals(array(), $view->vars['choices']);
+        $this->assertEquals([], $view->vars['choices']);
     }
 
     public function testSinglePlaceHolder()
     {
-        $options = array('required' => false, 'select2' => array('enabled' => true, 'ajax' => true));
+        $options = ['required' => false, 'select2' => ['enabled' => true, 'ajax' => true]];
         $form = $this->factory->create($this->getExtensionTypeName(), null, $this->mergeOptions($options));
         $view = $form->createView();
 
@@ -346,7 +346,7 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
 
     public function testAjaxRoute()
     {
-        $options = array('required' => false, 'select2' => array('enabled' => true, 'ajax' => true, 'ajax_route' => 'foobar'));
+        $options = ['required' => false, 'select2' => ['enabled' => true, 'ajax' => true, 'ajax_route' => 'foobar']];
         $form = $this->factory->create($this->getExtensionTypeName(), null, $this->mergeOptions($options));
         $view = $form->createView();
 
@@ -355,7 +355,7 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
 
     public function testAjaxUrl()
     {
-        $options = array('required' => false, 'select2' => array('enabled' => true, 'ajax' => true, 'ajax_url' => '/foo/bar'));
+        $options = ['required' => false, 'select2' => ['enabled' => true, 'ajax' => true, 'ajax_url' => '/foo/bar']];
         $form = $this->factory->create($this->getExtensionTypeName(), null, $this->mergeOptions($options));
         $view = $form->createView();
 
@@ -371,12 +371,12 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
         $choiceLoader = $this->getMockBuilder($this->getDynamicLoaderInterface())->getMock();
         $choiceLoader->expects($this->any())
             ->method('loadValuesForChoices')
-            ->will($this->returnValue(array()));
+            ->will($this->returnValue([]));
         $choiceLoader->expects($this->any())
             ->method('loadChoicesForValues')
-            ->will($this->returnValue(array()));
+            ->will($this->returnValue([]));
 
-        $options = array('select2' => array('enabled' => true), 'choice_loader' => $choiceLoader);
+        $options = ['select2' => ['enabled' => true], 'choice_loader' => $choiceLoader];
 
         $form = $this->factory->create($this->getExtensionTypeName(), null, $this->mergeOptions($options));
 
@@ -389,7 +389,7 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
      */
     public function testInvalidChoiceLoaderOption()
     {
-        $options = array('select2' => array('enabled' => true), 'choices' => null);
+        $options = ['select2' => ['enabled' => true], 'choices' => null];
 
         $this->factory->create($this->getExtensionTypeName(), null, $options);
     }

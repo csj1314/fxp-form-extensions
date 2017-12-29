@@ -116,6 +116,6 @@ trait AjaxLoaderTrait
         $this->pageSize = 10;
         $this->pageNumber = 1;
         $this->search = '';
-        $this->ids = array();
+        $this->ids = [];
     }
 }

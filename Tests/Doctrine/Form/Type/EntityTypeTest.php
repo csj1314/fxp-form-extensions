@@ -42,10 +42,10 @@ class EntityTypeTest extends TestCase
         $type = new EntityType($mr);
         $type->configureOptions(new OptionsResolver());
         $loader = $type->getLoader($om, $qb, \stdClass::class);
-        $type->buildForm($builder, array(
+        $type->buildForm($builder, [
             'multiple' => false,
             'query_builder_transformer' => new QueryBuilderTransformer(),
-        ));
+        ]);
 
         $this->assertInstanceOf(ORMQueryBuilderLoader::class, $loader);
     }

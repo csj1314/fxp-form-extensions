@@ -117,7 +117,7 @@ abstract class BaseAjaxORMQueryBuilderLoader implements AjaxEntityLoaderInterfac
         list($parameterType, $values) = ORMQueryBuilderLoader::cleanValues($qb, $identifier, $values);
 
         if (empty($values)) {
-            return array();
+            return [];
         }
 
         $this->prePaginate();

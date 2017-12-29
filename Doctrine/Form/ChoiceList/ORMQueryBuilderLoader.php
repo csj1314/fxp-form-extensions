@@ -78,7 +78,7 @@ class ORMQueryBuilderLoader implements EntityLoaderInterface
         list($parameterType, $values) = static::cleanValues($qb, $identifier, $values);
 
         if (!$values) {
-            return array();
+            return [];
         }
 
         $this->preLoad();
@@ -107,7 +107,7 @@ class ORMQueryBuilderLoader implements EntityLoaderInterface
         $entity = current($qb->getRootEntities());
         $metadata = $qb->getEntityManager()->getClassMetadata($entity);
 
-        if (in_array($metadata->getTypeOfField($identifier), array('integer', 'bigint', 'smallint'))) {
+        if (in_array($metadata->getTypeOfField($identifier), ['integer', 'bigint', 'smallint'])) {
             $parameterType = Connection::PARAM_INT_ARRAY;
 
             // Filter out non-integer values (e.g. ""). If we don't, some
@@ -130,7 +130,7 @@ class ORMQueryBuilderLoader implements EntityLoaderInterface
             $parameterType = Connection::PARAM_STR_ARRAY;
         }
 
-        return array($parameterType, $values);
+        return [$parameterType, $values];
     }
 
     /**

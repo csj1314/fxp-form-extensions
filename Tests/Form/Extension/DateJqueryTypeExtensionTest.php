@@ -45,7 +45,7 @@ class DateJqueryTypeExtensionTest extends TypeTestCase
 
     public function testDefaultOption()
     {
-        $form = $this->factory->create(DateType::class, null, array('locale' => 'en'));
+        $form = $this->factory->create(DateType::class, null, ['locale' => 'en']);
         $config = $form->getConfig();
 
         $this->assertEquals('single_text', $config->getOption('widget'));
@@ -57,16 +57,16 @@ class DateJqueryTypeExtensionTest extends TypeTestCase
 
     public function testFormatFr()
     {
-        $form = $this->factory->create(DateType::class, null, array('locale' => 'fr_FR'));
+        $form = $this->factory->create(DateType::class, null, ['locale' => 'fr_FR']);
 
-        $this->assertTrue(in_array($form->getConfig()->getOption('format'), array('dd/MM/y', 'dd/MM/yy')));
+        $this->assertTrue(in_array($form->getConfig()->getOption('format'), ['dd/MM/y', 'dd/MM/yy']));
     }
 
     public function testDefaultAttributes()
     {
-        $form = $this->factory->create(DateType::class, null, array('locale' => 'en'));
+        $form = $this->factory->create(DateType::class, null, ['locale' => 'en']);
         $view = $form->createView();
-        $validAttr = array(
+        $validAttr = [
             'data-locale' => 'en',
             'data-date-picker' => 'true',
             'data-time-picker' => 'false',
@@ -77,7 +77,7 @@ class DateJqueryTypeExtensionTest extends TypeTestCase
             'data-with-seconds' => 'false',
             'data-datetime-picker' => 'true',
             'data-button-id' => 'date_datetime_btn',
-        );
+        ];
 
         $this->assertEquals($validAttr, $view->vars['attr']);
     }

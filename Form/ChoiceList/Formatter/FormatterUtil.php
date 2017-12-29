@@ -29,7 +29,7 @@ class FormatterUtil
      */
     public static function formatResultData(AjaxChoiceListFormatterInterface $formatter, ChoiceListView $choiceListView)
     {
-        $result = array();
+        $result = [];
 
         foreach ($choiceListView->choices as $i => $choiceView) {
             if ($choiceView instanceof ChoiceGroupView) {

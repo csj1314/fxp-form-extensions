@@ -51,7 +51,7 @@ abstract class AbstractAjaxChoiceLoaderTest extends AbstractChoiceLoaderTest
         $loader->setPageSize(1);
         $loader->setPageNumber(2);
         $loader->setSearch('Foo');
-        $loader->setIds(array('2'));
+        $loader->setIds(['2']);
 
         $this->assertEquals(1, $loader->getPageSize());
         $this->assertEquals(2, $loader->getPageNumber());
@@ -75,20 +75,20 @@ abstract class AbstractAjaxChoiceLoaderTest extends AbstractChoiceLoaderTest
 
     public function getPagination()
     {
-        return array(
-            array(false, 1, 2),
-            array(true, 1, 2),
-            array(false, 1, 0),
-            array(true, 1, 0),
-            array(false, 1, -1),
-            array(true, 1, -1),
-            array(false, 0, 2),
-            array(true, 0, 2),
-            array(false, -1, 2),
-            array(true, -1, 2),
-            array(false, 2, 2),
-            array(true, 2, 2),
-        );
+        return [
+            [false, 1, 2],
+            [true, 1, 2],
+            [false, 1, 0],
+            [true, 1, 0],
+            [false, 1, -1],
+            [true, 1, -1],
+            [false, 0, 2],
+            [true, 0, 2],
+            [false, -1, 2],
+            [true, -1, 2],
+            [false, 2, 2],
+            [true, 2, 2],
+        ];
     }
 
     /**

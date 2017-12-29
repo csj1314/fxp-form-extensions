@@ -130,13 +130,13 @@ abstract class AbstractSelect2TypeExtension extends AbstractSelect2ConfigTypeExt
             /* @var DynamicChoiceLoaderInterface $loader */
             $loader = $options['choice_loader'];
             $values = $form->getData() instanceof ArrayCollection ? $form->getData()->toArray() : $form->getData();
-            $values = is_object($values) ? array($values) : (array) $values;
+            $values = is_object($values) ? [$values] : (array) $values;
             $choiceListView = $this->createChoiceListView($loader->loadChoiceListForView($values, $options['choice_name']), $options);
 
-            $view->vars = array_replace($view->vars, array(
+            $view->vars = array_replace($view->vars, [
                 'preferred_choices' => $choiceListView->preferredChoices,
                 'choices' => $choiceListView->choices,
-            ));
+            ]);
         }
     }
 
@@ -168,7 +168,7 @@ abstract class AbstractSelect2TypeExtension extends AbstractSelect2ConfigTypeExt
             }
         }
 
-        return array($ajaxUrl, $routeName);
+        return [$ajaxUrl, $routeName];
     }
 
     /**
@@ -205,8 +205,8 @@ abstract class AbstractSelect2TypeExtension extends AbstractSelect2ConfigTypeExt
         $allowClear = $options['required'] ? null : 'true';
         $allowClear = isset($options['select2']['allow_clear']) ? 'true' : $allowClear;
 
-        return array(
-            'select2' => $this->skipNullValue(array(
+        return [
+            'select2' => $this->skipNullValue([
                 'wrapper_attr' => $options['select2']['wrapper_attr'],
                 'placeholder' => isset($options['placeholder']) ? $options['placeholder'] : null,
                 'width' => $options['select2']['width'],
@@ -231,7 +231,7 @@ abstract class AbstractSelect2TypeExtension extends AbstractSelect2ConfigTypeExt
                 'dir' => $options['select2']['dir'],
                 'theme' => $options['select2']['theme'],
                 'language' => strtolower(str_replace('_', '-', $options['select2']['language'])),
-                'ajax' => array(
+                'ajax' => [
                     'enabled' => $options['select2']['ajax'],
                     'url' => $ajaxUrl,
                     'data_type' => $options['select2']['ajax_data_type'],
@@ -242,9 +242,9 @@ abstract class AbstractSelect2TypeExtension extends AbstractSelect2ConfigTypeExt
                     'transport' => $options['select2']['ajax_transport'],
                     'ajax_id' => null === $routeName ? $view->vars['id'] : null,
                     'page_size' => $options['select2']['ajax_page_size'],
-                ),
-            )),
-        );
+                ],
+            ]),
+        ];
     }
 
     /**
@@ -256,7 +256,7 @@ abstract class AbstractSelect2TypeExtension extends AbstractSelect2ConfigTypeExt
      */
     protected function skipNullValue(array $attributes)
     {
-        $attr = array();
+        $attr = [];
 
         foreach ($attributes as $key => $value) {
             if (null !== $value) {

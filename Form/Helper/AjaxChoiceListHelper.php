@@ -45,7 +45,7 @@ class AjaxChoiceListHelper
      */
     public static function generateResponse(Request $request, $choiceLoader, $format = 'json', $prefix = '')
     {
-        $formats = array('xml', 'json');
+        $formats = ['xml', 'json'];
 
         if (!in_array($format, $formats)) {
             $msg = "The '%s' format is not allowed. Try with '%s'";
@@ -65,8 +65,8 @@ class AjaxChoiceListHelper
 
         $data = static::getData($request, $choiceLoader, $formatter, $prefix);
 
-        $encoders = array(new XmlEncoder(), new JsonEncoder());
-        $normalizers = array(new GetSetMethodNormalizer());
+        $encoders = [new XmlEncoder(), new JsonEncoder()];
+        $normalizers = [new GetSetMethodNormalizer()];
         $serializer = new Serializer($normalizers, $encoders);
 
         $response = new Response();
@@ -92,8 +92,8 @@ class AjaxChoiceListHelper
 
         if (is_string($ajaxIds) && '' !== $ajaxIds) {
             $ajaxIds = explode(',', $ajaxIds);
-        } elseif (!is_array($ajaxIds) || in_array($ajaxIds, array(null, ''))) {
-            $ajaxIds = array();
+        } elseif (!is_array($ajaxIds) || in_array($ajaxIds, [null, ''])) {
+            $ajaxIds = [];
         }
 
         $choiceLoader->setPageSize((int) ($request->get($prefix.'ps', $choiceLoader->getPageSize())));
