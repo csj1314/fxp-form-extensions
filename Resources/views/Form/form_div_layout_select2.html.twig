@@ -7,12 +7,14 @@
         {{- block('base_choice_widget') -}}
     </div>
 
-    {%- inline_script -%}
+    {{- block('select2_widget_content_wrapper_js')  -}}
+{%- endblock select2_widget_content %}
+
+{% block select2_widget_content_wrapper_js -%}
     <script>
         {{- block('select2_widget_content_js')  -}}
     </script>
-    {%- endinline_script -%}
-{%- endblock select2_widget_content %}
+{% endblock select2_widget_content_wrapper_js -%}
 
 {% block select2_widget_content_js -%}
     {% if select2.ajax.enabled or select2.tags is defined %}
