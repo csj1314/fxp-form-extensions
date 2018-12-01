@@ -11,6 +11,7 @@
 
 namespace Fxp\Component\FormExtensions\Tests\Form\Extension;
 
+use Fxp\Component\FormExtensions\Form\Extension\CurrencySelect2TypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\CurrencyType;
 
 /**
@@ -21,6 +22,11 @@ use Symfony\Component\Form\Extension\Core\Type\CurrencyType;
 class CurrencySelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTest
 {
     protected function getExtensionTypeName()
+    {
+        return CurrencySelect2TypeExtension::class;
+    }
+
+    protected function getTypeName()
     {
         return CurrencyType::class;
     }

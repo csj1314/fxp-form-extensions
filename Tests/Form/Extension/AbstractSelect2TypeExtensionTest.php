@@ -11,13 +11,14 @@
 
 namespace Fxp\Component\FormExtensions\Tests\Form\Extension;
 
-use Fxp\Component\FormExtensions\Form\Extension\ChoiceSelect2TypeExtension;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\ChoiceList\Loader\ChoiceLoaderInterface;
 use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\FormConfigInterface;
+use Symfony\Component\Form\FormFactoryBuilderInterface;
 use Symfony\Component\Form\Forms;
 use Symfony\Component\Form\Test\TypeTestCase;
+use Symfony\Component\Form\Util\StringUtil;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\RouterInterface;
@@ -64,10 +65,12 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
             }))
         ;
 
-        $this->factory = Forms::createFormFactoryBuilder()
+        $factoryBuilder = Forms::createFormFactoryBuilder()
             ->addExtensions($this->getExtensions())
-            ->addTypeExtension(new ChoiceSelect2TypeExtension($this->dispatcher, $this->requestStack, $this->router, $this->getExtensionTypeName(), 10))
-            ->getFormFactory();
+        ;
+        $this->buildFormFactory($factoryBuilder);
+
+        $this->factory = $factoryBuilder->getFormFactory();
 
         $this->dispatcher = $this->getMockBuilder('Symfony\Component\EventDispatcher\EventDispatcherInterface')->getMock();
         $this->builder = new FormBuilder(null, null, $this->dispatcher, $this->factory);
@@ -79,6 +82,17 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
 
         $this->requestStack = null;
         $this->router = null;
+    }
+
+    /**
+     * Build the form factory builder.
+     *
+     * @param FormFactoryBuilderInterface $factoryBuilder The form factory builder
+     */
+    protected function buildFormFactory(FormFactoryBuilderInterface $factoryBuilder)
+    {
+        $extName = $this->getExtensionTypeName();
+        $factoryBuilder->addTypeExtension(new $extName($this->dispatcher, $this->requestStack, $this->router, 10));
     }
 
     /**
@@ -118,6 +132,11 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
     /**
      * @return string
      */
+    abstract protected function getTypeName();
+
+    /**
+     * @return string
+     */
     abstract protected function getSingleData();
 
     /**
@@ -147,7 +166,7 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
 
     public function testDefaultOptions()
     {
-        $form = $this->factory->create($this->getExtensionTypeName(), $this->getSingleData(), $this->mergeOptions([]));
+        $form = $this->factory->create($this->getTypeName(), $this->getSingleData(), $this->mergeOptions([]));
         $config = $form->getConfig();
 
         $this->assertFalse($config->getOption('compound'));
@@ -172,7 +191,7 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
 
     public function testDefaultEnabledOptions()
     {
-        $form = $this->factory->create($this->getExtensionTypeName(), $this->getSingleData(), $this->mergeOptions([
+        $form = $this->factory->create($this->getTypeName(), $this->getSingleData(), $this->mergeOptions([
             'select2' => [
                 'enabled' => true,
             ],
@@ -198,7 +217,7 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
     public function testDisabled()
     {
         $options = ['select2' => ['enabled' => false]];
-        $form = $this->factory->create($this->getExtensionTypeName(), $this->getSingleData(), $this->mergeOptions($options));
+        $form = $this->factory->create($this->getTypeName(), $this->getSingleData(), $this->mergeOptions($options));
         $config = $form->getConfig();
 
         $this->assertFalse($config->getOption('compound'));
@@ -217,7 +236,7 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
     public function testSingleWithTags()
     {
         $options = ['select2' => ['enabled' => true, 'tags' => true]];
-        $form = $this->factory->create($this->getExtensionTypeName(), $this->getSingleData(), $this->mergeOptions($options));
+        $form = $this->factory->create($this->getTypeName(), $this->getSingleData(), $this->mergeOptions($options));
         $config = $form->getConfig();
 
         $this->assertFalse($config->getOption('compound'));
@@ -240,7 +259,7 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
     public function testSingleAjax()
     {
         $options = ['select2' => ['enabled' => true, 'ajax' => true]];
-        $form = $this->factory->create($this->getExtensionTypeName(), $this->getSingleData(), $this->mergeOptions($options));
+        $form = $this->factory->create($this->getTypeName(), $this->getSingleData(), $this->mergeOptions($options));
         $config = $form->getConfig();
 
         $this->assertFalse($config->getOption('compound'));
@@ -262,7 +281,7 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
     public function testSingleAjaxWithTags()
     {
         $options = ['select2' => ['enabled' => true, 'ajax' => true, 'tags' => true]];
-        $form = $this->factory->create($this->getExtensionTypeName(), $this->getSingleData(), $this->mergeOptions($options));
+        $form = $this->factory->create($this->getTypeName(), $this->getSingleData(), $this->mergeOptions($options));
         $config = $form->getConfig();
 
         $this->assertFalse($config->getOption('compound'));
@@ -284,7 +303,7 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
     public function testMultiple()
     {
         $options = ['multiple' => true, 'select2' => ['enabled' => true]];
-        $form = $this->factory->create($this->getExtensionTypeName(), $this->getMultipleData(), $this->mergeOptions($options));
+        $form = $this->factory->create($this->getTypeName(), $this->getMultipleData(), $this->mergeOptions($options));
         $config = $form->getConfig();
 
         $this->assertFalse($config->getOption('compound'));
@@ -306,7 +325,7 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
     public function testMultipleAjax()
     {
         $options = ['multiple' => true, 'select2' => ['enabled' => true, 'ajax' => true]];
-        $form = $this->factory->create($this->getExtensionTypeName(), $this->getMultipleData(), $this->mergeOptions($options));
+        $form = $this->factory->create($this->getTypeName(), $this->getMultipleData(), $this->mergeOptions($options));
         $config = $form->getConfig();
 
         $this->assertFalse($config->getOption('compound'));
@@ -328,7 +347,7 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
     public function testRequiredAjaxEmptyChoice()
     {
         $options = ['select2' => ['enabled' => true, 'ajax' => true]];
-        $form = $this->factory->create($this->getExtensionTypeName(), null, $this->mergeOptions($options));
+        $form = $this->factory->create($this->getTypeName(), null, $this->mergeOptions($options));
         $view = $form->createView();
 
         $this->assertEquals([], $view->vars['choices']);
@@ -337,7 +356,7 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
     public function testSinglePlaceHolder()
     {
         $options = ['required' => false, 'select2' => ['enabled' => true, 'ajax' => true]];
-        $form = $this->factory->create($this->getExtensionTypeName(), null, $this->mergeOptions($options));
+        $form = $this->factory->create($this->getTypeName(), null, $this->mergeOptions($options));
         $view = $form->createView();
 
         $this->assertTrue(isset($view->vars['placeholder']));
@@ -347,7 +366,7 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
     public function testAjaxRoute()
     {
         $options = ['required' => false, 'select2' => ['enabled' => true, 'ajax' => true, 'ajax_route' => 'foobar']];
-        $form = $this->factory->create($this->getExtensionTypeName(), null, $this->mergeOptions($options));
+        $form = $this->factory->create($this->getTypeName(), null, $this->mergeOptions($options));
         $view = $form->createView();
 
         $this->assertEquals('/foobar', $view->vars['select2']['ajax']['url']);
@@ -356,7 +375,7 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
     public function testAjaxUrl()
     {
         $options = ['required' => false, 'select2' => ['enabled' => true, 'ajax' => true, 'ajax_url' => '/foo/bar']];
-        $form = $this->factory->create($this->getExtensionTypeName(), null, $this->mergeOptions($options));
+        $form = $this->factory->create($this->getTypeName(), null, $this->mergeOptions($options));
         $view = $form->createView();
 
         $url = $this instanceof CollectionSelect2TypeExtensionTest
@@ -378,7 +397,7 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
 
         $options = ['select2' => ['enabled' => true], 'choice_loader' => $choiceLoader];
 
-        $form = $this->factory->create($this->getExtensionTypeName(), null, $this->mergeOptions($options));
+        $form = $this->factory->create($this->getTypeName(), null, $this->mergeOptions($options));
 
         $this->assertSame($choiceLoader, $form->getConfig()->getOption('choice_loader'));
     }
@@ -391,6 +410,18 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
     {
         $options = ['select2' => ['enabled' => true], 'choices' => null];
 
-        $this->factory->create($this->getExtensionTypeName(), null, $options);
+        $this->factory->create($this->getTypeName(), null, $options);
+    }
+
+    public function testAjaxRouteAttribute()
+    {
+        $form = $this->factory->create($this->getTypeName());
+        $config = $form->getConfig();
+
+        $this->assertTrue($config->hasOption('select2'));
+        $select2Opts = $config->getOption('select2');
+        $this->assertArrayHasKey('ajax_route', $select2Opts);
+        $this->assertNull($select2Opts['ajax_route']);
+        $this->assertEquals('fxp_form_extensions_ajax_'.StringUtil::fqcnToBlockPrefix($this->getTypeName()), $config->getAttribute('select2_ajax_route'));
     }
 }

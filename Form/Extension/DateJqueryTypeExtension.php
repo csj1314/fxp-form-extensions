@@ -39,4 +39,12 @@ class DateJqueryTypeExtension extends DateTimeJqueryTypeExtension
     {
         return DateType::class;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getExtendedTypes()
+    {
+        return [DateType::class];
+    }
 }

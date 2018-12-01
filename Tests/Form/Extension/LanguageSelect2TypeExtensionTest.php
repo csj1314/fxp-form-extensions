@@ -11,6 +11,7 @@
 
 namespace Fxp\Component\FormExtensions\Tests\Form\Extension;
 
+use Fxp\Component\FormExtensions\Form\Extension\LanguageSelect2TypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\LanguageType;
 
 /**
@@ -21,6 +22,11 @@ use Symfony\Component\Form\Extension\Core\Type\LanguageType;
 class LanguageSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTest
 {
     protected function getExtensionTypeName()
+    {
+        return LanguageSelect2TypeExtension::class;
+    }
+
+    protected function getTypeName()
     {
         return LanguageType::class;
     }

@@ -11,7 +11,6 @@
 
 namespace Fxp\Component\FormExtensions\Form\Extension;
 
-use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Util\StringUtil;
 
@@ -20,38 +19,15 @@ use Symfony\Component\Form\Util\StringUtil;
  *
  * @author François Pluchino <francois.pluchino@gmail.com>
  */
-class BaseChoiceSelect2TypeExtension extends AbstractTypeExtension
+abstract class AbstractChoiceSelect2TypeExtension extends AbstractSelect2TypeExtension
 {
-    /**
-     * @var string
-     */
-    protected $type;
-
-    /**
-     * Constructor.
-     *
-     * @param string $type
-     */
-    public function __construct($type)
-    {
-        $this->type = $type;
-    }
-
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         if (null === $options['select2']['ajax_route']) {
-            $builder->setAttribute('select2_ajax_route', 'fxp_form_extensions_ajax_'.StringUtil::fqcnToBlockPrefix($this->type));
+            $builder->setAttribute('select2_ajax_route', 'fxp_form_extensions_ajax_'.StringUtil::fqcnToBlockPrefix(current(static::getExtendedTypes())));
         }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getExtendedType()
-    {
-        return $this->type;
     }
 }

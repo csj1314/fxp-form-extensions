@@ -47,26 +47,19 @@ abstract class AbstractSelect2TypeExtension extends AbstractSelect2ConfigTypeExt
     protected $router;
 
     /**
-     * @var string
-     */
-    protected $type;
-
-    /**
      * Constructor.
      *
      * @param EventDispatcherInterface   $dispatcher
      * @param RequestStack               $requestStack
      * @param RouterInterface            $router
-     * @param string                     $type
      * @param int                        $defaultPageSize
      * @param ChoiceListFactoryInterface $choiceListFactory
      */
-    public function __construct(EventDispatcherInterface $dispatcher, RequestStack $requestStack, RouterInterface $router, $type, $defaultPageSize = 10, ChoiceListFactoryInterface $choiceListFactory = null)
+    public function __construct(EventDispatcherInterface $dispatcher, RequestStack $requestStack, RouterInterface $router, $defaultPageSize = 10, ChoiceListFactoryInterface $choiceListFactory = null)
     {
         $this->dispatcher = $dispatcher;
         $this->requestStack = $requestStack;
         $this->router = $router;
-        $this->type = $type;
 
         parent::__construct($defaultPageSize, $choiceListFactory);
     }
@@ -106,14 +99,6 @@ abstract class AbstractSelect2TypeExtension extends AbstractSelect2ConfigTypeExt
 
         $view->vars['form']->vars['no_label_for'] = true;
         $view->vars['required'] = !isset($options['multiple']) || $options['multiple'] ? false : $view->vars['required'];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getExtendedType()
-    {
-        return $this->type;
     }
 
     /**

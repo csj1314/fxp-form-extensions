@@ -9,19 +9,30 @@
  * file that was distributed with this source code.
  */
 
-namespace Fxp\Component\FormExtensions\Tests\Form\Extension;
+namespace Fxp\Component\FormExtensions\Form\Extension;
 
 use Symfony\Component\Form\Extension\Core\Type\CurrencyType;
 
 /**
- * Tests case for currency of base choice select2 form extension type.
+ * Currency choice type extension.
  *
  * @author François Pluchino <francois.pluchino@gmail.com>
  */
-class CurrencyBaseChoiceSelect2TypeExtensionTest extends AbstractBaseChoiceSelect2TypeExtensionTest
+class CurrencySelect2TypeExtension extends AbstractChoiceSelect2TypeExtension
 {
-    protected function getExtensionTypeName()
+    /**
+     * {@inheritdoc}
+     */
+    public function getExtendedType()
     {
         return CurrencyType::class;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getExtendedTypes()
+    {
+        return [CurrencyType::class];
     }
 }

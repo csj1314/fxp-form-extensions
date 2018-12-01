@@ -37,6 +37,14 @@ class CollectionSelect2TypeExtension extends AbstractSelect2ConfigTypeExtension
     /**
      * {@inheritdoc}
      */
+    public static function getExtendedTypes()
+    {
+        return [CollectionType::class];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         if (!$options['select2']['enabled']) {

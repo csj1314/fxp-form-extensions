@@ -11,6 +11,7 @@
 
 namespace Fxp\Component\FormExtensions\Tests\Form\Extension;
 
+use Fxp\Component\FormExtensions\Form\Extension\LocaleSelect2TypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\LocaleType;
 
 /**
@@ -21,6 +22,11 @@ use Symfony\Component\Form\Extension\Core\Type\LocaleType;
 class LocaleSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTest
 {
     protected function getExtensionTypeName()
+    {
+        return LocaleSelect2TypeExtension::class;
+    }
+
+    protected function getTypeName()
     {
         return LocaleType::class;
     }

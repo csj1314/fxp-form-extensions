@@ -122,4 +122,12 @@ class DateTimeJqueryTypeExtension extends AbstractTypeExtension
     {
         return DateTimeType::class;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getExtendedTypes()
+    {
+        return [DateTimeType::class];
+    }
 }

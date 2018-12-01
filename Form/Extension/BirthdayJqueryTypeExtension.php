@@ -25,4 +25,12 @@ class BirthdayJqueryTypeExtension extends DateJqueryTypeExtension
     {
         return BirthdayType::class;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getExtendedTypes()
+    {
+        return [BirthdayType::class];
+    }
 }

@@ -23,9 +23,8 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bridge\Doctrine\Test\DoctrineTestHelper;
 use Symfony\Bridge\Doctrine\Tests\Fixtures\SingleIntIdEntity;
 use Symfony\Component\Form\ChoiceList\View\ChoiceView;
-use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\FormConfigInterface;
-use Symfony\Component\Form\Forms;
+use Symfony\Component\Form\FormFactoryBuilderInterface;
 
 /**
  * Tests case for entity of select2 form extension type.
@@ -53,8 +52,6 @@ class EntitySelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTest
 
     protected function setUp()
     {
-        parent::setUp();
-
         if (!class_exists('Symfony\Component\Form\Form')) {
             $this->markTestSkipped('The "Form" component is not available');
         }
@@ -92,14 +89,7 @@ class EntitySelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTest
 
         $this->createEntities();
 
-        $this->factory = Forms::createFormFactoryBuilder()
-            ->addExtensions($this->getExtensions())
-            ->addTypeExtension(new ChoiceSelect2TypeExtension($this->dispatcher, $this->requestStack, $this->router, $this->getExtensionTypeName(), 10))
-            ->addType(new EntityType($this->emRegistry))
-            ->addTypeExtension(new EntitySelect2TypeExtension())
-            ->getFormFactory();
-
-        $this->builder = new FormBuilder(null, null, $this->dispatcher, $this->factory);
+        parent::setUp();
     }
 
     protected function tearDown()
@@ -108,6 +98,15 @@ class EntitySelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTest
 
         $this->em = null;
         $this->items = null;
+    }
+
+    protected function buildFormFactory(FormFactoryBuilderInterface $factoryBuilder)
+    {
+        $factoryBuilder
+            ->addTypeExtension(new ChoiceSelect2TypeExtension($this->dispatcher, $this->requestStack, $this->router, 10))
+            ->addType(new EntityType($this->emRegistry))
+            ->addTypeExtension(new EntitySelect2TypeExtension())
+        ;
     }
 
     protected function createRegistryMock($name, $em)
@@ -152,6 +151,11 @@ class EntitySelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTest
     }
 
     protected function getExtensionTypeName()
+    {
+        return EntitySelect2TypeExtension::class;
+    }
+
+    protected function getTypeName()
     {
         return EntityType::class;
     }
@@ -205,6 +209,9 @@ class EntitySelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTest
         $this->assertTrue(true);
     }
 
+    /**
+     * @group bug2
+     */
     public function testWithQueryBuilder()
     {
         $qb = $this->em->createQueryBuilder()
@@ -218,7 +225,7 @@ class EntitySelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTest
             ],
         ];
 
-        $form = $this->factory->create($this->getExtensionTypeName(), $this->getSingleData(), $this->mergeOptions($options));
+        $form = $this->factory->create($this->getTypeName(), $this->getSingleData(), $this->mergeOptions($options));
         $config = $form->getConfig();
 
         $this->assertFalse($config->getOption('compound'));
@@ -231,7 +238,7 @@ class EntitySelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTest
         $this->assertInstanceOf('Fxp\Component\FormExtensions\Form\ChoiceList\Loader\DynamicChoiceLoaderInterface', $config->getOption('choice_loader'));
 
         // test cache with hash
-        $this->factory->create($this->getExtensionTypeName(), $this->getSingleData(), $this->mergeOptions($options));
+        $this->factory->create($this->getTypeName(), $this->getSingleData(), $this->mergeOptions($options));
     }
 
     public function testAjaxEntityLoaderOption()
@@ -245,7 +252,7 @@ class EntitySelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTest
             ],
         ];
 
-        $form = $this->factory->create($this->getExtensionTypeName(), $this->getSingleData(), $this->mergeOptions($options));
+        $form = $this->factory->create($this->getTypeName(), $this->getSingleData(), $this->mergeOptions($options));
         $config = $form->getConfig();
         $choiceLoader = $config->getOption('choice_loader');
 
@@ -257,5 +264,11 @@ class EntitySelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTest
         $objectLoader = $prop->getValue($choiceLoader);
 
         $this->assertSame($ael, $objectLoader);
+    }
+
+    public function testAjaxRouteAttribute()
+    {
+        // Skip test
+        $this->assertTrue(true);
     }
 }

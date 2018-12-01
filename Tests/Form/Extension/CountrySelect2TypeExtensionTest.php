@@ -11,6 +11,7 @@
 
 namespace Fxp\Component\FormExtensions\Tests\Form\Extension;
 
+use Fxp\Component\FormExtensions\Form\Extension\CountrySelect2TypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 
 /**
@@ -21,6 +22,11 @@ use Symfony\Component\Form\Extension\Core\Type\CountryType;
 class CountrySelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTest
 {
     protected function getExtensionTypeName()
+    {
+        return CountrySelect2TypeExtension::class;
+    }
+
+    protected function getTypeName()
     {
         return CountryType::class;
     }

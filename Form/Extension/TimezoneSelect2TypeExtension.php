@@ -11,19 +11,21 @@
 
 namespace Fxp\Component\FormExtensions\Form\Extension;
 
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TimezoneType;
 
 /**
+ * Timezone choice type extension.
+ *
  * @author François Pluchino <francois.pluchino@gmail.com>
  */
-class ChoiceSelect2TypeExtension extends AbstractChoiceSelect2TypeExtension
+class TimezoneSelect2TypeExtension extends AbstractChoiceSelect2TypeExtension
 {
     /**
      * {@inheritdoc}
      */
     public function getExtendedType()
     {
-        return ChoiceType::class;
+        return TimezoneType::class;
     }
 
     /**
@@ -31,6 +33,6 @@ class ChoiceSelect2TypeExtension extends AbstractChoiceSelect2TypeExtension
      */
     public static function getExtendedTypes()
     {
-        return [ChoiceType::class];
+        return [TimezoneType::class];
     }
 }

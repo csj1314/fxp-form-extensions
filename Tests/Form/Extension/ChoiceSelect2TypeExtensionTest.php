@@ -11,6 +11,7 @@
 
 namespace Fxp\Component\FormExtensions\Tests\Form\Extension;
 
+use Fxp\Component\FormExtensions\Form\Extension\ChoiceSelect2TypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormConfigInterface;
 
@@ -27,6 +28,11 @@ class ChoiceSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTest
     }
 
     protected function getExtensionTypeName()
+    {
+        return ChoiceSelect2TypeExtension::class;
+    }
+
+    protected function getTypeName()
     {
         return ChoiceType::class;
     }
