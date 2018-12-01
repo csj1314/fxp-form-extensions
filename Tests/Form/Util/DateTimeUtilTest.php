@@ -23,7 +23,7 @@ class DateTimeUtilTest extends TestCase
 {
     public function testGetJsFormat()
     {
-        $this->assertTrue(in_array(DateTimeUtil::getJsFormat('en_US'), ['M/D/YYYY h:mm A', 'M/D/YYYY, h:mm A']));
+        $this->assertTrue(\in_array(DateTimeUtil::getJsFormat('en_US'), ['M/D/YYYY h:mm A', 'M/D/YYYY, h:mm A']));
     }
 
     public function testGetJsFormatFr()

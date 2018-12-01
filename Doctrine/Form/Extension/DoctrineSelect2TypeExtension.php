@@ -89,14 +89,14 @@ abstract class DoctrineSelect2TypeExtension extends AbstractTypeExtension
                     $doctrineChoiceLoader = new AjaxDoctrineChoiceLoader($entityLoader,
                         $options['choice_value'],
                         $options['id_reader']->getIdField(),
-                        null === $options['choice_label_name'] && is_string($options['choice_label']) ? $options['choice_label'] : $options['choice_label_name'],
+                        null === $options['choice_label_name'] && \is_string($options['choice_label']) ? $options['choice_label'] : $options['choice_label_name'],
                         $choiceListFactory
                     );
                 } else {
                     $doctrineChoiceLoader = new DynamicDoctrineChoiceLoader($entityLoader,
                         $options['choice_value'],
                         $options['id_reader']->getIdField(),
-                        null === $options['choice_label_name'] && is_string($options['choice_label']) ? $options['choice_label'] : $options['choice_label_name'],
+                        null === $options['choice_label_name'] && \is_string($options['choice_label']) ? $options['choice_label'] : $options['choice_label_name'],
                         $choiceListFactory
                     );
                 }

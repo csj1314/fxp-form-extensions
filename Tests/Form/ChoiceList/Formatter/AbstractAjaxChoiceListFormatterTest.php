@@ -77,7 +77,7 @@ abstract class AbstractAjaxChoiceListFormatterTest extends TestCase
     {
         $this->choiceLoader->expects($this->any())
             ->method('getSize')
-            ->will($this->returnValue(count($choiceList->getChoices())));
+            ->will($this->returnValue(\count($choiceList->getChoices())));
 
         $this->choiceLoader->expects($this->any())
             ->method('loadPaginatedChoiceList')

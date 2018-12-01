@@ -47,7 +47,7 @@ class AjaxChoiceListHelper
     {
         $formats = ['xml', 'json'];
 
-        if (!in_array($format, $formats)) {
+        if (!\in_array($format, $formats)) {
             $msg = "The '%s' format is not allowed. Try with '%s'";
             throw new InvalidArgumentException(sprintf($msg, $format, implode("', '", $formats)));
         }
@@ -90,9 +90,9 @@ class AjaxChoiceListHelper
     {
         $ajaxIds = $request->get($prefix.'ids', '');
 
-        if (is_string($ajaxIds) && '' !== $ajaxIds) {
+        if (\is_string($ajaxIds) && '' !== $ajaxIds) {
             $ajaxIds = explode(',', $ajaxIds);
-        } elseif (!is_array($ajaxIds) || in_array($ajaxIds, [null, ''])) {
+        } elseif (!\is_array($ajaxIds) || \in_array($ajaxIds, [null, ''])) {
             $ajaxIds = [];
         }
 

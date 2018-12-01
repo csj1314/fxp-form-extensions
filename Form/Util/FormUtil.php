@@ -45,7 +45,7 @@ class FormUtil extends BaseFormUtil
     {
         if (null === $rType) {
             return false;
-        } elseif (!in_array(get_class($rType->getInnerType()), $types)) {
+        } elseif (!\in_array(\get_class($rType->getInnerType()), $types)) {
             return static::isType($types, $rType->getParent());
         }
 

@@ -44,7 +44,7 @@ class TagDecoratorTest extends TestCase
         return [
             [['foo'], ['foo'], null],
             [[23], [24], function ($v = null) {
-                return is_int($v) ? $v + 1 : $v;
+                return \is_int($v) ? $v + 1 : $v;
             }],
             [[23], [23], null],
             [[$object], [$object], null],
@@ -64,14 +64,14 @@ class TagDecoratorTest extends TestCase
         $this->factory->expects($this->once())
             ->method('createListFromChoices')
             ->willReturnCallback(function ($choices, $value) use ($self) {
-                $self->assertTrue(is_array($choices));
-                $self->assertGreaterThanOrEqual(1, count($choices));
+                $self->assertTrue(\is_array($choices));
+                $self->assertGreaterThanOrEqual(1, \count($choices));
                 $self->assertInstanceOf(\Closure::class, $value);
 
                 $result = $choices;
 
                 foreach ($result as &$choice) {
-                    $choice = call_user_func($value, $choice);
+                    $choice = \call_user_func($value, $choice);
                 }
 
                 return $result;
@@ -108,7 +108,7 @@ class TagDecoratorTest extends TestCase
                 $result = $loader->loadValuesForChoices([], $value);
 
                 foreach ($result as &$choice) {
-                    $choice = call_user_func($value, $choice);
+                    $choice = \call_user_func($value, $choice);
                 }
 
                 return $result;

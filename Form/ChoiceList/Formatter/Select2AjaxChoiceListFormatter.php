@@ -92,6 +92,6 @@ class Select2AjaxChoiceListFormatter implements AjaxChoiceListFormatterInterface
      */
     public function isEmptyGroup($group)
     {
-        return 0 === count($group['children']);
+        return 0 === \count($group['children']);
     }
 }

@@ -40,7 +40,7 @@ class Select2Util
             return $value;
         }
 
-        if (!is_array($options['choices'])) {
+        if (!\is_array($options['choices'])) {
             throw new InvalidConfigurationException('The "choice_loader" option must be an instance of DynamicChoiceLoaderInterface or the "choices" option must be an array');
         }
 

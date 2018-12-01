@@ -29,7 +29,7 @@ class LoaderUtil
         list($startTo, $endTo) = static::getRangeValues($choiceLoader);
 
         // group
-        if (is_array(current($choices))) {
+        if (\is_array(current($choices))) {
             return static::paginateGroupChoices($choices, $startTo, $endTo);
         }
 

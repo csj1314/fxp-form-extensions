@@ -107,7 +107,7 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
     {
         $choices = $this->getChoices();
 
-        if (is_array($choices)) {
+        if (\is_array($choices)) {
             $options['choices'] = $choices;
         }
 

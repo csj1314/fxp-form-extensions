@@ -62,7 +62,7 @@ class DynamicDoctrineChoiceLoader extends AbstractDynamicChoiceLoader
      */
     public function getSize()
     {
-        return count($this->objectLoader->getEntities());
+        return \count($this->objectLoader->getEntities());
     }
 
     /**
@@ -76,7 +76,7 @@ class DynamicDoctrineChoiceLoader extends AbstractDynamicChoiceLoader
             $choices = $this->loadChoicesForValues($this->getRealValues($values, $value), $value);
 
             foreach ($choices as $choice) {
-                if (is_string($choice)) {
+                if (\is_string($choice)) {
                     $list[] = $choice;
                 }
             }
@@ -115,7 +115,7 @@ class DynamicDoctrineChoiceLoader extends AbstractDynamicChoiceLoader
         $objects = [];
 
         foreach ($unorderedObjects as $object) {
-            $objectsById[call_user_func($value, $object)] = $object;
+            $objectsById[\call_user_func($value, $object)] = $object;
         }
 
         foreach ($values as $i => $id) {
@@ -143,9 +143,9 @@ class DynamicDoctrineChoiceLoader extends AbstractDynamicChoiceLoader
         $values = [];
 
         foreach ($choices as $i => $object) {
-            if (is_object($object)) {
+            if (\is_object($object)) {
                 try {
-                    $values[$i] = (string) call_user_func($value, $object);
+                    $values[$i] = (string) \call_user_func($value, $object);
                 } catch (RuntimeException $e) {
                     if (!$this->isAllowAdd()) {
                         throw $e;
@@ -183,8 +183,8 @@ class DynamicDoctrineChoiceLoader extends AbstractDynamicChoiceLoader
         $value = $this->getCallableValue($value);
 
         foreach ($values as &$val) {
-            if (is_object($val) && is_callable($value)) {
-                $val = call_user_func($value, $val);
+            if (\is_object($val) && \is_callable($value)) {
+                $val = \call_user_func($value, $val);
             }
         }
 

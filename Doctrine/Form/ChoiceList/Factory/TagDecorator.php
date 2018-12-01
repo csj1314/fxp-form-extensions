@@ -41,12 +41,12 @@ class TagDecorator implements ChoiceListFactoryInterface
     public function createListFromChoices($choices, $value = null)
     {
         $value = function ($choice) use ($value) {
-            if (is_string($choice)) {
+            if (\is_string($choice)) {
                 return $choice;
             }
 
-            return is_callable($value)
-                ? call_user_func($value, $choice)
+            return \is_callable($value)
+                ? \call_user_func($value, $choice)
                 : $choice;
         };
 
@@ -59,12 +59,12 @@ class TagDecorator implements ChoiceListFactoryInterface
     public function createListFromLoader(ChoiceLoaderInterface $loader, $value = null)
     {
         $value = function ($choice) use ($value) {
-            if (is_string($choice)) {
+            if (\is_string($choice)) {
                 return $choice;
             }
 
-            return is_callable($value)
-                ? call_user_func($value, $choice)
+            return \is_callable($value)
+                ? \call_user_func($value, $choice)
                 : $choice;
         };
 
@@ -77,7 +77,7 @@ class TagDecorator implements ChoiceListFactoryInterface
     public function createView(ChoiceListInterface $list, $preferredChoices = null, $label = null, $index = null, $groupBy = null, $attr = null)
     {
         $label = function ($choice) use ($label, $list) {
-            if (is_string($choice)) {
+            if (\is_string($choice)) {
                 if (null === $label) {
                     $keys = $list->getOriginalKeys();
 
@@ -89,17 +89,17 @@ class TagDecorator implements ChoiceListFactoryInterface
                 return $choice;
             }
 
-            return is_callable($label)
-                ? call_user_func($label, $choice)
+            return \is_callable($label)
+                ? \call_user_func($label, $choice)
                 : $label;
         };
         $index = function ($choice, $position) use ($index) {
-            if (is_string($choice)) {
+            if (\is_string($choice)) {
                 return $choice;
             }
 
-            return is_callable($index)
-                ? call_user_func($index, $choice)
+            return \is_callable($index)
+                ? \call_user_func($index, $choice)
                 : (null !== $index ? $index : $position);
         };
 

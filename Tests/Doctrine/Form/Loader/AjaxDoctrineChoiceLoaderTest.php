@@ -76,7 +76,7 @@ class AjaxDoctrineChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
 
         $this->objectLoader->expects($this->any())
             ->method('getSize')
-            ->will($this->returnValue(count($objects)));
+            ->will($this->returnValue(\count($objects)));
 
         $this->objectLoader->expects($this->any())
             ->method('getEntities')
@@ -95,7 +95,7 @@ class AjaxDoctrineChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
             ->will($this->returnCallback(function ($pageSize, $pageNumber) use ($objects) {
                 $values = [];
 
-                if (is_int($pageSize) && is_int($pageNumber)) {
+                if (\is_int($pageSize) && \is_int($pageNumber)) {
                     $values[$objects[1]->getLabel()] = $objects[1];
                     $values[$objects[2]->getLabel()] = $objects[2];
                 }
@@ -109,7 +109,7 @@ class AjaxDoctrineChoiceLoaderTest extends AbstractAjaxChoiceLoaderTest
                 $entities = [];
 
                 foreach ($values as $id) {
-                    if (isset($objects[$id]) && is_string($idField)) {
+                    if (isset($objects[$id]) && \is_string($idField)) {
                         $entities[$id] = $objects[$id];
                     }
                 }

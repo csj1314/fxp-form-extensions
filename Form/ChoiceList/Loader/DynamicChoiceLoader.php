@@ -124,7 +124,7 @@ class DynamicChoiceLoader extends AbstractDynamicChoiceLoader
     {
         if ($this->isAllowAdd()) {
             foreach ($values as $value) {
-                if (!in_array($value, $selections) && !in_array((string) $value, $selections)) {
+                if (!\in_array($value, $selections) && !\in_array((string) $value, $selections)) {
                     $selections[] = (string) $value;
                 }
             }
@@ -138,14 +138,14 @@ class DynamicChoiceLoader extends AbstractDynamicChoiceLoader
      */
     protected function initialize($choices)
     {
-        $this->size = count($choices);
+        $this->size = \count($choices);
 
         // group
-        if ($this->size > 0 && is_array(current($choices))) {
+        if ($this->size > 0 && \is_array(current($choices))) {
             $this->size = 0;
 
             foreach ($choices as $subChoices) {
-                $this->size += count($subChoices);
+                $this->size += \count($subChoices);
             }
         }
     }
@@ -168,15 +168,15 @@ class DynamicChoiceLoader extends AbstractDynamicChoiceLoader
 
         foreach ($structuredValues as $group => $choice) {
             // group
-            if (is_array($choice)) {
+            if (\is_array($choice)) {
                 $isGrouped = true;
                 foreach ($choice as $choiceKey => $choiceValue) {
-                    if ($this->allChoices || in_array($choiceValue, $values)) {
+                    if ($this->allChoices || \in_array($choiceValue, $values)) {
                         $choices[$group][$choiceKey] = $choiceValue;
                         $allChoices[$choiceKey] = $choiceValue;
                     }
                 }
-            } elseif ($this->allChoices || in_array($choice, $values)) {
+            } elseif ($this->allChoices || \in_array($choice, $values)) {
                 $choices[$group] = $choice;
                 $allChoices[$group] = $choice;
             }
@@ -218,7 +218,7 @@ class DynamicChoiceLoader extends AbstractDynamicChoiceLoader
     protected function addNewTagsInChoices(array $choices, array $allChoices, array $values, $isGrouped)
     {
         foreach ($values as $value) {
-            if (!in_array($value, $allChoices)) {
+            if (!\in_array($value, $allChoices)) {
                 if ($isGrouped) {
                     $choices['-------'][$value] = $value;
                 } else {

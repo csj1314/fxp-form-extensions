@@ -115,7 +115,7 @@ abstract class AbstractSelect2TypeExtension extends AbstractSelect2ConfigTypeExt
             /* @var DynamicChoiceLoaderInterface $loader */
             $loader = $options['choice_loader'];
             $values = $form->getData() instanceof ArrayCollection ? $form->getData()->toArray() : $form->getData();
-            $values = is_object($values) ? [$values] : (array) $values;
+            $values = \is_object($values) ? [$values] : (array) $values;
             $choiceListView = $this->createChoiceListView($loader->loadChoiceListForView($values, $options['choice_name']), $options);
 
             $view->vars = array_replace($view->vars, [
@@ -245,7 +245,7 @@ abstract class AbstractSelect2TypeExtension extends AbstractSelect2ConfigTypeExt
 
         foreach ($attributes as $key => $value) {
             if (null !== $value) {
-                $attr[$key] = is_array($value)
+                $attr[$key] = \is_array($value)
                     ? $this->skipNullValue($value)
                     : $value;
             }

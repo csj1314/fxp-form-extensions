@@ -63,7 +63,7 @@ class BirthdayJqueryTypeExtensionTest extends TypeTestCase
     {
         $form = $this->factory->create(BirthdayType::class, null, ['locale' => 'fr_FR']);
 
-        $this->assertTrue(in_array($form->getConfig()->getOption('format'), ['dd/MM/y', 'dd/MM/yy']));
+        $this->assertTrue(\in_array($form->getConfig()->getOption('format'), ['dd/MM/y', 'dd/MM/yy']));
     }
 
     public function testDefaultAttributes()
