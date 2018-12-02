@@ -4,33 +4,33 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9cf96d53ca0cb8c43cb5c957c1053bbd",
+    "content-hash": "767d00d8d387a09c828894ed21c240c0",
     "packages": [
         {
             "name": "fxp/ajax",
-            "version": "v1.0.0",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fxpio/fxp-ajax.git",
-                "reference": "fb43072665bc9341db56775d452a4ac4e76336fc"
+                "reference": "f2cf040a84a1c3c78c16096cf4d7176ceee3ffb0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fxpio/fxp-ajax/zipball/fb43072665bc9341db56775d452a4ac4e76336fc",
-                "reference": "fb43072665bc9341db56775d452a4ac4e76336fc",
+                "url": "https://api.github.com/repos/fxpio/fxp-ajax/zipball/f2cf040a84a1c3c78c16096cf4d7176ceee3ffb0",
+                "reference": "f2cf040a84a1c3c78c16096cf4d7176ceee3ffb0",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1.0",
-                "symfony/event-dispatcher": "^4.1.0",
-                "symfony/http-foundation": "^4.1.0",
-                "symfony/http-kernel": "^4.1.0",
-                "symfony/serializer": "^4.1.0"
+                "symfony/event-dispatcher": "^4.2.0",
+                "symfony/http-foundation": "^4.2.0",
+                "symfony/http-kernel": "^4.2.0",
+                "symfony/serializer": "^4.2.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0-dev"
+                    "dev-master": "1.1-dev"
                 }
             },
             "autoload": {
@@ -56,7 +56,7 @@
             "keywords": [
                 "AJAX response"
             ],
-            "time": "2018-06-19T16:46:54+00:00"
+            "time": "2018-12-02T14:00:38+00:00"
         },
         {
             "name": "psr/log",
@@ -107,16 +107,16 @@
         },
         {
             "name": "symfony/contracts",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/contracts.git",
-                "reference": "4a33574d5771f4b04334cd4f7d43de96a92efb62"
+                "reference": "3edf0ab943d1985a356721952cba36ff31bd6e5f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/contracts/zipball/4a33574d5771f4b04334cd4f7d43de96a92efb62",
-                "reference": "4a33574d5771f4b04334cd4f7d43de96a92efb62",
+                "url": "https://api.github.com/repos/symfony/contracts/zipball/3edf0ab943d1985a356721952cba36ff31bd6e5f",
+                "reference": "3edf0ab943d1985a356721952cba36ff31bd6e5f",
                 "shasum": ""
             },
             "require": {
@@ -171,7 +171,7 @@
                 "interoperability",
                 "standards"
             ],
-            "time": "2018-10-31T08:00:32+00:00"
+            "time": "2018-11-24T09:35:08+00:00"
         },
         {
             "name": "symfony/debug",
