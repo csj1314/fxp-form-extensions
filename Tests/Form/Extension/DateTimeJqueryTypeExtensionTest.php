@@ -114,4 +114,10 @@ class DateTimeJqueryTypeExtensionTest extends TypeTestCase
 
         return 'M/D/YYYY h:mm A';
     }
+
+    public function testGetExtendedType()
+    {
+        $ext = new DateTimeJqueryTypeExtension();
+        $this->assertEquals(DateTimeJqueryTypeExtension::getExtendedTypes(), [$ext->getExtendedType()]);
+    }
 }

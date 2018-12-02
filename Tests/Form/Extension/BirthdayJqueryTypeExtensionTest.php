@@ -85,4 +85,10 @@ class BirthdayJqueryTypeExtensionTest extends TypeTestCase
 
         $this->assertEquals($validAttr, $view->vars['attr']);
     }
+
+    public function testGetExtendedType()
+    {
+        $ext = new BirthdayJqueryTypeExtension();
+        $this->assertEquals(BirthdayJqueryTypeExtension::getExtendedTypes(), [$ext->getExtendedType()]);
+    }
 }

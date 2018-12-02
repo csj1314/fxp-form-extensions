@@ -81,4 +81,10 @@ class DateJqueryTypeExtensionTest extends TypeTestCase
 
         $this->assertEquals($validAttr, $view->vars['attr']);
     }
+
+    public function testGetExtendedType()
+    {
+        $ext = new DateJqueryTypeExtension();
+        $this->assertEquals(DateJqueryTypeExtension::getExtendedTypes(), [$ext->getExtendedType()]);
+    }
 }

@@ -99,9 +99,6 @@ class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTes
         return implode(',', $this->getValidMultipleValue());
     }
 
-    /**
-     * @group bug2
-     */
     public function testDefaultOptions()
     {
         $form = $this->factory->create($this->getTypeName(), $this->getSingleData(), $this->mergeOptions([]));
@@ -392,5 +389,11 @@ class CollectionSelect2TypeExtensionTest extends AbstractSelect2TypeExtensionTes
     {
         // Skip test
         $this->assertTrue(true);
+    }
+
+    public function testGetExtendedType()
+    {
+        $ext = new CollectionSelect2TypeExtension();
+        $this->assertEquals(CollectionSelect2TypeExtension::getExtendedTypes(), [$ext->getExtendedType()]);
     }
 }

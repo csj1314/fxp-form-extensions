@@ -441,4 +441,12 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
         $this->assertNull($select2Opts['ajax_route']);
         $this->assertEquals('fxp_form_extensions_ajax_'.StringUtil::fqcnToBlockPrefix($this->getTypeName()), $config->getAttribute('select2_ajax_route'));
     }
+
+    public function testGetExtendedType()
+    {
+        $type = $this->getExtensionTypeName();
+
+        $ext = new $type($this->dispatcher, $this->requestStack, $this->router);
+        $this->assertEquals($type::getExtendedTypes(), [$ext->getExtendedType()]);
+    }
 }

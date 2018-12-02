@@ -92,4 +92,10 @@ class TimeJqueryTypeExtensionTest extends TypeTestCase
 
         $this->assertEquals([], $view->vars['attr']);
     }
+
+    public function testGetExtendedType()
+    {
+        $ext = new TimeJqueryTypeExtension();
+        $this->assertEquals(TimeJqueryTypeExtension::getExtendedTypes(), [$ext->getExtendedType()]);
+    }
 }
