@@ -11,6 +11,7 @@
 
 namespace Fxp\Component\FormExtensions\Tests\Form\Extension;
 
+use Fxp\Component\Ajax\AjaxEvents;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\ChoiceList\Loader\ChoiceLoaderInterface;
 use Symfony\Component\Form\FormBuilder;
@@ -65,14 +66,14 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
             }))
         ;
 
+        $this->dispatcher = $this->getMockBuilder('Symfony\Component\EventDispatcher\EventDispatcherInterface')->getMock();
+
         $factoryBuilder = Forms::createFormFactoryBuilder()
             ->addExtensions($this->getExtensions())
         ;
         $this->buildFormFactory($factoryBuilder);
 
         $this->factory = $factoryBuilder->getFormFactory();
-
-        $this->dispatcher = $this->getMockBuilder('Symfony\Component\EventDispatcher\EventDispatcherInterface')->getMock();
         $this->builder = new FormBuilder(null, null, $this->dispatcher, $this->factory);
     }
 
@@ -370,6 +371,22 @@ abstract class AbstractSelect2TypeExtensionTest extends TypeTestCase
         $view = $form->createView();
 
         $this->assertEquals('/foobar', $view->vars['select2']['ajax']['url']);
+    }
+
+    public function testAjaxEmptyRoute()
+    {
+        $options = ['required' => false, 'select2' => ['enabled' => true, 'ajax' => true, 'ajax_route' => null]];
+        $formBuilder = $this->factory->createBuilder($this->getTypeName(), null, $this->mergeOptions($options));
+        $formBuilder->setAttribute('select2_ajax_route', null);
+        $form = $formBuilder->getForm();
+
+        $this->assertNull($form->getConfig()->getAttribute('select2_ajax_route'));
+
+        $this->dispatcher->expects($this->once())
+            ->method('dispatch')
+            ->with(AjaxEvents::INJECTION);
+
+        $form->createView();
     }
 
     public function testAjaxUrl()
