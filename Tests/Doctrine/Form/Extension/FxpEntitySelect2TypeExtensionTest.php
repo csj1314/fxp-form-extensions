@@ -11,19 +11,19 @@
 
 namespace Fxp\Component\FormExtensions\Tests\Doctrine\Form\Extension;
 
-use Fxp\Component\FormExtensions\Doctrine\Form\Extension\EntitySelect2TypeExtension;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Fxp\Component\FormExtensions\Doctrine\Form\Extension\FxpEntitySelect2TypeExtension;
+use Fxp\Component\FormExtensions\Doctrine\Form\Type\EntityType;
 
 /**
  * Tests case for entity of select2 form extension type.
  *
  * @author François Pluchino <francois.pluchino@gmail.com>
  */
-class EntitySelect2TypeExtensionTest extends AbstractEntitySelect2TypeExtensionTest
+class FxpEntitySelect2TypeExtensionTest extends AbstractEntitySelect2TypeExtensionTest
 {
     protected function getExtensionTypeName()
     {
-        return EntitySelect2TypeExtension::class;
+        return FxpEntitySelect2TypeExtension::class;
     }
 
     protected function getTypeName()

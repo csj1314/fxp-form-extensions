@@ -11,12 +11,12 @@
 
 namespace Fxp\Component\FormExtensions\Doctrine\Form\Extension;
 
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Fxp\Component\FormExtensions\Doctrine\Form\Type\EntityType;
 
 /**
  * @author François Pluchino <francois.pluchino@gmail.com>
  */
-class EntitySelect2TypeExtension extends AbstractEntitySelect2TypeExtension
+class FxpEntitySelect2TypeExtension extends AbstractEntitySelect2TypeExtension
 {
     /**
      * {@inheritdoc}
